@@ -228,3 +228,5 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,t
 .mail-fallback{margin:14px 0 0;font-size:15px;color:var(--muted)}
 .mail-fallback strong{color:var(--ink,#241612)}
 .mail-copy{margin-left:8px;padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:transparent;font:inherit;font-size:14px;cursor:pointer}
+
+.menu-panel a small.menu-sous{display:block;font-size:12px;letter-spacing:.04em;opacity:.65;margin-top:2px}@media(max-width:1360px){.navlinks{display:none}}
