@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ma lecture</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#2E1608;--bg2:#3A1C0A;--carte:#46240F;--fg:#F5EADA;--doux:#D9C6AD;--terne:#B8A288;--or:#C9A25B;--trait:rgba(201,162,91,.35);--page:#FBF6EE;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{background:var(--bg);color:var(--fg)}
+body{margin:0;font-family:"Manrope",system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg2);z-index:30}
+button{font:inherit;color:inherit}
+a{color:var(--or)}
+.k{font-family:"Jost",sans-serif;font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--or)}
+h1,h2{font-family:"Jost",sans-serif;font-weight:700;line-height:1.2;text-wrap:balance;margin:0}
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.btn{display:inline-block;border:0;border-radius:4px;background:var(--fg);color:#35200E;padding:14px 20px;font-family:"Jost",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;cursor:pointer;text-align:center}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--trait)}
+.champ{display:block;width:100%;margin-top:6px;padding:12px;border-radius:6px;border:1px solid var(--trait);background:rgba(255,255,255,.06);color:var(--fg);font:inherit}
+.note{font-size:14px;color:var(--terne)}
+
+/* Écrans d'accueil et d'erreur */
+.ecran{min-height:100vh;display:grid;place-items:center;padding-block:40px}
+.boite{width:100%;max-width:520px;display:flex;flex-direction:column;gap:16px}
+.boite h1{font-size:clamp(26px,6vw,34px)}
+.boite p{margin:0;color:var(--doux)}
+.carte{background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:12px}
+.biblio{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.oeuvre{display:flex;flex-direction:column;gap:10px;text-align:left;background:var(--carte);border:1px solid var(--trait);border-radius:10px;padding:14px;cursor:pointer}
+.oeuvre canvas{width:100%;aspect-ratio:1166/1654;border-radius:3px;background:#5a341c;display:block}
+.oeuvre strong{font-family:"Jost",sans-serif;font-size:16px;line-height:1.3}
+
+/* Barre de lecture */
+.barre{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg2);border-bottom:1px solid var(--trait)}
+.barre .in{display:flex;align-items:center;gap:8px;min-height:54px;max-width:1100px;margin:0 auto}
+.barre .titre{flex:1;min-width:0;font-family:"Jost",sans-serif;font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ico{border:1px solid var(--trait);background:transparent;border-radius:6px;min-width:40px;height:38px;padding:0 10px;cursor:pointer;font-size:14px;white-space:nowrap}
+.ico[disabled]{opacity:.4}
+.lect{position:fixed;inset:0;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px)}
+.avec-apercu .lect{bottom:calc(46px + env(safe-area-inset-bottom,0px))}
+.scene{flex:1;min-height:0;position:relative;display:grid;place-items:center;overflow:hidden;perspective:2200px;touch-action:pan-y}
+.scene.zoomee{overflow:auto;place-items:start center;touch-action:auto}
+.livre{display:flex;gap:2px;filter:drop-shadow(0 12px 28px rgba(0,0,0,.45))}
+.livre.double .feuille:first-child{border-radius:3px 0 0 3px}
+.livre.double .feuille:last-child{border-radius:0 3px 3px 0}
+.feuille{position:relative;background:var(--page);border-radius:3px;overflow:hidden;flex:none}
+.feuille canvas{width:100%;height:100%;display:block;pointer-events:none}
+.feuille .att{position:absolute;inset:0;display:grid;place-items:center;color:#9b8a77;font-size:13px}
+.feuille.vide{background:transparent}
+.feuille.fin{background:var(--bg2);display:grid;place-items:center;padding:16px}
+.fin-carte{width:100%}
+.volante{position:absolute;z-index:5;pointer-events:none;transform-origin:left center;animation:tourne .5s ease-in forwards}
+.volante.vers-droite{transform-origin:right center;animation-name:tourneR}
+@keyframes tourne{0%{transform:rotateY(0);opacity:1}70%{opacity:1}100%{transform:rotateY(-110deg);opacity:0}}
+@keyframes tourneR{0%{transform:rotateY(0);opacity:1}70%{opacity:1}100%{transform:rotateY(110deg);opacity:0}}
+.feuille.texte{color:#2c1a0e}
+.cadre{position:absolute;inset:34px 26px 40px;overflow:hidden}
+.colonnes{height:100%;column-fill:auto;font-family:Georgia,"Times New Roman",serif;line-height:1.6;hyphens:auto;-webkit-hyphens:auto;text-align:justify}
+.colonnes.gauche{text-align:left;hyphens:manual;-webkit-hyphens:manual}
+.colonnes p{margin:0 0 .75em;orphans:1;widows:1}
+.colonnes .coupe{margin-bottom:0;text-align-last:justify}
+.colonnes.gauche .coupe{text-align-last:auto}
+.colonnes figure{margin:.4em 0 1em;break-inside:avoid}
+.colonnes img{display:block;max-width:100%;max-height:var(--hmax,60vh);margin:0 auto;border-radius:2px}
+.colonnes .kicker{margin-top:1.4em}
+.colonnes .medit{font-style:italic;color:#5b4433;border-left:2px solid #d8c2a0;padding-left:.8em}
+.colonnes .encadre{background:#f3eadc;padding:.45em .7em;border-radius:4px}
+.colonnes .sombre{background:#3A1C0A;color:#F5EADA;padding:.5em .8em;border-radius:4px}
+.colonnes .consigne,.colonnes .exemple{font-style:italic;color:#6b4a2e}
+.colonnes .grande{text-align:center;font-style:italic;font-size:1.15em;color:#8a6428;margin:.8em 0}
+.colonnes .petit{font-size:.85em;color:#7a6452}
+.colonnes .label{break-after:avoid}
+.colonnes h1{font-family:"Jost",sans-serif;font-size:1.45em;line-height:1.2;text-align:center;margin:1.2em 0 .4em;break-after:avoid;text-wrap:balance}
+.colonnes .chap{break-before:column}
+.colonnes .chap:first-child{break-before:auto}
+.colonnes h2,.colonnes h3{font-family:"Jost",sans-serif;font-size:1.1em;margin:1em 0 .4em;break-after:avoid}
+.colonnes .label{text-align:center;font-family:"Jost",sans-serif;font-size:.7em;letter-spacing:.25em;color:#8a6428;margin:2em 0 0}
+.colonnes hr{border:0;border-top:1px solid #c9a25b;width:60px;margin:.6em auto 1.2em}
+.colonnes .exergue,.colonnes .citation{text-align:center;font-style:italic;color:#6b4a2e}
+.fili{position:absolute;inset:0;opacity:.11;pointer-events:none;background-repeat:repeat}
+.pied-page{position:absolute;left:0;right:0;bottom:12px;text-align:center;font-size:10px;color:#9a8470}
+.fin-texte{position:absolute;top:0;bottom:0;display:grid;place-items:center}
+.pied{display:flex;align-items:center;gap:10px;padding-block:8px calc(8px + env(safe-area-inset-bottom,0px));background:var(--bg2);border-top:1px solid var(--trait)}
+.avec-apercu .pied{padding-bottom:8px}
+.pied input[type=range]{flex:1;min-width:0;accent-color:var(--or)}
+.pied #num{font-size:13px;color:var(--doux);white-space:nowrap;min-width:92px;text-align:center}
+.choix{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ico.on{background:var(--or);color:#2E1608;border-color:var(--or)}
+.ico.gros{min-width:64px;height:46px;font-size:18px}
+.en-lecture .boite{display:none}
+.panneau{position:fixed;inset:0;z-index:40;background:rgba(20,10,4,.6);display:flex;justify-content:flex-end}
+.panneau .in{width:min(380px,100%);height:100%;overflow:auto;background:var(--bg2);padding-block:calc(18px + env(safe-area-inset-top,0px)) 30px;display:flex;flex-direction:column;gap:4px}
+.panneau .ent{display:flex;justify-content:space-between;gap:12px;border:0;background:transparent;text-align:left;padding:10px 4px;border-bottom:1px solid rgba(201,162,91,.15);cursor:pointer}
+.panneau .ent span:last-child{color:var(--terne);font-size:13px;white-space:nowrap}
+.voile{position:fixed;inset:0;z-index:100;background:#000;display:grid;place-items:center;color:#777;font-size:14px;text-align:center;padding:20px}
+.apercu{position:fixed;left:0;right:0;bottom:0;z-index:90;height:calc(46px + env(safe-area-inset-bottom,0px));background:#120804;border-top:1px solid var(--trait);padding:0 10px env(safe-area-inset-bottom,0px);font-size:12px;display:flex;gap:6px;flex-wrap:nowrap;align-items:center;overflow-x:auto;white-space:nowrap}
+.apercu button{flex:none}
+.avec-apercu .ecran{padding-bottom:70px}
+.apercu button{border:1px solid var(--trait);background:transparent;border-radius:999px;padding:5px 10px;font-size:12px;cursor:pointer}
+.apercu button.on{background:var(--or);color:#2E1608}
+@media print{body{display:none!important}}
+</style>
+
+<script src="../assets/relais.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<div id="voile" class="voile" hidden>Lecture masquée.<br>Revenez sur la page pour continuer.</div>
+
+<script>
+/* ===== Configuration (production : RELAIS = adresse du serveur Cloudflare) ===== */
+const PROD = true;
+const RELAIS = PROD ? (window.RELAIS_FRAMYXCC || '') : null;
+const DOSSIER = 'c/';
+const EXT = '.bin';
+const PAR = 8;
+const SUPPORT = 'meetme@mireilletanofram.com';
+const ACHAT_BASE = '../';
+const OEUVRES_APERCU = {
+  "livre": { "titre": "La vie commence à 50 ans", "pages": 73, "extrait": [3,4,5,6], "couverture": 1, "texte": { "chapitres": 10, "extrait": [1] }, "achat": "livre-50-ans/", "prix": "9 900 FCFA",
+    "sommaire": [["Couverture",1],["Ouverture : Avec quoi ?",3],["La femme qu’on m’a dit d’être",7],["Spectatrice de ma vie",13],["Revenir à qui je suis",20],["Ralentir pour mieux vivre",25],["Créer n’est pas agir",32],["Agis malgré l’incertitude",37],["La femme que je deviens",42],["L’eau trouve son chemin",49],["Faire rayonner",59],["Sept pratiques pour continuer le chemin",64]] },
+  "traversee": { "titre": "La Traversée, 40 jours pour revenir à soi", "pages": 397, "extrait": [2,3,4,5], "couverture": 1, "texte": { "chapitres": 41, "extrait": [42], "titres": ["Préambule : comment traverser", "Jour 1 · Le Seuil", "L’Eau · Jour 2", "Jour 3", "Jour 4", "Jour 5", "Jour 6", "Jour 7", "Jour 8", "Jour 9", "La Terre · Jour 10", "Jour 11", "Jour 12", "Jour 13", "Jour 14", "Jour 15", "Jour 16", "Jour 17", "Jour 18", "Le Feu · Jour 19", "Jour 20", "Jour 21", "Jour 22", "Jour 23", "Jour 24", "Jour 25", "L’Air · Jour 26", "Jour 27", "Jour 28", "Jour 29", "Jour 30", "Jour 31", "Le Fruit · Jour 32", "Jour 33", "Jour 34", "Jour 35", "Jour 36", "Jour 37", "Jour 38", "Jour 39", "Jour 40"] }, "achat": "traversee.html", "prix": "19 900 FCFA",
+    "sommaire": [["Couverture",1],["Préambule : comment traverser",2],["Jour 1 · Le Seuil",11],["L’Eau · Jour 2",19],["Jour 3",29],["Jour 4",40],["Jour 5",50],["Jour 6",61],["Jour 7",71],["Jour 8",80],["Jour 9",92],["La Terre · Jour 10",102],["Jour 11",112],["Jour 12",121],["Jour 13",131],["Jour 14",142],["Jour 15",154],["Jour 16",165],["Jour 17",176],["Jour 18",188],["Le Feu · Jour 19",198],["Jour 20",210],["Jour 21",220],["Jour 22",230],["Jour 23",239],["Jour 24",249],["Jour 25",259],["L’Air · Jour 26",270],["Jour 27",278],["Jour 28",287],["Jour 29",295],["Jour 30",303],["Jour 31",311],["Le Fruit · Jour 32",320],["Jour 33",328],["Jour 34",336],["Jour 35",344],["Jour 36",354],["Jour 37",362],["Jour 38",370],["Jour 39",379],["Jour 40",387]] }
+};
+const CLE_APERCU = '';
+
+document.documentElement.lang = 'fr';
+const $ = (s, r = document) => r.querySelector(s);
+const app = $('#app');
+const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const stock = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+
+function appareil() {
+  let id = stock.get('lis-appareil');
+  if (!id) { const b = crypto.getRandomValues(new Uint8Array(18)); id = btoa(String.fromCharCode(...b)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); stock.set('lis-appareil', id); }
+  return id;
+}
+
+/* ===== Aperçu : serveur simulé (même réponses que le vrai serveur) ===== */
+let MODE = 'experience';
+const APERCU_APP = new Set();
+async function simule(chemin, corps) {
+  await new Promise((r) => setTimeout(r, 150));
+  if (MODE === 'invalide') return { ok: false, erreur: 'acces' };
+  if (MODE === 'appareils') return { ok: false, erreur: 'appareils', max: 3 };
+  const extrait = MODE === 'extrait';
+  const ids = extrait ? ['livre', 'traversee'] : MODE === 'livre' ? ['livre'] : ['livre', 'traversee'];
+  if (chemin === '/lecture/ouvrir') return { ok: true, extrait, filigrane: 'acheteuse@exemple.ci', oeuvres: ids.map((o) => ({ id: o, ...OEUVRES_APERCU[o], permises: extrait ? OEUVRES_APERCU[o].extrait : null })) };
+  if (chemin === '/lecture/cles') {
+    const o = corps.oeuvre, txt = o.endsWith('-texte'), base = txt ? o.slice(0, -6) : o, oe = OEUVRES_APERCU[base];
+    if (!ids.includes(base) || (txt && !oe.texte)) return { ok: false, erreur: 'oeuvre' };
+    const maitre = await crypto.subtle.importKey('raw', Uint8Array.from(atob(CLE_APERCU), (c) => c.charCodeAt(0)), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+    const cles = {};
+    for (const n of corps.pages.slice(0, 10)) if (txt ? (extrait ? oe.texte.extrait.includes(n) : n >= 1 && n <= oe.texte.chapitres) : extrait ? (oe.extrait.includes(n) || n === (oe.couverture || 1)) : n >= 1 && n <= oe.pages) { const s = await crypto.subtle.sign('HMAC', maitre, new TextEncoder().encode(o + ':' + n)); cles[n] = btoa(String.fromCharCode(...new Uint8Array(s))); }
+    return { ok: true, cles };
+  }
+  return { ok: true };
+}
+async function appel(chemin, corps) {
+  if (!PROD) return simule(chemin, corps);
+  if (!RELAIS) return { ok: false, erreur: 'reseau' };
+  try { const r = await fetch(RELAIS + chemin, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(corps) }); return await r.json(); }
+  catch (e) { return { ok: false, erreur: 'reseau' }; }
+}
+
+/* ===== Lien personnel ===== */
+const q = new URLSearchParams(location.search);
+const LIEN = q.get('a') ? { a: q.get('a') } : q.get('x') ? { x: q.get('x') } : PROD ? null : { a: 'apercu' };
+const ident = () => ({ ...(MODE === 'extrait' && !PROD ? { x: 'apercu' } : LIEN), appareil: appareil() });
+
+/* ===== Protection ===== */
+['contextmenu', 'dragstart', 'copy', 'cut', 'selectstart'].forEach((ev) => document.addEventListener(ev, (e) => { if (!e.target.closest || !e.target.closest('input,textarea')) e.preventDefault(); }));
+document.addEventListener('keydown', (e) => {
+  const k = (e.key || '').toLowerCase();
+  if ((e.ctrlKey || e.metaKey) && ['s', 'p', 'c', 'a', 'u', 'x'].includes(k) && !(e.target.closest && e.target.closest('input,textarea'))) e.preventDefault();
+  if (k === 'printscreen') { masquer(true); setTimeout(() => masquer(false), 1500); }
+});
+const voile = $('#voile');
+function masquer(v) { voile.hidden = !v; }
+document.addEventListener('visibilitychange', () => masquer(document.hidden));
+window.addEventListener('blur', () => { if (document.body.classList.contains('en-lecture')) masquer(true); });
+window.addEventListener('focus', () => masquer(false));
+window.addEventListener('beforeprint', () => masquer(true));
+window.addEventListener('afterprint', () => masquer(false));
+
+/* ===== Écrans ===== */
+let SESSION = null;
+
+async function demarrer() {
+  if (!LIEN) return accueilSansLien();
+  app.innerHTML = `<div class="ecran gutter"><p class="note">Ouverture de votre lecture…</p></div>`;
+  const r = await appel('/lecture/ouvrir', ident());
+  if (!r.ok) return erreur(r);
+  SESSION = r;
+  if (r.oeuvres.length === 1 && !r.extrait) return lire(r.oeuvres[0]);
+  bibliotheque();
+}
+
+function blocAssistance(offre) {
+  return `<div class="carte" id="assistance"><div class="k">Un problème technique ?</div>
+    <p>Décrivez ce qui se passe. Votre message part directement à l’assistance, avec les informations utiles pour régler le problème.</p>
+    <label>Votre adresse e-mail<input class="champ" type="email" id="asEmail" autocomplete="email" placeholder="pour vous répondre"></label>
+    <label>Le problème<textarea class="champ" id="asMsg" rows="3" placeholder="Par exemple : les pages ne s’affichent pas"></textarea></label>
+    <button class="btn" id="asEnvoyer" data-offre="${offre || 'site'}">Envoyer à l’assistance</button>
+    <p class="note" id="asNote">Vous pouvez aussi écrire à <strong style="user-select:all;-webkit-user-select:all;color:var(--fg)">${SUPPORT}</strong>.</p></div>`;
+}
+document.addEventListener('click', async (e) => {
+  const b = e.target.closest && e.target.closest('#asEnvoyer');
+  if (!b) return;
+  const msg = $('#asMsg').value.trim(), note = $('#asNote');
+  if (!msg) { note.textContent = 'Décrivez le problème en quelques mots.'; return; }
+  if (!PROD) { note.textContent = 'Aperçu : dans la version en ligne, ce message partira directement à l’assistance. Rien n’a été envoyé ici.'; return; }
+  b.disabled = true;
+  const r = await appel('/assistance', { offre: b.dataset.offre, email: $('#asEmail').value.trim(), message: msg, infos: 'Page : lecture\nAppareil : ' + navigator.userAgent + '\nÉcran : ' + screen.width + 'x' + screen.height });
+  note.innerHTML = r.ok ? 'Message envoyé. Nous vous répondons au plus vite.' : 'L’envoi n’a pas abouti. Écrivez-nous à <strong>' + SUPPORT + '</strong>.';
+  b.disabled = false;
+});
+
+function formRetrouver() {
+  return `<div class="carte"><div class="k">Lien perdu ?</div><p>Indiquez l’adresse e-mail utilisée lors de l’achat. Nous vous renvoyons votre lien de lecture.</p>
+    <input class="champ" type="email" id="rEmail" autocomplete="email" placeholder="Votre adresse e-mail">
+    <button class="btn" id="rEnvoyer">Recevoir mon lien</button><p class="note" id="rNote" hidden></p></div>`;
+}
+function brancherRetrouver() {
+  const b = $('#rEnvoyer'); if (!b) return;
+  b.onclick = async () => {
+    const email = $('#rEmail').value.trim(), n = $('#rNote'); n.hidden = false;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { n.textContent = 'Vérifiez l’adresse e-mail.'; return; }
+    b.disabled = true; await appel('/lecture/retrouver', { email }); b.disabled = false;
+    n.textContent = 'Si cette adresse correspond à un achat, votre lien vient de vous être envoyé. Pensez à regarder dans les courriers indésirables.';
+  };
+}
+
+function accueilSansLien() {
+  app.innerHTML = `<div class="ecran gutter"><div class="boite">
+    <div class="k">Ma lecture</div><h1>Votre lecture se trouve dans l’e-mail reçu après l’achat.</h1>
+    <p>Ouvrez le lien personnel reçu par e-mail. Il fonctionne sur 3 appareils au maximum, sans limite de durée.</p>
+    ${formRetrouver()}${blocAssistance('site')}</div></div>`;
+  brancherRetrouver();
+}
+
+function erreur(r) {
+  const appareils = r.erreur === 'appareils';
+  app.innerHTML = `<div class="ecran gutter"><div class="boite">
+    <div class="k">Ma lecture</div>
+    <h1>${appareils ? 'Ce lien est déjà ouvert sur 3 appareils.' : r.erreur === 'reseau' ? 'La connexion a échoué.' : 'Ce lien n’est pas valide.'}</h1>
+    <p>${appareils ? 'Votre lecture est personnelle : elle s’ouvre sur 3 appareils au maximum. Un appareil que vous n’utilisez plus libère sa place après 30 jours. Si vous avez changé de téléphone, écrivez-nous : nous réglons cela rapidement.' : r.erreur === 'reseau' ? 'Vérifiez votre connexion internet, puis rechargez la page.' : 'Le lien est peut-être incomplet. Ouvrez-le directement depuis l’e-mail reçu, ou demandez à le recevoir à nouveau.'}</p>
+    ${appareils ? '' : formRetrouver()}${blocAssistance('site')}</div></div>`;
+  brancherRetrouver();
+}
+
+function bibliotheque() {
+  document.body.classList.remove('en-lecture');
+  const s = SESSION;
+  app.innerHTML = `<div class="ecran gutter"><div class="boite" style="max-width:720px">
+    <div class="k">${s.extrait ? 'Premières pages offertes' : 'Ma bibliothèque'}</div>
+    <h1>${s.extrait ? 'Lisez les premières pages.' : 'Que souhaitez-vous lire ?'}</h1>
+    ${s.extrait ? '<p>Les premières pages de chaque ouvrage, à lire ici. Pour lire la suite, il suffit d’acheter l’ouvrage.</p>' : ''}
+    <div class="biblio">${s.oeuvres.map((o, i) => `<button class="oeuvre" data-i="${i}"><canvas width="292" height="414" data-couv="${o.id}"></canvas><strong>${esc(o.titre)}</strong><span class="note">${s.extrait ? o.permises.length + ' pages offertes' : o.pages + ' pages' + (pageSauvee(o.id) > 1 ? ' · reprendre page ' + pageSauvee(o.id) : '')}</span></button>`).join('')}</div>
+    ${blocAssistance('site')}</div></div>`;
+  app.querySelectorAll('.oeuvre').forEach((b) => b.onclick = () => lire(s.oeuvres[+b.dataset.i]));
+  app.querySelectorAll('[data-couv]').forEach(async (c) => { const bmp = await imagePage(c.dataset.couv, 1); if (bmp) c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height); });
+}
+
+/* ===== Déchiffrement ===== */
+const lots = new Map(), cles = new Map(), images = new Map();
+function lot(o, c) {
+  const k = o + '-' + c;
+  if (!lots.has(k)) lots.set(k, fetch(DOSSIER + o + '-' + String(c).padStart(2, '0') + EXT).then((r) => { if (!r.ok) throw new Error('lot'); return r.arrayBuffer(); }).catch((e) => { lots.delete(k); throw e; }));
+  return lots.get(k);
+}
+let attenteCles = null;
+async function cle(o, n) {
+  const k = o + ':' + n;
+  if (cles.has(k)) return cles.get(k);
+  // regroupe les demandes de clés proches (10 au maximum par appel)
+  if (!attenteCles || attenteCles.o !== o || attenteCles.pages.length >= 10) {
+    const g = { o, pages: [] };
+    g.promesse = new Promise((res) => setTimeout(async () => { if (attenteCles === g) attenteCles = null; res(await appel('/lecture/cles', { ...ident(), oeuvre: o, pages: g.pages })); }, 40));
+    attenteCles = g;
+  }
+  const g = attenteCles; g.pages.push(n);
+  const r = await g.promesse;
+  if (!r.ok) { if (r.erreur === 'appareils' || r.erreur === 'acces') erreur(r); return null; }
+  for (const [p, v] of Object.entries(r.cles || {})) cles.set(o + ':' + p, v);
+  return cles.get(k) || null;
+}
+async function imagePage(o, n) {
+  const k = o + ':' + n;
+  if (images.has(k)) return images.get(k);
+  const pr = dechiffrer(o, n).then((img) => img ? createImageBitmap(new Blob([img], { type: 'image/jpeg' })) : null).catch(() => { images.delete(k); return null; });
+  images.set(k, pr);
+  return pr;
+}
+function dessiner(canvas, bmp, filigrane, extrait) {
+  canvas.width = bmp.width; canvas.height = bmp.height;
+  const g = canvas.getContext('2d');
+  g.drawImage(bmp, 0, 0);
+  const W = bmp.width, H = bmp.height;
+  g.save(); g.globalAlpha = 0.07; g.fillStyle = '#3A1C0A'; g.font = `600 ${Math.round(W * 0.03)}px Manrope, sans-serif`;
+  g.translate(W / 2, H / 2); g.rotate(-Math.PI / 6);
+  const t = (extrait ? 'Extrait offert à ' : 'Exemplaire de ') + filigrane;
+  for (let y = -H; y < H; y += W * 0.16) for (let x = -W * 1.2; x < W * 1.2; x += g.measureText(t).width + W * 0.12) g.fillText(t, x + ((y / (W * 0.16)) % 2 ? W * 0.2 : 0), y);
+  g.restore();
+  g.save(); g.globalAlpha = 0.55; g.fillStyle = '#6b5440'; g.font = `500 ${Math.round(W * 0.016)}px Manrope, sans-serif`; g.textAlign = 'center';
+  g.fillText((extrait ? 'Extrait offert à ' : 'Exemplaire personnel de ') + filigrane + ' · reproduction et diffusion interdites', W / 2, H - W * 0.022);
+  g.restore();
+}
+
+/* ===== Lecture : on feuillette comme un livre ===== */
+const pageSauvee = (o) => Number(stock.get('lis-page-' + o)) || 1;
+const TAILLES = [15, 17, 19, 21, 24, 28];
+let ZOOM = 1;
+let OUVRAGE = null;
+const affichage = (o) => o.texte ? (stock.get('lis-aff-' + o.id) || 'texte') : 'pages';
+
+async function dechiffrer(o, n) {
+  const c = Math.floor((n - 1) / PAR), i = (n - 1) % PAR;
+  const [buf, cb] = await Promise.all([lot(o, c), cle(o, n)]);
+  if (!cb) return null;
+  const v = new DataView(buf); let off = 4 + 4 * v.getUint32(0, true);
+  for (let j = 0; j < i; j++) off += v.getUint32(4 + 4 * j, true);
+  const bloc = new Uint8Array(buf, off, v.getUint32(4 + 4 * i, true));
+  const key = await crypto.subtle.importKey('raw', Uint8Array.from(atob(cb), (x) => x.charCodeAt(0)), 'AES-GCM', false, ['decrypt']);
+  return crypto.subtle.decrypt({ name: 'AES-GCM', iv: bloc.slice(0, 12) }, key, bloc.slice(12));
+}
+
+function filigraneSVG(texte) {
+  const t = esc(texte);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="420" height="220"><text x="10" y="120" transform="rotate(-28 210 110)" font-family="Manrope,Arial,sans-serif" font-size="15" font-weight="600" fill="#3A1C0A">${t}</text></svg>`;
+  return `url('data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}')`;
+}
+
+function lire(o) {
+  OUVRAGE = o; ZOOM = 1;
+  const s = SESSION, extrait = s.extrait;
+  const plusieurs = s.oeuvres.length > 1 || extrait;
+  document.body.classList.add('en-lecture');
+  app.innerHTML = `<div class="lect">
+    <div class="barre gutter"><div class="in">
+      ${plusieurs ? '<button class="ico" id="retour" aria-label="Retour à la bibliothèque">‹</button>' : ''}
+      <div class="titre">${esc(o.titre)}</div>
+      <button class="ico" id="somm">Sommaire</button>
+      <button class="ico" id="aa" aria-label="Affichage">Aa</button>
+      <button class="ico" id="aide" aria-label="Assistance">?</button></div></div>
+    <div class="scene" id="scene"></div>
+    <div class="pied gutter"><button class="ico" id="prec" aria-label="Page précédente">‹</button>
+      <input type="range" id="curseur" min="0" max="0" value="0" aria-label="Aller à la page">
+      <span id="num">…</span><button class="ico" id="suiv" aria-label="Page suivante">›</button></div></div>`;
+  if ($('#retour')) $('#retour').onclick = () => { document.body.classList.remove('en-lecture'); bibliotheque(); };
+  $('#aide').onclick = () => panneau('Aide', (o.id === 'traversee' ? '<button class="ent" id="revoirConsigne"><span>Comment utiliser La Traversée</span><span>›</span></button>' : '') + blocAssistance(o.id));
+  document.addEventListener('click', (e) => { if (e.target.closest && e.target.closest('#revoirConsigne')) { e.target.closest('.panneau').remove(); consigneTraversee(); } });
+  $('#aa').onclick = () => reglages(o);
+  const scene = $('#scene');
+  const moteur = affichage(o) === 'texte' ? moteurTexte(o, scene) : moteurPages(o, scene);
+  lire.moteur = moteur;
+  if (o.id === 'traversee' && !stock.get('lis-consigne-traversee')) consigneTraversee();
+  $('#prec').onclick = () => moteur.tourner(-1);
+  $('#suiv').onclick = () => moteur.tourner(1);
+  $('#curseur').oninput = (e) => moteur.aller(+e.target.value, true);
+  $('#somm').onclick = () => moteur.sommaire();
+  // gestes : glisser ou toucher les bords
+  let x0 = null, y0 = 0;
+  scene.addEventListener('pointerdown', (e) => { if (e.target.closest('a,button,input,textarea')) return; x0 = e.clientX; y0 = e.clientY; });
+  scene.addEventListener('pointerup', (e) => {
+    if (x0 === null) return; const dx = e.clientX - x0, dy = e.clientY - y0; x0 = null;
+    if (ZOOM > 1) return;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) return moteur.tourner(dx < 0 ? 1 : -1);
+    if (Math.abs(dx) < 8 && Math.abs(dy) < 8) { const r = scene.getBoundingClientRect(), f = (e.clientX - r.left) / r.width; if (f < 0.3) moteur.tourner(-1); else if (f > 0.7) moteur.tourner(1); }
+  });
+  lire.clavier = (e) => { if (!document.body.classList.contains('en-lecture') || document.querySelector('.panneau')) return; if (e.key === 'ArrowRight') moteur.tourner(1); if (e.key === 'ArrowLeft') moteur.tourner(-1); };
+  let tempo; lire.redim = () => { clearTimeout(tempo); tempo = setTimeout(() => moteur.redim(), 150); };
+}
+document.addEventListener('keydown', (e) => lire.clavier && lire.clavier(e));
+window.addEventListener('resize', () => lire.redim && lire.redim());
+
+function majPied(i, total, libelle) {
+  const c = $('#curseur'); if (!c) return;
+  c.max = Math.max(0, total - 1); c.value = i;
+  $('#num').textContent = libelle;
+  $('#prec').disabled = i <= 0; $('#suiv').disabled = i >= total - 1;
+}
+
+// Animation de page tournée : la page quittée se soulève autour du dos du livre
+function tourner(scene, avant, rendre) {
+  const ancienne = scene.querySelector('.livre');
+  if (!ancienne || matchMedia('(prefers-reduced-motion: reduce)').matches) return rendre();
+  const copie = ancienne.cloneNode(true);
+  ancienne.querySelectorAll('canvas').forEach((c, k) => { const d = copie.querySelectorAll('canvas')[k]; if (d) { d.width = c.width; d.height = c.height; d.getContext('2d').drawImage(c, 0, 0); } });
+  copie.classList.add('volante', avant ? 'vers-gauche' : 'vers-droite');
+  copie.style.left = ancienne.offsetLeft + 'px'; copie.style.top = ancienne.offsetTop + 'px';
+  rendre();
+  scene.appendChild(copie);
+  setTimeout(() => copie.remove(), 520);
+}
+
+function finExtrait(o) {
+  return `<div class="carte fin-carte"><div class="k">Fin de l’extrait</div><h2 style="font-size:22px">Lisez la suite de « ${esc(o.titre)} ».</h2><p style="margin:0;color:var(--doux)">Vous retrouverez l’ouvrage complet ici, en ligne, sans limite de durée.</p><a class="btn" href="${ACHAT_BASE + o.achat}">Découvrir l’ouvrage · ${esc(o.prix)}</a></div>`;
+}
+
+/* --- Pages du livre (images chiffrées) --- */
+function moteurPages(o, scene) {
+  const s = SESSION, extrait = s.extrait;
+  const liste = extrait ? o.permises : Array.from({ length: o.pages }, (_, k) => k + 1);
+  const total = liste.length + (extrait ? 1 : 0);
+  let i = extrait ? 0 : Math.max(0, liste.indexOf(pageSauvee(o.id)));
+  let double = false;
+  const mesure = () => {
+    const W = scene.clientWidth - 20, H = scene.clientHeight - 20;
+    let h = H, w = h * 1166 / 1654;
+    double = ZOOM === 1 && W >= 2 * w + 10 && total > 1;
+    if (!double && w > W) { w = W; h = w * 1654 / 1166; }
+    return { w: w * ZOOM, h: h * ZOOM };
+  };
+  const pas = () => (double ? 2 : 1);
+  function feuille(k, d) {
+    if (k >= liste.length) return k === liste.length && extrait ? `<div class="feuille fin" style="width:${d.w}px;height:${d.h}px">${finExtrait(o)}</div>` : `<div class="feuille vide" style="width:${d.w}px;height:${d.h}px"></div>`;
+    return `<div class="feuille" data-n="${liste[k]}" style="width:${d.w}px;height:${d.h}px"><div class="att">Page ${liste[k]}</div><canvas></canvas></div>`;
+  }
+  function rendre() {
+    const d = mesure();
+    if (double) i -= i % 2;
+    scene.classList.toggle('zoomee', ZOOM > 1);
+    scene.innerHTML = `<div class="livre${double ? ' double' : ''}">${feuille(i, d)}${double ? feuille(i + 1, d) : ''}</div>`;
+    scene.querySelectorAll('.feuille[data-n]').forEach(async (el) => {
+      const n = +el.dataset.n; const bmp = await imagePage(o.id, n);
+      if (!el.isConnected) return;
+      if (!bmp) { $('.att', el).textContent = 'Page indisponible. Rechargez la page.'; return; }
+      dessiner($('canvas', el), bmp, s.filigrane, extrait); const a = $('.att', el); if (a) a.remove();
+    });
+    // précharge les pages suivantes
+    for (let k = 1; k <= 4; k++) if (liste[i + k]) imagePage(o.id, liste[i + k]);
+    const n = liste[Math.min(i, liste.length - 1)];
+    if (!extrait && i < liste.length) stock.set('lis-page-' + o.id, n);
+    majPied(i, total, i >= liste.length ? 'Fin de l’extrait' : 'Page ' + n + (double && liste[i + 1] ? '-' + liste[i + 1] : '') + ' / ' + o.pages);
+  }
+  const m = {
+    tourner(dir) { const j = i + dir * pas(); if (j < 0 || j >= total) return; i = j; tourner(scene, dir > 0, rendre); },
+    aller(k, instant) { i = Math.max(0, Math.min(total - 1, k)); rendre(); },
+    redim: rendre,
+    zoom(dz) { ZOOM = Math.max(1, Math.min(2.5, ZOOM + dz)); rendre(); },
+    sommaire() {
+      const ent = extrait ? liste.map((n) => ['Page ' + n, n]) : o.sommaire;
+      panneau('Sommaire', ent.map(([t, n]) => `<button class="ent" data-n="${n}"><span>${esc(t)}</span><span>p. ${n}</span></button>`).join(''), (b) => m.aller(liste.indexOf(+b.dataset.n)));
+    },
+  };
+  rendre();
+  return m;
+}
+
+/* --- Texte ajustable (livre) : la taille des caractères change, les pages se recomposent --- */
+function moteurTexte(o, scene) {
+  const s = SESSION, extrait = s.extrait;
+  const chap = extrait ? o.texte.extrait : Array.from({ length: o.texte.chapitres }, (_, k) => k + 1);
+  let taille = stock.get('lis-taille') !== null ? Number(stock.get('lis-taille')) : (innerWidth < 600 ? 2 : 3);
+  let i = 0, total = 1, pasX = 1, cible = extrait ? 0 : Number(stock.get('lis-frac-' + o.id)) || 0;
+  let pret = false;
+  scene.innerHTML = '<p class="note" style="margin:auto">Ouverture du livre…</p>';
+  const html = Promise.all(chap.map((n) => dechiffrer(o.id + '-texte', n).then((b) => b ? new TextDecoder().decode(b) : '<p>Chapitre indisponible. Rechargez la page.</p>'))).then((l) => l.map((h, k) => `<div class="chap" data-c="${chap[k]}">${h}</div>`).join(''));
+  async function composer() {
+    const contenu = await html;
+    const W = Math.min(scene.clientWidth - 20, 640), H = scene.clientHeight - 20;
+    scene.innerHTML = `<div class="livre"><div class="feuille texte" style="width:${W}px;height:${H}px">
+      <div class="cadre"><div class="colonnes${taille >= 3 || W < 420 && taille >= 2 ? ' gauche' : ''}" lang="fr" style="font-size:${TAILLES[taille]}px">${contenu}</div></div>
+      <div class="fili" style="background-image:${filigraneSVG((extrait ? 'Extrait offert à ' : 'Exemplaire de ') + s.filigrane)}"></div>
+      <div class="pied-page">${extrait ? 'Extrait offert à ' : 'Exemplaire personnel de '}${esc(s.filigrane)} · diffusion interdite</div></div></div>`;
+    const cadre = $('.cadre', scene), col = $('.colonnes', scene);
+    const cw = cadre.clientWidth, gap = 48;
+    col.style.width = cw + 'px'; col.style.columnWidth = cw + 'px'; col.style.columnGap = gap + 'px';
+    pasX = cw + gap;
+    col.style.setProperty('--hmax', (cadre.clientHeight - 24) + 'px');
+    await Promise.all([...col.querySelectorAll('img')].map((im) => im.complete ? 0 : new Promise((r) => { im.onload = im.onerror = r; })));
+    equilibrer(col, pasX);
+    total = Math.max(1, Math.round((col.scrollWidth + gap) / pasX)) + (extrait ? 1 : 0);
+    if (extrait) cadre.insertAdjacentHTML('beforeend', `<div class="fin-texte" style="left:${(total - 1) * pasX}px;width:${cw}px">${finExtrait(o)}</div>`);
+    i = Math.min(total - 1, Math.round(cible * (total - (extrait ? 1 : 0))));
+    pret = true; placer();
+  }
+  function placer() {
+    const col = $('.colonnes', scene), fin = $('.fin-texte', scene);
+    col.style.transform = `translateX(${-i * pasX}px)`; if (fin) fin.style.transform = `translateX(${-i * pasX}px)`;
+    const vrai = total - (extrait ? 1 : 0);
+    if (!extrait) stock.set('lis-frac-' + o.id, (i / Math.max(1, vrai)).toFixed(4));
+    majPied(i, total, i >= vrai ? 'Fin de l’extrait' : 'Page ' + (i + 1) + ' / ' + vrai);
+  }
+  const m = {
+    tourner(dir) { if (!pret) return; const j = i + dir; if (j < 0 || j >= total) return; i = j; cible = i / Math.max(1, total); tourner(scene, dir > 0, placer); },
+    aller(k) { if (!pret) return; i = Math.max(0, Math.min(total - 1, k)); placer(); },
+    redim() { cible = i / Math.max(1, total - (extrait ? 1 : 0)); composer(); },
+    taille(d) { taille = Math.max(0, Math.min(TAILLES.length - 1, taille + d)); stock.set('lis-taille', taille); m.redim(); return taille; },
+    get niveau() { return taille; },
+    sommaire() {
+      if (!pret) return;
+      const b0 = $('.colonnes', scene).getBoundingClientRect().left;
+      const ent = o.texte.titres
+        ? [...scene.querySelectorAll('.colonnes .chap')].map((c) => [o.texte.titres[+c.dataset.c - 1] || 'Extrait', Math.floor((c.firstElementChild.getBoundingClientRect().left - b0 + 2) / pasX)])
+        : [...scene.querySelectorAll('.colonnes h1')].map((h) => [h.textContent, Math.floor((h.getBoundingClientRect().left - b0 + 2) / pasX)]);
+      panneau('Sommaire', ent.map(([t, p]) => `<button class="ent" data-n="${p}"><span>${esc(t)}</span><span>p. ${p + 1}</span></button>`).join(''), (b) => m.aller(+b.dataset.n));
+    },
+  };
+  composer();
+  return m;
+}
+
+function consigneTraversee() {
+  const d = panneau('Avant de commencer', `
+    <h2 style="font-size:22px;margin:6px 0 4px">Préparez un carnet dédié à La Traversée.</h2>
+    <p style="margin:0 0 10px;color:var(--doux)">La Traversée se lit ici, sur votre écran. Chaque jour, elle vous pose des questions. Notez la question dans votre carnet et répondez-y à la main, avec un stylo, pas sur votre téléphone ni sur votre ordinateur.</p>
+    <p style="margin:0 0 10px;color:var(--doux)">Écrire à la main aide à sortir de sa tête ce qui tourne en boucle, à mettre des mots sur ce que l’on vit et à voir plus clair. Une fois écrite, une pensée existe en dehors de vous : vous pouvez la relire, la regarder, la corriger. Votre carnet devient la trace de votre chemin.</p>
+    <p style="margin:0 0 16px;color:var(--doux)">Vous préférez travailler sur papier ? La Traversée existe aussi en version papier, à commander.</p>
+    <div class="choix"><button class="btn" data-fermer>Commencer</button><a class="btn ghost" href="${ACHAT_BASE}traversee.html">La version papier</a></div>`);
+  stock.set('lis-consigne-traversee', '1');
+  return d;
+}
+
+/* Pas de veuves ni d'orphelines : jamais une ligne seule en bas ou en haut d'une page,
+   jamais un titre seul en bas de page. Corrigé ici, pour tous les navigateurs (iPhone compris). */
+function lignesDe(el, base, pasX) {
+  const r = document.createRange(); r.selectNodeContents(el);
+  const vues = new Map();
+  for (const q of r.getClientRects()) {
+    if (q.width < 1 || q.height < 1) continue;
+    const c = Math.floor((q.left - base + 2) / pasX), k = c + ':' + Math.round(q.top / 3);
+    if (!vues.has(k)) vues.set(k, { c, top: q.top, h: q.height });
+  }
+  return [...vues.values()].sort((a, b) => a.c - b.c || a.top - b.top);
+}
+function couper(el, base, pasX, col, top) {
+  // coupe le paragraphe au début de la ligne visée : la suite part sur la page suivante
+  const tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+  const r = document.createRange();
+  let n;
+  while ((n = tw.nextNode())) {
+    for (let k = 0; k < n.length; k++) {
+      if (k > 0 && !/\s/.test(n.data[k - 1])) continue;
+      if (/\s/.test(n.data[k])) continue;
+      r.setStart(n, k); r.setEnd(n, k + 1);
+      const q = r.getBoundingClientRect();
+      if (Math.floor((q.left - base + 2) / pasX) === col && Math.abs(q.top - top) < 3) {
+        const fin = document.createRange(); fin.setStart(n, k); fin.setEndAfter(el.lastChild);
+        const suite = el.cloneNode(false); suite.appendChild(fin.extractContents());
+        el.classList.add('coupe'); suite.classList.add('suite'); suite.style.breakBefore = 'column';
+        el.after(suite);
+        return true;
+      }
+    }
+  }
+  return false;
+}
+function equilibrer(col, pasX) {
+  const base = () => col.getBoundingClientRect().left;
+  // titres, intertitres et citations courtes restent toujours avec le texte qui les suit
+  const titre = (el) => el && (/^H[1-4]$/.test(el.tagName) || el.classList.contains('label') || ((el.classList.contains('citation') || el.classList.contains('exergue') || el.classList.contains('grande')) && el.textContent.length < 160));
+  const elems = () => [...col.querySelectorAll('.chap > *')];
+  let liste = elems();
+  // place un saut de page avant l'élément, en emmenant les titres qui le précèdent
+  const sauter = (el) => {
+    let t = el;
+    while (titre(t.previousElementSibling)) t = t.previousElementSibling;
+    if (t.style.breakBefore === 'column') return -1;
+    t.style.breakBefore = 'column';
+    return liste.indexOf(t);
+  };
+  const colonneDebut = (el, b) => {
+    if (el.tagName === 'FIGURE') return Math.floor((el.getBoundingClientRect().left - b + 2) / pasX);
+    const L = lignesDe(el, b, pasX); return L.length ? L[0].c : null;
+  };
+  for (let passe = 0; passe < 3; passe++) {
+    let change = false;
+    for (let k = 0, garde = 0; k < liste.length && garde < 8000; k++, garde++) {
+      const el = liste[k], b = base();
+      if (titre(el)) {
+        // un titre ne reste jamais seul en bas de page
+        const L = lignesDe(el, b, pasX), suiv = el.nextElementSibling;
+        const citation = !/^H[1-4]$/.test(el.tagName) && !el.classList.contains('label');
+        if (citation && (!suiv || titre(suiv))) continue;   // citation de fin de section : elle peut finir une page
+        if (L.length && suiv) { const cs = colonneDebut(suiv, b); if (cs !== null && cs > L[L.length - 1].c) { const r = sauter(el); if (r >= 0) { change = true; k = r - 1; } } }
+        continue;
+      }
+      if (el.tagName === 'FIGURE') {
+        // une image passée à la page suivante emmène son titre
+        const prec = el.previousElementSibling;
+        if (titre(prec)) { const L = lignesDe(prec, b, pasX), cs = colonneDebut(el, b); if (L.length && cs > L[L.length - 1].c) { const r = sauter(el); if (r >= 0) { change = true; k = r - 1; } } }
+        continue;
+      }
+      const L = lignesDe(el, b, pasX);
+      if (!L.length) continue;
+      const c0 = L[0].c, a = L.filter((x) => x.c === c0).length, bb = L.length - a;
+      if (!bb) continue;
+      const c1 = L[a].c, b1 = L.filter((x) => x.c === c1).length;
+      if (a < 2 || (b1 < 2 && a + b1 <= 3)) {            // orpheline, ou paragraphe trop court pour être coupé
+        const r = sauter(el); if (r >= 0) { change = true; k = r - 1; }
+        continue;
+      }
+      if (b1 < 2) {                                      // veuve : on fait passer une ligne de plus
+        const cible = L[a - 1];
+        if (couper(el, b, pasX, cible.c, cible.top)) { liste = elems(); change = true; }
+      }
+    }
+    if (!change) break;
+  }
+}
+
+function panneau(titre, contenu, choix) {
+  const d = document.createElement('div'); d.className = 'panneau';
+  d.innerHTML = `<div class="in gutter"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><div class="k">${titre}</div><button class="ico" data-fermer>Fermer</button></div>${contenu}</div>`;
+  document.body.appendChild(d);
+  d.addEventListener('click', (e) => { if (e.target === d || e.target.hasAttribute('data-fermer')) return d.remove(); const b = e.target.closest('.ent'); if (b && choix) { d.remove(); choix(b); } });
+  return d;
+}
+
+function reglages(o) {
+  const m = lire.moteur, texte = affichage(o) === 'texte';
+  const d = panneau('Affichage', `
+    ${o.texte ? `<div class="choix"><button class="ico${texte ? ' on' : ''}" data-aff="texte">Texte ajustable</button><button class="ico${!texte ? ' on' : ''}" data-aff="pages">Pages du livre</button></div>
+      <p class="note" style="margin:6px 0 14px">« Texte ajustable » permet de grossir les caractères. « Pages du livre » montre la mise en page d’origine, avec les images.</p>` : ''}
+    ${texte ? `<div class="k" style="margin-top:4px">Taille des caractères</div><div class="choix"><button class="ico gros" data-t="-1">A−</button><span id="niv" class="note"></span><button class="ico gros" data-t="1">A+</button></div>`
+            : `<div class="k" style="margin-top:4px">Agrandir la page</div><div class="choix"><button class="ico gros" data-z="-0.5">−</button><span id="niv" class="note"></span><button class="ico gros" data-z="0.5">+</button></div><p class="note">Une fois la page agrandie, faites-la glisser avec le doigt pour lire. Les flèches du bas tournent les pages.</p>`}`);
+  const maj = () => { const n = $('#niv', d); if (n) n.textContent = texte ? 'Taille ' + (m.niveau + 1) + ' sur ' + TAILLES.length : 'Zoom ' + Math.round(ZOOM * 100) + ' %'; };
+  maj();
+  d.addEventListener('click', (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.aff) { stock.set('lis-aff-' + o.id, b.dataset.aff); d.remove(); lire(o); }
+    if (b.dataset.t) { m.taille(+b.dataset.t); maj(); }
+    if (b.dataset.z) { m.zoom(+b.dataset.z); maj(); }
+  });
+}
+
+/* ===== Barre de l'aperçu (absente en ligne) ===== */
+if (!PROD) {
+  const b = document.createElement('div'); b.className = 'apercu';
+  const modes = [['experience', 'Achat : Expérience complète'], ['livre', 'Achat : livre seul'], ['extrait', 'Extrait gratuit'], ['appareils', '4e appareil'], ['invalide', 'Lien non valide'], ['sans', 'Sans lien']];
+  b.innerHTML = '<span class="note">Aperçu :</span>' + modes.map(([m, t]) => `<button data-m="${m}" class="${m === MODE ? 'on' : ''}">${t}</button>`).join('');
+  document.body.appendChild(b); document.body.classList.add('avec-apercu');
+  b.onclick = (e) => { const m = e.target.dataset && e.target.dataset.m; if (!m) return; MODE = m; b.querySelectorAll('button').forEach((x) => x.classList.toggle('on', x.dataset.m === m)); cles.clear(); images.clear(); document.body.classList.remove('en-lecture'); window.scrollTo(0, 0); if (m === 'sans') accueilSansLien(); else demarrer(); };
+}
+demarrer();
+</script>
+
+</body>
+</html>

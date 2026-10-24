@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Art oratoire | FRAMYXCC Intelligence Agency</title>
+<link rel="canonical" href="https://mireilletanofram.com/offre-art-oratoire.html">
+<meta name="description" content="L'Art oratoire : une approche pour réapprendre à parler, lever les freins à l'expression et transmettre son message avec clarté et authenticité.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivoire:#FAF6EF; --ivoire-deep:#F1E9DA;
+    --sable:#EADAC0; --taupe:#BBA88F; --taupe-deep:#75624F;
+    --bois:#6B4A35; --text:#3B2A1E;
+    --auburn:#A4552B; --terracotta:#D68A57; --or:#B08D57;
+    --turquoise:#5FA39B; --sauge:#93A47E; --bleu-profond:#3D5A6C;
+    /* V10n : variantes AA (contraste 4,5:1 minimum) */
+    --sauge-aa:#4A5E40; --taupe-aa:#6A5846; --terra-aa:#9E4F26; --auburn-aa:#98491F; --turquoise-aa:#28645E; --terra-clair:#F5CBA8; --bleu-clair:#D6E3EC;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--ivoire);color:var(--text);font-family:'Manrope',sans-serif;overflow-x:hidden;}
+  h1,h2,h3,.jost{font-family:'Jost',sans-serif;}
+  a{color:inherit;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;border-radius:999px;font-family:'Jost',sans-serif;font-size:15px;letter-spacing:.04em;border:1px solid var(--bois);cursor:pointer;background:none;}
+  .btn-solid{background:var(--bois);color:var(--ivoire);border-color:var(--bois);}
+  .btn-outline{border-color:var(--bois);color:var(--bois);}
+
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:28px 5vw;}
+  .logo{font-family:'Jost',sans-serif;font-weight:600;font-size:18px;color:var(--bois);}
+  .back{font-family:'Jost',sans-serif;font-size:13px;color:var(--taupe-deep);text-decoration:none;}
+
+  .hero{position:relative;margin:0 5vw 6vh;border-radius:28px;overflow:hidden;background:linear-gradient(135deg,var(--taupe-aa),var(--sauge-aa) 60%,var(--bois));color:var(--ivoire);padding:8vh 6vw;}
+  .hero .eyebrow{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ivoire-deep);}
+  .hero h1{font-size:clamp(28px,4vw,44px);font-weight:500;margin:14px 0 10px;max-width:780px;line-height:1.2;}
+  .hero p{font-size:15px;max-width:600px;margin:0;color:var(--ivoire-deep);}
+
+  .wrap{max-width:880px;margin:0 auto;padding:0 5vw 10vh;}
+  section{margin-bottom:6vh;}
+  .label{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--auburn);margin-bottom:10px;}
+  h2{font-size:24px;font-weight:500;color:var(--bois);margin:0 0 18px;}
+  p{font-size:15.5px;line-height:1.75;margin:0 0 14px;color:var(--text);}
+  .signature{font-style:italic;color:var(--bois);border-left:3px solid var(--terracotta);padding-left:18px;margin:24px 0;}
+
+  .axes{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .axe{background:#fff;border:1px solid var(--sable);border-radius:16px;padding:26px 24px;}
+  .axe h3{font-family:'Jost',sans-serif;font-size:15px;color:var(--auburn);margin:0 0 14px;letter-spacing:.02em;}
+  .axe ul{margin:0;padding-left:18px;}
+  .axe li{font-size:14px;line-height:1.7;margin-bottom:6px;color:var(--text);}
+  .flow{font-size:14px;color:var(--taupe-deep);margin-top:14px;font-style:italic;}
+
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px;}
+  .chip{background:var(--ivoire-deep);border:1px solid var(--sable);border-radius:999px;padding:8px 16px;font-size:13px;color:var(--bois);}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .box{background:#fff;border:1px solid var(--sable);border-radius:16px;padding:24px;}
+  .box h3{font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--taupe-deep);margin:0 0 14px;}
+  .box ul{margin:0;padding-left:18px;}
+  .box li{font-size:14px;line-height:1.7;margin-bottom:6px;}
+
+  .cta-band{background:linear-gradient(135deg,var(--sauge-aa),var(--taupe-aa));border-radius:24px;padding:5vh 6vw;color:var(--ivoire);margin-bottom:6vh;}
+  .cta-band h2{color:var(--ivoire);margin-bottom:8px;}
+  .cta-band p{color:var(--ivoire-deep);}
+
+  form{background:#fff;border:1px solid var(--sable);border-radius:20px;padding:36px;}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field.full{grid-column:1 / -1;}
+  label{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.04em;color:var(--taupe-deep);}
+  input,textarea,select{font-family:'Manrope',sans-serif;font-size:14.5px;padding:12px 14px;border:1px solid var(--sable);border-radius:10px;background:var(--ivoire);color:var(--text);}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--terracotta);}
+  textarea{resize:vertical;min-height:100px;}
+  .form-note{font-size:12.5px;color:var(--taupe-deep);margin-top:14px;}
+  .submit-row{display:flex;justify-content:flex-end;margin-top:8px;}
+
+  @media(max-width:760px){
+    .axes,.grid2,.frow{grid-template-columns:1fr;}
+    .hero{padding:6vh 6vw;}
+  }
+  .consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.5;letter-spacing:0;color:var(--text);}
+  .consent input{width:auto;padding:0;margin-top:3px;flex:none;}
+  .consent a{color:var(--taupe-deep);text-decoration:underline;}
+  .hp-field{position:absolute;left:-5000px;width:1px;height:1px;overflow:hidden;}
+  .msg-count{font-size:12px;color:var(--text);opacity:.7;text-align:right;margin-top:4px;letter-spacing:0;}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #8d4d39;outline-offset:3px;box-shadow:0 0 0 2px #fff}
+</style>
+<link rel="stylesheet" href="assets/formation.css">
+<link rel="stylesheet" href="assets/mise-en-page.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">FRAMYXCC Intelligence Agency</div>
+  <a class="back" href="formations.html">← Retour aux Formations &amp; Accompagnements</a>
+</div>
+
+<div class="hero">
+  <div class="eyebrow">Formations & Accompagnements</div>
+  <h1>L'Art oratoire</h1>
+  <p>Savoir parler pour réussir. Réapprendre à parler pour mieux s'exprimer.</p>
+</div>
+
+<div class="wrap">
+
+  <section>
+    <div class="label">Pourquoi cette formation&nbsp;?</div>
+    <h2>Une responsabilité, pas seulement une technique</h2>
+    <p>Prendre la parole est une responsabilité. Lorsque nous parlons, nous avons un message à transmettre. L'enjeu n'est donc pas seulement de « bien parler », mais de parvenir à faire passer ce message avec clarté, assurance et authenticité.</p>
+    <p>Pourtant, entre ce que nous voulons dire et ce que nous parvenons réellement à exprimer, il existe souvent de nombreux filtres : peur du jugement, manque de confiance, désir de plaire, peur du rejet, stress, habitudes de silence, difficulté à s'affirmer, masques et mécanismes de protection.</p>
+    <p>Cette formation s'intéresse à ces obstacles à leur racine, sans être une thérapie.</p>
+  </section>
+
+  <section>
+    
+    <h2>Retrouver sa capacité à parler</h2>
+    <p>Certaines personnes ont appris à se taire. Certaines ont peur de déranger. Certaines savent exactement ce qu'elles veulent dire mais perdent leurs moyens lorsqu'elles doivent parler. D'autres parlent beaucoup mais n'arrivent pas à faire passer leur véritable message.</p>
+    <p>L'objectif est donc d'abord de comprendre ce qui se passe avant la parole, puis d'acquérir les outils permettant de reprendre la maîtrise de sa voix, de son corps et de son message.</p>
+  </section>
+
+  <section>
+    <div class="label">Le contenu</div>
+    <h2>Deux dimensions, une seule formation</h2>
+    <div class="axes">
+      <div class="axe">
+        <h3>Activer son orateur</h3>
+        <ul>
+          <li>Se préparer avant une prise de parole</li>
+          <li>Réduire et maîtriser le stress</li>
+          <li>Respiration et calme</li>
+          <li>Préparer corps et voix</li>
+          <li>Trouver son assurance</li>
+          <li>Créer la relation avec son public dès les premières secondes</li>
+          <li>Capter l'attention, regarder, écouter</li>
+          <li>Voix, rythme, silences</li>
+          <li>Structurer son message, argumenter, convaincre</li>
+          <li>Répondre aux objections, gérer les imprévus</li>
+          <li>Adapter son discours au contexte</li>
+          <li>Voix & image : travailler la voix, le corps, la posture, l'apparence et la manière de se présenter pour créer une cohérence entre ce que l'on dit, ce que l'on montre et ce que les autres perçoivent</li>
+        </ul>
+      </div>
+      <div class="axe">
+        <h3>L'authenticité</h3>
+        <p style="font-size:14px;margin-bottom:14px;">Le but n'est pas de fabriquer un personnage qui sait parler. Le but est de permettre à la personne de parler avec davantage d'elle-même.</p>
+        <div class="flow">peur → confiance<br>masque → authenticité<br>besoin de plaire → affirmation de soi<br>réaction → choix<br>silence subi → parole assumée<br>doute → souveraineté</div>
+      </div>
+    </div>
+    <div class="signature">« Pour parler pleinement, il faut parfois se libérer de ce qui nous a appris à nous taire. »</div>
+  </section>
+
+  <section id="module-afrique">
+    <div class="label">Un module à part entière</div>
+    <h2>L'art oratoire en Afrique&nbsp;: héritage, éloquence et transmission</h2>
+    <p>La formation ne s'arrête pas aux techniques contemporaines de prise de parole. Ce module explore la mémoire et la puissance de la parole dans les sociétés africaines, pour en tirer des enseignements concrets.</p>
+    <ul>
+      <li>La place de la parole dans les sociétés africaines</li>
+      <li>Les traditions de transmission orale&nbsp;: les griots, les proverbes et les récits</li>
+      <li>La parole dans la médiation, la gouvernance et la vie communautaire</li>
+      <li>Les liens symboliques entre parole, nature, spiritualité et transmission</li>
+      <li>Les enseignements applicables à la prise de parole, au leadership et à la communication aujourd'hui</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="label">Pour qui&nbsp;?</div>
+    <h2>Public concerné</h2>
+    <div class="chips">
+      <span class="chip">Dirigeants</span>
+      <span class="chip">Cadres</span>
+      <span class="chip">Entrepreneurs</span>
+      <span class="chip">Professionnels</span>
+      <span class="chip">Experts</span>
+      <span class="chip">Consultants</span>
+      <span class="chip">Formateurs</span>
+      <span class="chip">Conférenciers</span>
+    </div>
+    <p style="margin-top:16px;">Et toute personne amenée à prendre la parole en public dans un contexte professionnel ou à fort enjeu.</p>
+  </section>
+
+  <section>
+    <div class="grid2">
+      <div class="box">
+        <h3>Format</h3>
+        <ul>
+          <li>Individuel ou collectif</li>
+          <li>Présentiel, distanciel ou hybride</li>
+          <li>Durée adaptée au besoin</li>
+          <li>Taille du groupe définie selon le format retenu</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Méthodologie</h3>
+        <ul>
+          <li>Exercices de respiration et de gestion du stress</li>
+          <li>Préparation du corps et de la voix</li>
+          <li>Exercices d'expression et d'articulation</li>
+          <li>Construction et présentation de messages</li>
+          <li>Mises en situation et simulations</li>
+          <li>Feedback et corrections</li>
+          <li>Travail individualisé lorsque le format le permet</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Ce que vous repartez avec</div>
+    <h2>Livrables</h2>
+    <div class="box">
+      <ul>
+        <li>Support pédagogique</li>
+        <li>Exercices et outils pratiques</li>
+        <li>Outils de préparation avant une prise de parole</li>
+        <li>Techniques de gestion du stress</li>
+        <li>Exercices personnalisés et retours individualisés</li>
+        <li>Plan de progression personnel</li>
+        <li>Certificat de participation, lorsque prévu dans le dispositif</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <h2>Un parcours sur mesure</h2>
+    <p>Chaque parcours est construit selon le besoin. Vous souhaitez mieux prendre la parole, maîtriser votre stress ou préparer une intervention importante ?</p>
+  </section>
+
+  <section id="contact">
+    <div class="label">Demande de contact</div>
+    <h2>Définissons ensemble le format adapté</h2>
+    <form id="contact-form" data-offre="L'Art oratoire">
+      <div class="frow">
+        <div class="field"><label for="nom">Nom</label><input type="text" id="nom" name="LASTNAME" maxlength="200" autocomplete="name" required></div>
+        <div class="field"><label for="organisation">Organisation</label><input type="text" id="organisation" name="ORGANISATION" maxlength="200" placeholder="Si à titre personnel : Particulier" required></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label for="fonction">Fonction</label><input type="text" id="fonction" name="FONCTION" maxlength="200" placeholder="Si à titre personnel : Particulier" required></div>
+        <div class="field"><label for="email">Email</label><input type="email" id="email" name="EMAIL" maxlength="200" autocomplete="email" required></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label for="tel">Téléphone / WhatsApp</label><input type="tel" id="tel" name="TELEPHONE" maxlength="200" autocomplete="tel"></div>
+        <div class="field"><label for="objet">Objet de la demande</label><input type="text" id="objet" maxlength="180" required><input type="hidden" id="objet-h" name="OBJET"></div>
+      </div>
+      <div class="frow">
+        <div class="field full"><label for="message">Message</label><textarea id="message" name="MESSAGE" maxlength="10000" required></textarea><div class="msg-count" id="msg-count" aria-live="off"></div></div>
+      </div>
+      <div class="frow">
+        <div class="field full"><label class="consent" for="consentement"><input type="checkbox" id="consentement" name="CONSENTEMENT" value="1" required><span>J'accepte que mes données personnelles soient utilisées pour traiter ma demande, conformément aux <a href="informations-legales.html">informations légales</a>.</span></label></div>
+      </div>
+      <div class="hp-field" aria-hidden="true"><input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off"></div>
+      <div class="submit-row">
+        <button type="submit" class="btn btn-solid">Envoyer la demande</button>
+      </div>
+      <div class="form-note" id="form-note" role="status" aria-live="polite"></div>
+    </form>
+    <script>
+      (function(){
+        var RELAY_URL = 'https://framyxcc-relais.rubiscc-voyages.workers.dev';
+        var MAIL = 'meetme@mireilletanofram.com';
+        var MAX = 10000;
+        var f = document.getElementById('contact-form');
+        var note = document.getElementById('form-note');
+        var btn = f.querySelector('button[type=submit]');
+        var msg = document.getElementById('message');
+        var cnt = document.getElementById('msg-count');
+        var t0 = Date.now();
+        var pending = false;
+        function fmt(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
+        function maj(){ cnt.textContent = fmt(msg.value.length) + ' / ' + fmt(MAX) + ' caractères'; }
+        msg.addEventListener('input', maj); maj();
+        function secours(){
+          note.innerHTML = "L'envoi n'a pas pu être confirmé. Merci d'écrire directement à <a href=\"mailto:" + MAIL + "\">" + MAIL + "</a>.";
+        }
+        function fin(){ pending = false; btn.disabled = false; }
+        f.addEventListener('submit', function(e){
+          e.preventDefault();
+          if (pending) return;
+          if (RELAY_URL.indexOf('https://') !== 0) { secours(); return; }
+          pending = true;
+          btn.disabled = true;
+          note.textContent = 'Envoi en cours...';
+          var payload = {
+            nom: f.nom.value, organisation: f.organisation.value, fonction: f.fonction.value,
+            email: f.email.value, telephone: f.tel.value,
+            objet: '[' + f.getAttribute('data-offre') + '] ' + f.objet.value.trim(),
+            message: msg.value,
+            consentement: f.consentement.checked === true,
+            piege: f.email_address_check.value,
+            duree_ms: Date.now() - t0
+          };
+          var ctrl = ('AbortController' in window) ? new AbortController() : null;
+          var timer = setTimeout(function(){ if (ctrl) ctrl.abort(); }, 20000);
+          fetch(RELAY_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            signal: ctrl ? ctrl.signal : undefined
+          }).then(function(r){
+            return r.json().then(function(j){ return { r: r, j: j }; }, function(){ return { r: r, j: {} }; });
+          }).then(function(x){
+            clearTimeout(timer);
+            fin();
+            if (x.r.ok && x.j && x.j.ok === true) {
+              f.reset(); maj(); t0 = Date.now();
+              note.textContent = 'Merci, votre demande a bien été envoyée.';
+            } else if (x.j && x.j.code === 'trop_rapide') {
+              note.textContent = 'Envoi trop rapide. Merci de réessayer dans un instant.';
+            } else if (x.j && x.j.code === 'message_trop_long') {
+              note.textContent = 'Votre message dépasse ' + fmt(MAX) + ' caractères. Merci de le raccourcir.';
+            } else {
+              secours();
+            }
+          }).catch(function(){
+            clearTimeout(timer);
+            fin();
+            secours();
+          });
+        });
+      })();
+    </script>
+  </section>
+
+</div>
+
+<footer class="wrap">
+  <a class="btn btn-solid" href="mailto:meetme@mireilletanofram.com">Écrire à Mireille</a>
+  <div style="margin-top:24px;"><a href="univers-professionnel.html" style="font-family:'Jost',sans-serif;font-weight:600;font-size:15px;color:var(--taupe-deep);">← Retour à FRAMYXCC Intelligence Agency</a></div>
+  <p style="margin-top:18px;font-size:13px;"><a href="informations-legales.html" style="color:inherit">Mentions légales · Confidentialité</a></p>
+</footer>
+
+<script src="assets/formation.js" defer></script><script src="assets/fx.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ma vie comme projet | FRAMYXCC Intelligence Agency</title>
+<link rel="canonical" href="https://mireilletanofram.com/offre-ma-vie-comme-projet.html">
+<meta name="description" content="Ma vie comme projet : une méthode pour construire un projet de vie à partir de soi, au-delà du regard et des attentes des autres.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivoire:#FAF6EF; --ivoire-deep:#F1E9DA;
+    --sable:#EADAC0; --taupe:#BBA88F; --taupe-deep:#75624F;
+    --bois:#6B4A35; --text:#3B2A1E;
+    --auburn:#A4552B; --terracotta:#D68A57; --or:#B08D57;
+    --turquoise:#5FA39B; --sauge:#93A47E; --bleu-profond:#3D5A6C;
+    /* V10n : variantes AA (contraste 4,5:1 minimum) */
+    --sauge-aa:#4A5E40; --taupe-aa:#6A5846; --terra-aa:#9E4F26; --auburn-aa:#98491F; --turquoise-aa:#28645E; --terra-clair:#F5CBA8; --bleu-clair:#D6E3EC;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--ivoire);color:var(--text);font-family:'Manrope',sans-serif;overflow-x:hidden;}
+  h1,h2,h3,.jost{font-family:'Jost',sans-serif;}
+  a{color:inherit;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;border-radius:999px;font-family:'Jost',sans-serif;font-size:15px;letter-spacing:.04em;border:1px solid var(--bois);cursor:pointer;background:none;}
+  .btn-solid{background:var(--bois);color:var(--ivoire);border-color:var(--bois);}
+
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:28px 5vw;}
+  .logo{font-family:'Jost',sans-serif;font-weight:600;font-size:18px;color:var(--bois);}
+  .back{font-family:'Jost',sans-serif;font-size:13px;color:var(--taupe-deep);text-decoration:none;}
+
+  .hero{position:relative;margin:0 5vw 6vh;border-radius:28px;overflow:hidden;background:linear-gradient(135deg,var(--auburn-aa),var(--bleu-profond) 70%);color:var(--ivoire);padding:8vh 6vw;}
+  .hero .eyebrow{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ivoire-deep);}
+  .hero h1{font-size:clamp(28px,4vw,44px);font-weight:500;margin:14px 0 10px;max-width:780px;line-height:1.2;}
+  .hero p{font-size:15px;max-width:600px;margin:0;color:var(--ivoire-deep);}
+
+  .wrap{max-width:880px;margin:0 auto;padding:0 5vw 10vh;}
+  section{margin-bottom:6vh;}
+  .label{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--auburn);margin-bottom:10px;}
+  h2{font-size:24px;font-weight:500;color:var(--bois);margin:0 0 18px;}
+  p{font-size:15.5px;line-height:1.75;margin:0 0 14px;color:var(--text);}
+  .signature{font-style:italic;color:var(--bois);border-left:3px solid var(--terracotta);padding-left:18px;margin:24px 0;}
+
+  .modules{display:flex;flex-direction:column;gap:14px;}
+  .module{background:#fff;border:1px solid var(--sable);border-radius:16px;padding:22px 24px;display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:start;}
+  .module .num{font-family:'Jost',sans-serif;font-size:22px;color:var(--terra-aa);font-weight:500;}
+  .module h3{font-family:'Jost',sans-serif;font-size:16px;color:var(--bois);margin:0 0 6px;}
+  .module p{font-size:14px;margin:0;color:var(--text);}
+
+  .flow-banner{background:var(--ivoire-deep);border:1px solid var(--sable);border-radius:16px;padding:20px 24px;font-family:'Jost',sans-serif;font-size:15px;color:var(--bois);text-align:center;letter-spacing:.02em;}
+
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px;}
+  .chip{background:var(--ivoire-deep);border:1px solid var(--sable);border-radius:999px;padding:8px 16px;font-size:13px;color:var(--bois);}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .box{background:#fff;border:1px solid var(--sable);border-radius:16px;padding:24px;}
+  .box h3{font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--taupe-deep);margin:0 0 14px;}
+  .box ul{margin:0;padding-left:18px;}
+  .box li{font-size:14px;line-height:1.7;margin-bottom:6px;}
+
+  .cta-band{background:linear-gradient(135deg,var(--sauge-aa),var(--taupe-aa));border-radius:24px;padding:5vh 6vw;color:var(--ivoire);margin-bottom:6vh;}
+  .cta-band h2{color:var(--ivoire);margin-bottom:8px;}
+  .cta-band p{color:var(--ivoire-deep);}
+
+  form{background:#fff;border:1px solid var(--sable);border-radius:20px;padding:36px;}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field.full{grid-column:1 / -1;}
+  label{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.04em;color:var(--taupe-deep);}
+  input,textarea{font-family:'Manrope',sans-serif;font-size:14.5px;padding:12px 14px;border:1px solid var(--sable);border-radius:10px;background:var(--ivoire);color:var(--text);}
+  input:focus,textarea:focus{outline:none;border-color:var(--terracotta);}
+  textarea{resize:vertical;min-height:100px;}
+  .form-note{font-size:12.5px;color:var(--taupe-deep);margin-top:14px;}
+  .submit-row{display:flex;justify-content:flex-end;margin-top:8px;}
+
+  @media(max-width:760px){
+    .grid2,.frow{grid-template-columns:1fr;}
+    .module{grid-template-columns:1fr;}
+    .hero{padding:6vh 6vw;}
+  }
+  .consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.5;letter-spacing:0;color:var(--text);}
+  .consent input{width:auto;padding:0;margin-top:3px;flex:none;}
+  .consent a{color:var(--taupe-deep);text-decoration:underline;}
+  .hp-field{position:absolute;left:-5000px;width:1px;height:1px;overflow:hidden;}
+  .msg-count{font-size:12px;color:var(--text);opacity:.7;text-align:right;margin-top:4px;letter-spacing:0;}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #8d4d39;outline-offset:3px;box-shadow:0 0 0 2px #fff}
+</style>
+<link rel="stylesheet" href="assets/formation.css">
+<link rel="stylesheet" href="assets/mise-en-page.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">FRAMYXCC Intelligence Agency</div>
+  <a class="back" href="formations.html">← Retour aux Formations &amp; Accompagnements</a>
+</div>
+
+<div class="hero">
+  <div class="eyebrow">Formations & Accompagnements</div>
+  <h1>Ma vie comme projet</h1>
+  <p>Une méthode pour construire un projet de vie à partir de soi.</p>
+</div>
+
+<div class="wrap">
+
+  <section>
+    <div class="label">Pourquoi cette approche&nbsp;?</div>
+    <h2>Tout part de l'identité</h2>
+    <p>Nos projets sont souvent conditionnés par le regard des autres, par une forme d'attentes extérieures, au point que peu de choses, dans ce qu’on poursuit, viennent réellement de soi.</p>
+    <p>Ce conditionnement finit par produire un décalage. Un mal-être s'installe, une crise survient, et c'est à ce moment que la question se retourne : <em>et si j'étais mon propre projet, au lieu de me donner dans les projets des autres ?</em></p>
+    <p>C'est ce basculement, du projet dicté par l'extérieur au projet aligné avec l'identité, qui fonde la méthode.</p>
+    <div class="signature">« Avant de définir ce que je veux faire de ma vie, je dois savoir qui je suis. »</div>
+  </section>
+
+  <section>
+    <div class="label">Pour le dirigeant aussi</div>
+    <h2>Se considérer soi-même comme projet, avant l'entreprise</h2>
+    <p>Un dirigeant gère déjà son entreprise comme un projet : vision, stratégie, ressources, pilotage. Mais l'entreprise reflète toujours, d'une manière ou d'une autre, la personne qui la dirige.</p>
+    <p>Si le dirigeant agit à partir d'un conditionnement non identifié (une réussite définie par le regard des autres, une ambition héritée plutôt que choisie), l'entreprise hérite de ce décalage : une vision empruntée, des décisions prises pour rassurer plutôt que pour construire.</p>
+    <div class="signature">« Un dirigeant qui ne s'est jamais posé comme son propre projet dirige souvent une entreprise qui n'est pas non plus tout à fait la sienne. »</div>
+  </section>
+
+  <section>
+    <div class="label">Le parcours</div>
+    <h2>Sept étapes, un fil rouge</h2>
+    <div class="modules">
+      <div class="module"><div class="num">01</div><div><h3>Diagnostic : où en suis-je ?</h3><p>Comprendre sa situation, ses fonctionnements, ses besoins, ses ressources et ses écarts.</p></div></div>
+      <div class="module"><div class="num">02</div><div><h3>Identité : qui suis-je ?</h3><p>Revenir à ce qui constitue la personne en profondeur : valeurs, besoins, aspirations, forces, singularité, manière d'être et de fonctionner.</p></div></div>
+      <div class="module"><div class="num">03</div><div><h3>Alignement : est-ce que ma vie correspond à qui je suis ?</h3><p>Identifier les décalages entre ce que je suis intrinsèquement et la vie que je mène, les choix que je fais ou les projets que je poursuis.</p></div></div>
+      <div class="module"><div class="num">04</div><div><h3>Vision : qu'est-ce que je veux construire ?</h3><p>Clarifier ce que je veux pour la suite de ma vie, à partir de qui je suis réellement, et non de ce que les autres attendent de moi.</p></div></div>
+      <div class="module"><div class="num">05</div><div><h3>Choix & priorités : qu'est-ce qui compte vraiment ?</h3><p>Faire des choix cohérents avec son identité et déterminer ce qui mérite son temps, son énergie et ses ressources.</p></div></div>
+      <div class="module"><div class="num">06</div><div><h3>Construction : comment construire mon projet ?</h3><p>Transformer cette vision en projet concret : ressources, étapes, décisions, actions et organisation.</p></div></div>
+      <div class="module"><div class="num">07</div><div><h3>Pilotage & évolution : comment faire vivre mon projet ?</h3><p>Observer, ajuster, décider, évoluer et éventuellement changer de direction sans perdre son alignement.</p></div></div>
+    </div>
+    <div class="flow-banner" style="margin-top:18px;">Diagnostic → Identité → Alignement → Projet</div>
+  </section>
+
+  <section>
+    <div class="label">Pour qui&nbsp;?</div>
+    <h2>Un même socle, une cible adaptée</h2>
+    <div class="chips">
+      <span class="chip">Particuliers</span>
+      <span class="chip">Femmes</span>
+      <span class="chip">Jeunes</span>
+      <span class="chip">Salariés & professionnels</span>
+      <span class="chip">Entrepreneurs</span>
+      <span class="chip">Dirigeants & cadres</span>
+      <span class="chip">Femmes au foyer</span>
+      <span class="chip">Groupes & organisations</span>
+    </div>
+    <p style="margin-top:16px;">La cible ne change pas la philosophie de la formation. Elle change la manière dont le parcours est construit, les exemples utilisés, les exercices proposés et les problématiques abordées.</p>
+  </section>
+
+  <section>
+    <div class="grid2">
+      <div class="box">
+        <h3>Format</h3>
+        <ul>
+          <li>En ligne, sous forme de parcours digital</li>
+          <li>En présentiel, individuel ou collectif</li>
+          <li>En format hybride, combinant digital et présentiel</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Durée</h3>
+        <ul>
+          <li>Définie en fonction de la cible</li>
+          <li>Adaptée aux disponibilités</li>
+          <li>Adaptée au contexte</li>
+          <li>Adaptée au niveau d'accompagnement souhaité</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Ce que vous repartez avec</div>
+    <h2>Livrables</h2>
+    <div class="box">
+      <ul>
+        <li>Une meilleure compréhension de soi et de son fonctionnement</li>
+        <li>Une lecture claire de sa situation actuelle</li>
+        <li>Une identification de ses forces, ressources, besoins et priorités</li>
+        <li>Une clarification de ce qui est réellement important</li>
+        <li>Une vision plus claire de ce qu'on souhaite construire</li>
+        <li>Des choix et priorités alignés avec son identité</li>
+        <li>Un projet de vie structuré, adapté à sa réalité</li>
+        <li>Des orientations et actions concrètes pour passer à la mise en œuvre</li>
+      </ul>
+      <p style="margin-top:16px;font-size:13.5px;color:var(--taupe-deep);">Selon le format choisi : restitution personnalisée du diagnostic, supports de travail adaptés, plan d'action personnel.</p>
+    </div>
+    <div class="signature">« À la fin du parcours, la personne ne repart pas simplement avec des réponses. Elle repart avec une compréhension plus claire de qui elle est, de ce qu'elle veut construire et de la manière d'avancer en cohérence avec elle-même. »</div>
+  </section>
+
+  <section class="cta-band">
+    <h2>Un parcours sur mesure</h2>
+    <p>Le format et le rythme sont définis ensemble, selon votre situation et vos objectifs.</p>
+  </section>
+
+  <section id="contact">
+    <div class="label">Demande de contact</div>
+    <h2>Définissons ensemble le format adapté</h2>
+    <form id="contact-form" data-offre="Ma vie comme projet">
+      <div class="frow">
+        <div class="field"><label for="nom">Nom</label><input type="text" id="nom" name="LASTNAME" maxlength="200" autocomplete="name" required></div>
+        <div class="field"><label for="organisation">Organisation</label><input type="text" id="organisation" name="ORGANISATION" maxlength="200" placeholder="Si à titre personnel : Particulier" required></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label for="fonction">Fonction</label><input type="text" id="fonction" name="FONCTION" maxlength="200" placeholder="Si à titre personnel : Particulier" required></div>
+        <div class="field"><label for="email">Email</label><input type="email" id="email" name="EMAIL" maxlength="200" autocomplete="email" required></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label for="tel">Téléphone / WhatsApp</label><input type="tel" id="tel" name="TELEPHONE" maxlength="200" autocomplete="tel"></div>
+        <div class="field"><label for="objet">Objet de la demande</label><input type="text" id="objet" maxlength="180" required><input type="hidden" id="objet-h" name="OBJET"></div>
+      </div>
+      <div class="frow">
+        <div class="field full"><label for="message">Message</label><textarea id="message" name="MESSAGE" maxlength="10000" required></textarea><div class="msg-count" id="msg-count" aria-live="off"></div></div>
+      </div>
+      <div class="frow">
+        <div class="field full"><label class="consent" for="consentement"><input type="checkbox" id="consentement" name="CONSENTEMENT" value="1" required><span>J'accepte que mes données personnelles soient utilisées pour traiter ma demande, conformément aux <a href="informations-legales.html">informations légales</a>.</span></label></div>
+      </div>
+      <div class="hp-field" aria-hidden="true"><input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off"></div>
+      <div class="submit-row">
+        <button type="submit" class="btn btn-solid">Envoyer la demande</button>
+      </div>
+      <div class="form-note" id="form-note" role="status" aria-live="polite"></div>
+    </form>
+    <script>
+      (function(){
+        var RELAY_URL = 'https://framyxcc-relais.rubiscc-voyages.workers.dev';
+        var MAIL = 'meetme@mireilletanofram.com';
+        var MAX = 10000;
+        var f = document.getElementById('contact-form');
+        var note = document.getElementById('form-note');
+        var btn = f.querySelector('button[type=submit]');
+        var msg = document.getElementById('message');
+        var cnt = document.getElementById('msg-count');
+        var t0 = Date.now();
+        var pending = false;
+        function fmt(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
+        function maj(){ cnt.textContent = fmt(msg.value.length) + ' / ' + fmt(MAX) + ' caractères'; }
+        msg.addEventListener('input', maj); maj();
+        function secours(){
+          note.innerHTML = "L'envoi n'a pas pu être confirmé. Merci d'écrire directement à <a href=\"mailto:" + MAIL + "\">" + MAIL + "</a>.";
+        }
+        function fin(){ pending = false; btn.disabled = false; }
+        f.addEventListener('submit', function(e){
+          e.preventDefault();
+          if (pending) return;
+          if (RELAY_URL.indexOf('https://') !== 0) { secours(); return; }
+          pending = true;
+          btn.disabled = true;
+          note.textContent = 'Envoi en cours...';
+          var payload = {
+            nom: f.nom.value, organisation: f.organisation.value, fonction: f.fonction.value,
+            email: f.email.value, telephone: f.tel.value,
+            objet: '[' + f.getAttribute('data-offre') + '] ' + f.objet.value.trim(),
+            message: msg.value,
+            consentement: f.consentement.checked === true,
+            piege: f.email_address_check.value,
+            duree_ms: Date.now() - t0
+          };
+          var ctrl = ('AbortController' in window) ? new AbortController() : null;
+          var timer = setTimeout(function(){ if (ctrl) ctrl.abort(); }, 20000);
+          fetch(RELAY_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            signal: ctrl ? ctrl.signal : undefined
+          }).then(function(r){
+            return r.json().then(function(j){ return { r: r, j: j }; }, function(){ return { r: r, j: {} }; });
+          }).then(function(x){
+            clearTimeout(timer);
+            fin();
+            if (x.r.ok && x.j && x.j.ok === true) {
+              f.reset(); maj(); t0 = Date.now();
+              note.textContent = 'Merci, votre demande a bien été envoyée.';
+            } else if (x.j && x.j.code === 'trop_rapide') {
+              note.textContent = 'Envoi trop rapide. Merci de réessayer dans un instant.';
+            } else if (x.j && x.j.code === 'message_trop_long') {
+              note.textContent = 'Votre message dépasse ' + fmt(MAX) + ' caractères. Merci de le raccourcir.';
+            } else {
+              secours();
+            }
+          }).catch(function(){
+            clearTimeout(timer);
+            fin();
+            secours();
+          });
+        });
+      })();
+    </script>
+  </section>
+
+</div>
+
+<footer class="wrap">
+  <a class="btn btn-solid" href="mailto:meetme@mireilletanofram.com">Écrire à Mireille</a>
+  <div style="margin-top:24px;"><a href="univers-professionnel.html" style="font-family:'Jost',sans-serif;font-weight:600;font-size:15px;color:var(--taupe-deep);">← Retour à FRAMYXCC Intelligence Agency</a></div>
+  <p style="margin-top:18px;font-size:13px;"><a href="informations-legales.html" style="color:inherit">Mentions légales · Confidentialité</a></p>
+</footer>
+
+<script src="assets/formation.js" defer></script><script src="assets/fx.js" defer></script>
+</body>
+</html>

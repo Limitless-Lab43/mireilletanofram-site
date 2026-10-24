@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projets, Territoires & Programmes | Mireille Tano-Fram</title>
+<link rel="canonical" href="https://mireilletanofram.com/offre-projets-territoires-programmes.html">
+<meta name="description" content="Projets, territoires et programmes : faire avancer ensemble des acteurs différents pour transformer un territoire, de la coordination nationale au terrain.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivoire:#FAF6EF; --ivoire-deep:#F1E9DA;
+    --sable:#EADAC0; --taupe:#BBA88F; --taupe-deep:#75624F;
+    --bois:#6B4A35; --text:#3B2A1E;
+    --auburn:#A4552B; --terracotta:#D68A57; --or:#B08D57;
+    --turquoise:#5FA39B; --sauge:#93A47E; --bleu-profond:#3D5A6C;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--ivoire);color:var(--text);font-family:'Manrope',sans-serif;overflow-x:hidden;}
+  h1,h2,.disp{font-family:'Jost',sans-serif;letter-spacing:.01em;}
+  a{text-decoration:none;color:inherit;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:16px 32px;border-radius:999px;font-family:'Jost',sans-serif;font-size:16px;font-weight:600;letter-spacing:.02em;border:1px solid var(--bois);cursor:pointer;background:none;}
+  .btn-solid{background:var(--bois);color:var(--ivoire);border-color:var(--bois);}
+  .btn:hover{transform:translateY(-2px);transition:transform .25s ease;}
+  .wrap{max-width:700px;margin:0 auto;padding:0 24px;}
+  .wrap-wide{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+  header.hero{position:relative;height:64vh;min-height:440px;display:flex;align-items:flex-end;overflow:hidden;}
+  header.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  header.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(59,42,30,0) 25%,rgba(59,42,30,.8) 100%);}
+  .hero-content{position:relative;z-index:1;padding:0 24px 52px;max-width:1080px;margin:0 auto;width:100%;}
+  .eyebrow{font-family:'Jost',sans-serif;letter-spacing:.14em;text-transform:uppercase;font-size:13px;font-weight:600;color:var(--terracotta);margin-bottom:18px;}
+  .hero-content h1{font-size:clamp(38px,5.6vw,60px);font-weight:800;margin:0;color:var(--ivoire);line-height:1.1;max-width:780px;}
+
+  section{padding:70px 0;border-top:1px solid var(--sable);}
+  h2{font-family:'Jost',sans-serif;font-size:clamp(30px,4vw,42px);font-weight:800;letter-spacing:0;color:var(--bois);margin:0 0 36px;text-align:center;text-transform:none;line-height:1.15;}
+  p{font-size:19px;line-height:1.7;color:var(--text);margin:0 0 32px;}
+  .lead{font-family:'Jost',sans-serif;font-weight:600;font-size:clamp(24px,3vw,30px);line-height:1.4;color:var(--bois);text-align:center;max-width:720px;margin:0 auto 10px;}
+  .accent-line{font-family:'Jost',sans-serif;font-weight:700;font-size:clamp(22px,2.6vw,27px);line-height:1.45;color:var(--bois);text-align:center;max-width:640px;margin:40px auto;}
+
+  .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:10px;}
+  .axe{background:var(--ivoire-deep);border-radius:18px;padding:30px 26px;}
+  .axe h3{font-family:'Jost',sans-serif;font-size:20px;font-weight:700;color:var(--bois);margin:0 0 14px;}
+  .axe p{font-size:18px;line-height:1.6;margin:0;color:var(--text);}
+
+  .diag-block{background:var(--bois);color:var(--ivoire);border-radius:24px;padding:60px 46px;text-align:center;}
+  .diag-claim{font-family:'Jost',sans-serif;font-weight:700;font-size:clamp(26px,3.2vw,32px);line-height:1.3;margin:0 0 34px;}
+  .diag-block p{color:var(--ivoire);opacity:1;font-size:19px;line-height:1.7;font-weight:500;max-width:680px;margin:0 auto 20px;text-align:left;}
+  .diag-block p:last-child{margin-bottom:0;}
+  .diag-block ul{text-align:left;max-width:680px;margin:0 auto 28px;padding-left:22px;}
+  .diag-block li{font-size:19px;line-height:1.6;margin-bottom:22px;}
+  .diag-block li:last-child{margin-bottom:0;}
+
+  .gallery-single{border-radius:20px;overflow:hidden;}
+  .gallery-single img{width:100%;display:block;}
+
+  .cloture{background:var(--bleu-profond);color:var(--ivoire);border-radius:24px;padding:48px 40px;text-align:center;}
+  .cloture p{color:var(--ivoire);opacity:1;font-size:19px;line-height:1.7;font-weight:500;max-width:640px;margin:0 auto;}
+
+  footer{padding:50px 0 70px;text-align:center;}
+
+  @media(max-width:760px){
+    body{font-size:17px;}
+    p{font-size:17px;line-height:1.7;}
+    h2{font-size:clamp(26px,7vw,32px);margin-bottom:26px;}
+    .lead{font-size:22px;}
+    .accent-line{font-size:20px;margin:32px auto;}
+    .three-col{grid-template-columns:1fr;gap:16px;}
+    header.hero{height:52vh;}
+    .hero-content h1{font-size:clamp(28px,9vw,36px);}
+    .diag-block{padding:44px 26px;}
+    .diag-claim{font-size:23px;}
+    .diag-block p{font-size:17px;text-align:left;}
+    .diag-block li{font-size:17px;margin-bottom:26px;}
+    .diag-block ul{margin-bottom:26px;}
+    .diag-block li{font-size:17px;}
+    .cloture{padding:32px 22px;}
+    .cloture p{font-size:17px;}
+    .btn{font-size:16px;padding:15px 28px;}
+  }
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #8d4d39;outline-offset:3px;box-shadow:0 0 0 2px #fff}
+</style>
+<link rel="stylesheet" href="assets/mise-en-page.css">
+</head>
+<body>
+
+<header class="hero">
+  <img src="assets/offres/projets-1.jpg" alt="Mireille Tano-Fram, projets et territoires">
+  <div class="hero-content">
+    <div class="eyebrow">FRAMYXCC Intelligence Agency</div>
+    <h1>Projets, Territoires &amp; Programmes</h1>
+  </div>
+</header>
+
+<section class="wrap">
+  <h2>Faire tenir ensemble des acteurs différents</h2>
+  <p class="lead">Un territoire ou un programme ne se transforme jamais seul.<br>Il se transforme quand des acteurs différents avancent dans la même direction.</p>
+  <p>Pendant près de neuf ans, au Secrétariat du Conseil National de Sécurité, à la Présidence de la République de Côte d'Ivoire, j'ai coordonné un programme national à l'échelle du territoire ivoirien, en lien direct avec les forces de sécurité, les médias, la société civile et les acteurs locaux.</p>
+  <p class="accent-line">Ce que j'ai appris de cette expérience : un programme ne réussit pas par la seule qualité de sa stratégie, mais par la capacité à faire travailler ensemble des mondes qui, au départ, ne se parlent pas.</p>
+  <p>C'est cette capacité de coordination, de mobilisation et de suivi territorial que j'apporte aujourd'hui aux projets, territoires et programmes qui m'accompagnent.</p>
+</section>
+
+<section class="wrap-wide">
+  <h2>Trois axes d'intervention</h2>
+  <div class="three-col">
+    <div class="axe">
+      <h3>Territoires</h3>
+      <p>Attractivité et rayonnement des territoires, communication territoriale, marketing territorial, valorisation des ressources et des acteurs locaux.</p>
+    </div>
+    <div class="axe">
+      <h3>Projets &amp; programmes</h3>
+      <p>Gestion de projets et de programmes, coordination multi-acteurs, partenariats stratégiques, mobilisation de ressources, sensibilisation et concertation.</p>
+    </div>
+    <div class="axe">
+      <h3>Environnements &amp; territoires</h3>
+      <p>Conception des environnements favorables à l'humain, qualité des espaces de vie, expériences territoriales : un champ en construction, adossé aux mêmes exigences de méthode.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap-wide">
+  <h2>Coopération internationale, diplomatie économique et mandats internationaux</h2>
+  <p>Ce champ prolonge ma formation en affaires internationales, en management et en marketing international, ainsi que mon expérience de coordination de projets, de partenariats et de développement économique.</p>
+  <div class="three-col">
+    <div class="axe">
+      <h3>Diplomatie économique et coopération institutionnelle</h3>
+      <p>J'appuie la préparation de notes conceptuelles et de propositions de partenariat, la cartographie des partenaires économiques, institutionnels et financiers, et la préparation de missions économiques, de rencontres B2B et de dossiers de partenariat.</p>
+    </div>
+    <div class="axe">
+      <h3>Mandats internationaux</h3>
+      <p>Je structure, coordonne et suis des missions confiées par des partenaires institutionnels ou économiques : planification, coordination des parties prenantes et suivi des résultats attendus.</p>
+    </div>
+    <div class="axe">
+      <h3>Partenariats et intermédiation</h3>
+      <p>Je facilite la mise en relation d'acteurs, le rapprochement entre porteurs de projets et partenaires, et le développement de relations d'affaires internationales.</p>
+    </div>
+  </div>
+  <p style="margin-top:28px;"><strong>Filières et accès aux marchés.</strong> J'accompagne les coopératives et les filières économiques dans la structuration de leurs projets, le développement de leurs débouchés et l'articulation entre coopération internationale, commerce et transition écologique.</p>
+  <p style="margin-top:18px;font-size:15px;">FRAMYXCC Intelligence Agency intervient comme prestataire de conseil et d'accompagnement. Il ne représente aucune ambassade, aucun gouvernement ni aucun organisme international, sauf mandat formel. Aucun financement, contrat ou résultat commercial n'est garanti.</p>
+</section>
+
+<section class="wrap-wide">
+  <h2>Ce que cette expérience a produit</h2>
+  <div class="diag-block">
+    <div class="diag-claim">Un programme national, suivi jusque sur le terrain.</div>
+    <p>Au sein de la Réforme du Secteur de la Sécurité, j'ai notamment porté :</p>
+    <ul>
+      <li>L'élaboration et la mise en œuvre de la stratégie et du plan de communication à l'échelle nationale, avec une recherche de visibilité internationale.</li>
+      <li>La création de partenariats stratégiques avec les médias et la société civile, pour favoriser l'appropriation de la stratégie au niveau local, national et international.</li>
+      <li>La mobilisation de ressources et l'établissement de partenariats avec des partenaires internationaux pour le financement de projets et programmes.</li>
+      <li>Le suivi des Comités civilo-militaires sur l'ensemble du territoire national.</li>
+    </ul>
+    <p>Une coordination à grande échelle, entre institutions, terrain et partenaires, qui reste la méthode que j'applique aujourd'hui à toute nouvelle collaboration.</p>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="cloture">
+    <p>Vous portez un projet, un territoire ou un programme qui demande à faire avancer ensemble des acteurs différents ?</p>
+  </div>
+</section>
+
+<footer class="wrap">
+  <a class="btn btn-solid" href="mailto:meetme@mireilletanofram.com?subject=Demande%20%E2%80%94%20Projets%2C%20Territoires%20%26%20Programmes">Écrire à Mireille</a>
+  <div style="margin-top:28px;">
+    <a href="univers-professionnel.html" style="font-family:'Jost',sans-serif;font-weight:600;font-size:15px;color:var(--taupe-deep);">← Retour à FRAMYXCC Intelligence Agency</a>
+  </div>
+
+  <p style="margin-top:18px;font-size:13px;"><a href="informations-legales.html" style="color:inherit">Mentions légales · Confidentialité</a></p>
+</footer>
+
+</body>
+</html>

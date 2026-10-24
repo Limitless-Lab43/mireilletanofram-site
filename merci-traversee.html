@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merci : La Traversée</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#3A1C0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Manrope:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#3A1C0A;color:#F5EADA}
+body{min-height:100vh;display:flex;flex-direction:column;align-items:center;font-family:"Manrope",system-ui,sans-serif;font-size:17px;line-height:1.7}
+main{width:100%;max-width:640px;padding:56px 22px 20px;text-align:center}
+.k{font-family:"Jost",sans-serif;font-weight:700;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#C9A25B}
+h1{font-family:"Jost",sans-serif;font-weight:700;font-size:clamp(30px,6vw,42px);line-height:1.15;margin:14px 0 24px;text-wrap:balance}
+.couvs{display:flex;justify-content:center;gap:18px;margin:0 auto 28px}
+.couvs img{width:200px;max-width:44%;height:auto;display:block;box-shadow:0 18px 40px rgba(0,0,0,.4)}
+.couvs.une img{width:220px;max-width:70%}
+#etat{display:flex;flex-direction:column;gap:14px;align-items:center}
+#etat p{color:#EADFD5}
+.btn{display:block;width:100%;max-width:420px;margin:6px auto;text-align:center;background:#F5EADA;color:#35200E;padding:17px 18px;border-radius:4px;border:0;font-family:"Jost",sans-serif;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;cursor:pointer}
+.note{font-size:14px;color:#C9B79F!important}
+.mini{display:flex;flex-direction:column;gap:10px;width:100%;max-width:420px}
+.mini input{padding:13px;border-radius:6px;border:1px solid rgba(201,162,91,.5);background:rgba(255,255,255,.06);color:#F5EADA;font:inherit;font-size:16px}
+.infos{margin-top:26px;text-align:left;border-top:1px solid rgba(201,162,91,.3);padding-top:22px}
+.infos p{margin:0 0 12px;color:#EADFD5;font-size:15px}
+footer{padding:24px;font-size:13px;color:#d9bf94}
+footer a{color:inherit}
+</style>
+</head>
+<body>
+<main>
+  <div class="k">Merci</div>
+  <h1>Votre Traversée commence.</h1>
+  <div class="couvs une"><img src="img/couverture-traversee.jpg" alt="Couverture de La Traversée, 40 jours pour revenir à soi"></div>
+  <div id="etat"><p class="note">Chargement…</p></div>
+  <div class="infos">
+    <p><strong>Votre lecture se fait en ligne</strong>, sur téléphone ou sur ordinateur, dans une liseuse personnelle : vous tournez les pages comme dans un livre et vous pouvez agrandir les caractères.</p>
+    <p>Votre lien est personnel. Il s’ouvre sur 3 appareils au maximum et reste valable sans limite de durée.</p>
+    <p>Pour La Traversée, préparez un carnet dédié : chaque jour, notez la question et répondez-y à la main.</p>
+  </div>
+</main>
+<div data-assistance="traversee"></div>
+<footer><a href="informations-legales.html">Mentions légales · Confidentialité</a></footer>
+<script src="assets/relais.js"></script>
+<script src="assets/merci-lecture.js"></script>
+<script src="assets/assistance.js"></script>
+</body>
+</html>

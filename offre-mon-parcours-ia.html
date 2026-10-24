@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon parcours IA | FRAMYXCC Intelligence Agency</title>
+<link rel="canonical" href="https://mireilletanofram.com/offre-mon-parcours-ia.html">
+<meta name="description" content="Mon parcours IA : une formation pour comprendre l'intelligence artificielle, travailler avec elle et créer de la valeur, en Afrique et ailleurs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivoire:#FAF6EF; --ivoire-deep:#F1E9DA;
+    --sable:#EADAC0; --taupe:#BBA88F; --taupe-deep:#75624F;
+    --bois:#6B4A35; --text:#3B2A1E;
+    --auburn:#A4552B; --terracotta:#D68A57; --or:#B08D57;
+    --turquoise:#5FA39B; --sauge:#93A47E; --bleu-profond:#3D5A6C;
+    /* V10n : variantes AA (contraste 4,5:1 minimum) */
+    --sauge-aa:#4A5E40; --taupe-aa:#6A5846; --terra-aa:#9E4F26; --auburn-aa:#98491F; --turquoise-aa:#28645E; --terra-clair:#F5CBA8; --bleu-clair:#D6E3EC;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--ivoire);color:var(--text);font-family:'Manrope',sans-serif;overflow-x:hidden;}
+  h1,h2,h3,.jost{font-family:'Jost',sans-serif;}
+  a{color:inherit;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;border-radius:999px;font-family:'Jost',sans-serif;font-size:15px;letter-spacing:.04em;border:1px solid var(--bois);cursor:pointer;background:none;}
+  .btn-solid{background:var(--bois);color:var(--ivoire);border-color:var(--bois);}
+
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:28px 5vw;}
+  .logo{font-family:'Jost',sans-serif;font-weight:600;font-size:18px;color:var(--bois);}
+  .back{font-family:'Jost',sans-serif;font-size:13px;color:var(--taupe-deep);text-decoration:none;}
+
+  .hero{position:relative;margin:0 5vw 6vh;border-radius:28px;overflow:hidden;background:linear-gradient(135deg,var(--turquoise-aa),var(--bleu-profond) 75%);color:var(--ivoire);padding:8vh 6vw;}
+  .hero .eyebrow{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ivoire-deep);}
+  .hero h1{font-size:clamp(28px,4vw,44px);font-weight:500;margin:14px 0 10px;max-width:780px;line-height:1.2;}
+  .hero p{font-size:15px;max-width:600px;margin:0;color:var(--ivoire-deep);}
+
+  .wrap{max-width:880px;margin:0 auto;padding:0 5vw 10vh;}
+  section{margin-bottom:6vh;}
+  .label{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--auburn);margin-bottom:10px;}
+  h2{font-size:24px;font-weight:500;color:var(--bois);margin:0 0 18px;}
+  p{font-size:15.5px;line-height:1.75;margin:0 0 14px;color:var(--text);}
+  .signature{font-style:italic;color:var(--bois);border-left:3px solid var(--terracotta);padding-left:18px;margin:24px 0;}
+
+  .axes{display:flex;flex-direction:column;gap:14px;}
+  .axe{background:#fff;border:1px solid var(--sable);border-radius:16px;padding:22px 24px;display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:start;}
+  .axe .num{font-family:'Jost',sans-serif;font-size:22px;color:var(--terra-aa);font-weight:500;}
+  .axe h3{font-family:'Jost',sans-serif;font-size:16px;color:var(--bois);margin:0 0 6px;}
+  .axe p{font-size:14px;margin:0;color:var(--text);}
+  .axe .note{font-size:12.5px;color:var(--taupe-deep);margin-top:8px;font-style:italic;}
+
+  .equation{background:var(--ivoire-deep);border:1px solid var(--sable);border-radius:16px;padding:24px;font-size:14px;color:var(--bois);}
+  .equation .bad{color:var(--taupe-deep);}
+  .equation .good{color:var(--auburn-aa);font-weight:600;}
+
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px;}
+  .chip{background:var(--ivoire-deep);border:1px solid var(--sable);border-radius:999px;padding:8px 16px;font-size:13px;color:var(--bois);}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .box{background:#fff;border:1px solid var(--sable);border-radius:16px;padding:24px;}
+  .box h3{font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--taupe-deep);margin:0 0 14px;}
+  .box ul{margin:0;padding-left:18px;}
+  .box li{font-size:14px;line-height:1.7;margin-bottom:6px;}
+
+  .distinction{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .distinction .col{border-radius:16px;padding:22px;}
+  .distinction .col.yes{background:var(--ivoire-deep);border:1px solid var(--sable);}
+  .distinction .col.no{background:transparent;border:1px dashed var(--taupe);}
+  .distinction h3{font-family:'Jost',sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:.06em;margin:0 0 10px;color:var(--bois);}
+  .distinction p{font-size:14px;margin:0;}
+
+  .cta-band{background:linear-gradient(135deg,var(--sauge-aa),var(--taupe-aa));border-radius:24px;padding:5vh 6vw;color:var(--ivoire);margin-bottom:6vh;}
+  .cta-band h2{color:var(--ivoire);margin-bottom:8px;}
+  .cta-band p{color:var(--ivoire-deep);}
+
+  form{background:#fff;border:1px solid var(--sable);border-radius:20px;padding:36px;}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field.full{grid-column:1 / -1;}
+  label{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.04em;color:var(--taupe-deep);}
+  input,textarea{font-family:'Manrope',sans-serif;font-size:14.5px;padding:12px 14px;border:1px solid var(--sable);border-radius:10px;background:var(--ivoire);color:var(--text);}
+  input:focus,textarea:focus{outline:none;border-color:var(--terracotta);}
+  textarea{resize:vertical;min-height:100px;}
+  .form-note{font-size:12.5px;color:var(--taupe-deep);margin-top:14px;}
+  .submit-row{display:flex;justify-content:flex-end;margin-top:8px;}
+
+  @media(max-width:760px){
+    .grid2,.frow,.distinction{grid-template-columns:1fr;}
+    .axe{grid-template-columns:1fr;}
+    .hero{padding:6vh 6vw;}
+  }
+  .consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.5;letter-spacing:0;color:var(--text);}
+  .consent input{width:auto;padding:0;margin-top:3px;flex:none;}
+  .consent a{color:var(--taupe-deep);text-decoration:underline;}
+  .hp-field{position:absolute;left:-5000px;width:1px;height:1px;overflow:hidden;}
+  .msg-count{font-size:12px;color:var(--text);opacity:.7;text-align:right;margin-top:4px;letter-spacing:0;}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #8d4d39;outline-offset:3px;box-shadow:0 0 0 2px #fff}
+</style>
+<link rel="stylesheet" href="assets/formation.css">
+<link rel="stylesheet" href="assets/mise-en-page.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">FRAMYXCC Intelligence Agency</div>
+  <a class="back" href="formations.html">← Retour aux Formations &amp; Accompagnements</a>
+</div>
+
+<div class="hero">
+  <div class="eyebrow">Formations & Accompagnements</div>
+  <h1>Mon parcours IA</h1>
+  <p>Comprendre. Utiliser. Créer. Transformer.</p>
+</div>
+
+<div class="wrap">
+
+  <section>
+    <div class="label">Positionnement</div>
+    <h2>De l'intelligence artificielle à l'intelligence humaine augmentée</h2>
+    <p>Une formation pour comprendre les transformations apportées par l'intelligence artificielle, apprendre à travailler avec elle et explorer son potentiel de création de valeur pour les individus, les entreprises et l'Afrique.</p>
+    <p>Mon parcours IA est né d'une expérience concrète : découvrir comment l'intelligence artificielle peut permettre à une personne de transformer plus rapidement ses idées en projets, en solutions, en produits, en formations et en activités économiques. Mais utiliser l'IA ne consiste pas à écrire un prompt et à copier-coller une réponse : l'IA amplifie ce que l'humain lui apporte.</p>
+    <div class="signature">« Parce que l'IA peut changer ce que nous sommes capables de faire. Mais c'est à nous de décider ce que nous allons en faire. »</div>
+  </section>
+
+  <section>
+    <div class="label">Le parcours</div>
+    <h2>Six grands axes</h2>
+    <div class="axes">
+      <div class="axe">
+        <div class="num">01</div>
+        <div>
+          <h3>Comprendre l'IA</h3>
+          <p>Sensibiliser avant d'utiliser : ce que l'IA permet, ce qu'elle ne permet pas, comment elle transforme déjà les façons de travailler, de créer et d'entreprendre. Développer une culture générale de l'IA plutôt qu'un simple usage d'outil.</p>
+          <div class="note">Inclut une reconnaissance explicite du travail des développeurs, informaticiens et professionnels de la technologie : l'IA ne diminue pas la valeur de leur expertise.</div>
+        </div>
+      </div>
+      <div class="axe">
+        <div class="num">02</div>
+        <div>
+          <h3>IA & intelligence humaine</h3>
+          <p>L'IA ne remplace pas l'intelligence humaine, elle peut l'augmenter. Réfléchir, questionner, analyser, vérifier, corriger, contredire, arbitrer, décider : ne pas devenir dépendant, mais devenir capable de travailler avec elle.</p>
+        </div>
+      </div>
+      <div class="axe">
+        <div class="num">03</div>
+        <div>
+          <h3>IA & identité</h3>
+          <p>Une technologie puissante entre des mains dont l'identité n'a pas évolué peut produire davantage de ressources sans nécessairement produire davantage de maturité. La technologie peut évoluer plus vite que l'identité.</p>
+          <div class="note">Qui dois-je devenir pour être capable de porter ce que la technologie me permet désormais de créer ?</div>
+        </div>
+      </div>
+      <div class="axe">
+        <div class="num">04</div>
+        <div>
+          <h3>IA & attitude</h3>
+          <p>Posséder les outils ne suffit pas. Développer l'attitude nécessaire pour les utiliser avec discernement : curiosité → responsabilité → esprit critique → autonomie → capacité d'adaptation → création.</p>
+        </div>
+      </div>
+      <div class="axe">
+        <div class="num">05</div>
+        <div>
+          <h3>IA, création de richesse & transformation de l'Afrique</h3>
+          <p>Pour les individus : créer, apprendre, entreprendre, accéder à de nouvelles opportunités. Pour les entrepreneurs : concevoir plus rapidement offres et solutions. Pour les entreprises : automatiser, innover. Pour l'Afrique : réduire certaines barrières à l'entrée et concevoir, produire, créer de la valeur localement, pas seulement consommer une technologie produite ailleurs.</p>
+        </div>
+      </div>
+      <div class="axe">
+        <div class="num">06</div>
+        <div>
+          <h3>IA & transitions</h3>
+          <p>Innovation technologique → transformation digitale → transformation humaine → transition écologique. L'IA comme matériau de transformation humaine, économique, organisationnelle et écologique, lorsqu'elle est utilisée avec discernement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Le point central</div>
+    <h2>La technologie ne fait pas la traversée à votre place</h2>
+    <p>Nous entrons dans une période où la technologie peut permettre à beaucoup plus de personnes de créer. Mais la capacité à créer des ressources doit être accompagnée d'une évolution de l'identité, de la conscience et de l'attitude.</p>
+    <div class="equation">
+      <span class="bad">Nouvelle technologie + ancienne identité + anciennes attitudes = nouvelles possibilités, mais anciens problèmes.</span><br><br>
+      <span class="good">Nouvelle technologie + identité actualisée + intelligence humaine + responsabilité = capacité nouvelle de créer et de transformer.</span>
+    </div>
+    <div class="signature">« L'IA peut augmenter votre capacité à créer. Mais elle ne peut pas faire votre Traversée à votre place. »</div>
+  </section>
+
+  <section>
+    <div class="label">Pour qui&nbsp;?</div>
+    <h2>Un socle commun, des applications adaptées</h2>
+    <div class="chips">
+      <span class="chip">Particuliers</span>
+      <span class="chip">Entrepreneurs & porteurs de projets</span>
+      <span class="chip">Professionnels, experts, consultants, formateurs</span>
+      <span class="chip">Dirigeants & cadres</span>
+      <span class="chip">Entreprises & organisations</span>
+      <span class="chip">Jeunes & nouvelles générations</span>
+    </div>
+    <p style="margin-top:16px;">Un même socle de sensibilisation et de compréhension, avec des applications adaptées au profil, au métier, au projet et au niveau de maturité du participant.</p>
+  </section>
+
+  <section>
+    <div class="grid2">
+      <div class="box">
+        <h3>Format & durée</h3>
+        <ul>
+          <li>En ligne ou en présentiel</li>
+          <li>Individuel ou collectif</li>
+          <li>En entreprise</li>
+          <li>Format hybride possible</li>
+          <li>Durée définie selon le public, les objectifs et le niveau d'accompagnement souhaité</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Livrables</h3>
+        <ul>
+          <li>Meilleure compréhension de l'IA et de ses possibilités</li>
+          <li>Vision claire de son application à son activité ou projet</li>
+          <li>Capacité renforcée à travailler avec l'IA, de façon critique et autonome</li>
+          <li>Possibilités concrètes de création ou d'amélioration identifiées</li>
+          <li>Pistes concrètes pour passer de l'idée à la réalisation</li>
+          <li>Selon le format : un premier projet ou cas d'usage construit avec l'IA</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Ce que ce parcours n'est pas</div>
+    <h2>Une distinction importante</h2>
+    <div class="distinction">
+      <div class="col yes">
+        <h3>Ce que la formation transmet</h3>
+        <p>Une culture, une méthode de travail et une capacité à penser avec l'IA.</p>
+      </div>
+      <div class="col no">
+        <h3>Ce qu'elle ne promet pas</h3>
+        <p>Faire de chaque participant un développeur ou un spécialiste technique de l'IA.</p>
+      </div>
+    </div>
+    <p style="margin-top:16px;font-size:14px;color:var(--taupe-deep);">Cohérent avec l'hommage rendu aux développeurs : on apprend à utiliser intelligemment une puissance nouvelle, tout en reconnaissant l'expertise de ceux dont c'est le métier.</p>
+  </section>
+
+  <section class="cta-band">
+    <h2>Un parcours sur mesure</h2>
+    <p>Le format et le rythme sont définis ensemble, selon votre situation et vos objectifs.</p>
+  </section>
+
+  <section id="contact">
+    <div class="label">Demande de contact</div>
+    <h2>Définissons ensemble le format adapté</h2>
+    <form id="contact-form" data-offre="Mon parcours IA">
+      <div class="frow">
+        <div class="field"><label for="nom">Nom</label><input type="text" id="nom" name="LASTNAME" maxlength="200" autocomplete="name" required></div>
+        <div class="field"><label for="organisation">Organisation</label><input type="text" id="organisation" name="ORGANISATION" maxlength="200" placeholder="Si à titre personnel : Particulier" required></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label for="fonction">Fonction</label><input type="text" id="fonction" name="FONCTION" maxlength="200" placeholder="Si à titre personnel : Particulier" required></div>
+        <div class="field"><label for="email">Email</label><input type="email" id="email" name="EMAIL" maxlength="200" autocomplete="email" required></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label for="tel">Téléphone / WhatsApp</label><input type="tel" id="tel" name="TELEPHONE" maxlength="200" autocomplete="tel"></div>
+        <div class="field"><label for="objet">Objet de la demande</label><input type="text" id="objet" maxlength="180" required><input type="hidden" id="objet-h" name="OBJET"></div>
+      </div>
+      <div class="frow">
+        <div class="field full"><label for="message">Message</label><textarea id="message" name="MESSAGE" maxlength="10000" required></textarea><div class="msg-count" id="msg-count" aria-live="off"></div></div>
+      </div>
+      <div class="frow">
+        <div class="field full"><label class="consent" for="consentement"><input type="checkbox" id="consentement" name="CONSENTEMENT" value="1" required><span>J'accepte que mes données personnelles soient utilisées pour traiter ma demande, conformément aux <a href="informations-legales.html">informations légales</a>.</span></label></div>
+      </div>
+      <div class="hp-field" aria-hidden="true"><input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off"></div>
+      <div class="submit-row">
+        <button type="submit" class="btn btn-solid">Envoyer la demande</button>
+      </div>
+      <div class="form-note" id="form-note" role="status" aria-live="polite"></div>
+    </form>
+    <script>
+      (function(){
+        var RELAY_URL = 'https://framyxcc-relais.rubiscc-voyages.workers.dev';
+        var MAIL = 'meetme@mireilletanofram.com';
+        var MAX = 10000;
+        var f = document.getElementById('contact-form');
+        var note = document.getElementById('form-note');
+        var btn = f.querySelector('button[type=submit]');
+        var msg = document.getElementById('message');
+        var cnt = document.getElementById('msg-count');
+        var t0 = Date.now();
+        var pending = false;
+        function fmt(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
+        function maj(){ cnt.textContent = fmt(msg.value.length) + ' / ' + fmt(MAX) + ' caractères'; }
+        msg.addEventListener('input', maj); maj();
+        function secours(){
+          note.innerHTML = "L'envoi n'a pas pu être confirmé. Merci d'écrire directement à <a href=\"mailto:" + MAIL + "\">" + MAIL + "</a>.";
+        }
+        function fin(){ pending = false; btn.disabled = false; }
+        f.addEventListener('submit', function(e){
+          e.preventDefault();
+          if (pending) return;
+          if (RELAY_URL.indexOf('https://') !== 0) { secours(); return; }
+          pending = true;
+          btn.disabled = true;
+          note.textContent = 'Envoi en cours...';
+          var payload = {
+            nom: f.nom.value, organisation: f.organisation.value, fonction: f.fonction.value,
+            email: f.email.value, telephone: f.tel.value,
+            objet: '[' + f.getAttribute('data-offre') + '] ' + f.objet.value.trim(),
+            message: msg.value,
+            consentement: f.consentement.checked === true,
+            piege: f.email_address_check.value,
+            duree_ms: Date.now() - t0
+          };
+          var ctrl = ('AbortController' in window) ? new AbortController() : null;
+          var timer = setTimeout(function(){ if (ctrl) ctrl.abort(); }, 20000);
+          fetch(RELAY_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            signal: ctrl ? ctrl.signal : undefined
+          }).then(function(r){
+            return r.json().then(function(j){ return { r: r, j: j }; }, function(){ return { r: r, j: {} }; });
+          }).then(function(x){
+            clearTimeout(timer);
+            fin();
+            if (x.r.ok && x.j && x.j.ok === true) {
+              f.reset(); maj(); t0 = Date.now();
+              note.textContent = 'Merci, votre demande a bien été envoyée.';
+            } else if (x.j && x.j.code === 'trop_rapide') {
+              note.textContent = 'Envoi trop rapide. Merci de réessayer dans un instant.';
+            } else if (x.j && x.j.code === 'message_trop_long') {
+              note.textContent = 'Votre message dépasse ' + fmt(MAX) + ' caractères. Merci de le raccourcir.';
+            } else {
+              secours();
+            }
+          }).catch(function(){
+            clearTimeout(timer);
+            fin();
+            secours();
+          });
+        });
+      })();
+    </script>
+  </section>
+
+</div>
+
+<footer class="wrap">
+  <a class="btn btn-solid" href="mailto:meetme@mireilletanofram.com">Écrire à Mireille</a>
+  <div style="margin-top:24px;"><a href="univers-professionnel.html" style="font-family:'Jost',sans-serif;font-weight:600;font-size:15px;color:var(--taupe-deep);">← Retour à FRAMYXCC Intelligence Agency</a></div>
+  <p style="margin-top:18px;font-size:13px;"><a href="informations-legales.html" style="color:inherit">Mentions légales · Confidentialité</a></p>
+</footer>
+
+<script src="assets/formation.js" defer></script><script src="assets/fx.js" defer></script>
+</body>
+</html>
