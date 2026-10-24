@@ -1,0 +1,73 @@
+/* V10x : mise en page commune à tout le site.
+   Texte sur toute la largeur, justifié, sur deux colonnes à l'écran d'ordinateur.
+   Aucune couleur ni police ajoutée : la charte existante est conservée. */
+
+/* ---------- Pages du site (feuille site.css) ---------- */
+main:not(.sales) .split{display:block}
+main:not(.sales) .split>.visual{margin:0 0 44px;max-height:280px;border-radius:24px;overflow:hidden}
+main:not(.sales) .split>.visual img{width:100%;height:280px;object-fit:cover}
+main:not(.sales) .prose,main:not(.sales) .bio-prose{max-width:none;columns:2;column-gap:64px}
+main:not(.sales) .prose>*{break-inside:avoid}
+main:not(.sales) .prose h2{font-size:clamp(26px,2.6vw,34px)!important;line-height:1.2;margin:0 0 10px;break-after:avoid}
+main:not(.sales) .prose p,main:not(.sales) .prose li{text-align:justify;hyphens:auto;-webkit-hyphens:auto;font-size:18px;line-height:1.75;margin:0 0 24px}
+main:not(.sales) .prose .quote,main:not(.sales) .prose .actions,main:not(.sales) .prose .pill,main:not(.sales) .prose .eyebrow,main:not(.sales) .prose .pill+h2,main:not(.sales) .bio-prose .quote,main:not(.sales) .bio-prose .bio-end,main:not(.sales) .bio-prose .bio-domains{column-span:all}
+main:not(.sales) .prose:not(:has(p+p,p+h2,h2+p+p)){columns:1}
+main:not(.sales) .prose .actions{margin-top:12px}
+main:not(.sales) .bio-prose p{font-size:18px!important;line-height:1.75}
+/* Page avec portrait ou visuel latéral : on garde la photo entière à côté du texte */
+main:not(.sales) .split:has(img[src*="mireille"]){display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:start}
+main:not(.sales) .split:has(img[src*="mireille"])>.visual{max-height:none;margin:0}
+main:not(.sales) .split:has(img[src*="mireille"])>.visual img{height:auto}
+main:not(.sales) .split:has(img[src*="mireille"]) .prose,main:not(.sales) .product .prose{columns:1}
+main:not(.sales) .product{align-items:start}
+
+/* ---------- Pages de formation et d'offre (feuille formation.css) ---------- */
+.wrap{max-width:1120px}
+.wrap>section{display:block!important}
+.wrap>section>h2{position:static!important}
+.wrap>section:not(:has(.axes,.grid2,.chips,.modules,.traversees,.box,.axe,.module,form,.cta-band,.equation,.distinction,ul,.unapologetic)){columns:2;column-gap:64px}
+.wrap>section:not(:has(.axes,.grid2,.chips,.modules,.traversees,.box,.axe,.module,form,.cta-band,.equation,.distinction,ul,.unapologetic))>.label,
+.wrap>section:not(:has(.axes,.grid2,.chips,.modules,.traversees,.box,.axe,.module,form,.cta-band,.equation,.distinction,ul,.unapologetic))>h2{column-span:all}
+.wrap>section>p{text-align:justify;hyphens:auto;-webkit-hyphens:auto;break-inside:avoid}
+.wrap>section .axe li,.wrap>section .box li{text-align:left}
+@media(max-width:800px){
+ main:not(.sales) .prose,main:not(.sales) .bio-prose{columns:1}
+ main:not(.sales) .prose p,main:not(.sales) .prose li{text-align:left;hyphens:manual}
+ .wrap>section:not(:has(.x)){columns:1!important}
+ .wrap>section>p{text-align:left;hyphens:manual}
+ main:not(.sales) .split>.visual{max-height:200px}
+ main:not(.sales) .split>.visual img{height:200px}
+ main:not(.sales) .split:has(img[src*="mireille"]){display:block}
+ main:not(.sales) .split:has(img[src*="mireille"])>.visual{max-height:none;margin-bottom:28px}
+ main:not(.sales) .split:has(img[src*="mireille"])>.visual img{height:auto}
+}
+
+/* ---------- V10y : tous les paragraphes sur plusieurs lignes sont justifiés, sans case vide ---------- */
+body :is(p,li,blockquote){text-align:justify!important;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}
+/* blocs auparavant centrés : on justifie, la dernière ligne reste centrée */
+:is(.lead,.accent-line,.cloture,.wrap-wide,.h-lead,.h-vision-statement,.diag-block.center){text-align-last:center}
+/* éléments à ne jamais justifier : navigation, pied de page, boutons, formulaires, étiquettes */
+.hero p,.page-hero p,[class*="hero"] p,.h-lead,header p,header li,nav p,nav li,footer p,footer li,form p,form li,.btn,button,label,.num,.label,.eyebrow,.pill,.chips li,.crumbs li,.cta-band p{text-align:left!important}
+.cta-band p{text-align:center!important;text-align-last:center}
+/* pas de colonnes là où il n'y a pas de quoi remplir deux colonnes */
+.wrap>section.cta-band,.wrap>section:not(:has(p~p~p)){columns:1!important}
+main:not(.sales) .bio-prose:has(.bio-end){columns:1}
+@media(max-width:800px){
+ body :is(p,li,blockquote){text-align:left!important;text-align-last:auto;hyphens:manual}
+ .cta-band p{text-align:center!important}
+}
+[hidden]{display:none!important}
+.capture-intro{text-align:left!important;text-align-last:auto;max-width:none}
+
+/* ---------- V11 : photos des pages (image verticale à côté du texte, affichée à sa taille réelle pour rester nette) ---------- */
+main:not(.sales) .split.photo{display:grid;grid-template-columns:minmax(0,349px) minmax(0,1fr);gap:56px;align-items:start}
+main:not(.sales) .split.photo:has(>.visual:last-child){grid-template-columns:minmax(0,1fr) minmax(0,349px)}
+main:not(.sales) .split.photo>.visual{margin:0;max-height:none;border-radius:24px;aspect-ratio:349/434;background:var(--sand)}
+main:not(.sales) .split.photo>.visual img{width:100%;height:100%;object-fit:cover;display:block}
+main:not(.sales) .split.photo .prose{columns:1;max-width:none}
+@media(max-width:800px){
+ main:not(.sales) .split.photo,main:not(.sales) .split.photo:has(>.visual:last-child){display:block}
+ main:not(.sales) .split.photo>.visual{max-width:349px;max-height:none;margin:0 auto 28px}
+ main:not(.sales) .split.photo>.visual img{height:100%}
+ main:not(.sales) .split.photo>.visual:last-child{margin:28px auto 0}
+}

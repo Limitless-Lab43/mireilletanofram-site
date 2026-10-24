@@ -1,0 +1,20 @@
+/* V10w : rehaussement visuel des pages construites sur site.css. Structure inchangée. */
+.page-hero{position:relative;overflow:hidden;background:linear-gradient(160deg,#f6f0e7 0%,#efe3d1 100%);padding:100px 0 84px}
+.page-hero::before{content:"";position:absolute;right:-90px;top:-110px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(181,138,81,.34),transparent 68%)}
+.page-hero::after{content:"";position:absolute;left:-120px;bottom:-190px;width:380px;height:380px;border-radius:50%;border:2px solid rgba(141,77,57,.20);box-shadow:inset 0 0 0 30px rgba(141,77,57,.05)}
+.page-hero .container{position:relative;z-index:1}
+.page-hero h1{color:var(--brown)}
+.page-hero .eyebrow{display:inline-block;padding:6px 14px;border:1px solid rgba(141,77,57,.35);border-radius:999px}
+.section.alt{background:#efe4d3}
+.section-head h2{font-size:clamp(32px,4.2vw,48px);line-height:1.1;letter-spacing:-.02em}
+.card,.family,.gate,.quote-card,.contact-card{position:relative;border-top:4px solid var(--terr);box-shadow:0 14px 40px rgba(58,33,24,.07);transition:transform .3s,box-shadow .3s}
+.list-cards>:nth-child(3n+2),.family-grid>:nth-child(4n+2),.family-grid>:nth-child(4n+3){border-top-color:var(--green)}
+.list-cards>:nth-child(3n),.family-grid>:nth-child(4n){border-top-color:var(--gold)}
+.card:hover,.family:hover,.gate:hover,.quote-card:hover,.contact-card:hover{transform:translateY(-5px);box-shadow:0 26px 60px rgba(58,33,24,.14)}
+.quote{font-family:Fraunces,Georgia,serif;font-style:italic;font-size:clamp(22px,2.8vw,30px);line-height:1.38;color:var(--terr);border-left:5px solid var(--gold);padding:18px 0 18px 26px;background:linear-gradient(90deg,rgba(181,138,81,.14),transparent 80%);border-radius:0 16px 16px 0}
+.section.dark .quote{color:#f0d5ae}
+.btn.primary{box-shadow:0 10px 26px rgba(58,33,24,.20)}
+.btn.ghost:hover{background:var(--brown);color:var(--paper)}
+.visual{box-shadow:0 30px 70px rgba(58,33,24,.18)}
+@media(prefers-reduced-motion:reduce){.card:hover,.family:hover,.gate:hover,.quote-card:hover,.contact-card:hover{transform:none}}
+@media(max-width:600px){.page-hero{padding:68px 0 54px}.page-hero::before{width:260px;height:260px}}
