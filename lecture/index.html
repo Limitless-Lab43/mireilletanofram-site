@@ -69,6 +69,8 @@ h1,h2{font-family:"Jost",sans-serif;font-weight:700;line-height:1.2;text-wrap:ba
 .colonnes.gauche .coupe{text-align-last:auto}
 .colonnes figure{margin:.4em 0 1em;break-inside:avoid}
 .colonnes img{display:block;max-width:100%;max-height:var(--hmax,60vh);margin:0 auto;border-radius:2px}
+.colonnes .couv-texte{break-after:column;-webkit-column-break-after:always;height:var(--hmax,60vh);display:flex;align-items:center;justify-content:center;margin:0}
+.colonnes .couv-texte img{max-height:100%;width:auto;box-shadow:0 10px 26px rgba(0,0,0,.25);pointer-events:none;-webkit-user-drag:none}
 .colonnes .kicker{margin-top:1.4em}
 .colonnes .medit{font-style:italic;color:#5b4433;border-left:2px solid #d8c2a0;padding-left:.8em}
 .colonnes .encadre{background:#f3eadc;padding:.45em .7em;border-radius:4px}
@@ -464,8 +466,15 @@ function moteurTexte(o, scene) {
   let pret = false;
   scene.innerHTML = '<p class="note" style="margin:auto">Ouverture du livre…</p>';
   const html = Promise.all(chap.map((n) => dechiffrer(o.id + '-texte', n).then((b) => b ? new TextDecoder().decode(b) : '<p>Chapitre indisponible. Rechargez la page.</p>'))).then((l) => l.map((h, k) => `<div class="chap" data-c="${chap[k]}">${h}</div>`).join(''));
+  // Première de couverture : toujours la première page, avant le texte
+  const couv = imagePage(o.id, o.couverture || 1).then(async (bmp) => {
+    if (!bmp) return '';
+    const cv = document.createElement('canvas'); cv.width = bmp.width; cv.height = bmp.height; cv.getContext('2d').drawImage(bmp, 0, 0);
+    const b = await new Promise((r) => cv.toBlob(r, 'image/jpeg', 0.9));
+    return b ? `<figure class="couv-texte"><img src="${URL.createObjectURL(b)}" alt="Couverture : ${esc(o.titre)}" draggable="false"></figure>` : '';
+  }).catch(() => '');
   async function composer() {
-    const contenu = await html;
+    const contenu = (await couv) + (await html);
     const W = Math.min(scene.clientWidth - 20, 640), H = scene.clientHeight - 20;
     scene.innerHTML = `<div class="livre"><div class="feuille texte" style="width:${W}px;height:${H}px">
       <div class="cadre"><div class="colonnes${taille >= 3 || W < 420 && taille >= 2 ? ' gauche' : ''}" lang="fr" style="font-size:${TAILLES[taille]}px">${contenu}</div></div>
