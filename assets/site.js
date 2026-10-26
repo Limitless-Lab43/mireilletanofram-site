@@ -1,5 +1,5 @@
 /* LIENS DE PAIEMENT : renseigner ici, une seule fois. Tant qu'un lien est vide, le bouton reste caché. */
-var LIENS={livre:"https://paystack.shop/pay/mireille-livre-50-ans",traversee:"https://paystack.shop/pay/mireille-la-traversee",experience:"https://paystack.shop/pay/mireille-experience-complete"};
+var LIENS={livre:"https://paystack.shop/pay/mireille-livre-50-ans",traversee:"https://paystack.shop/pay/mireille-la-traversee",experience:"https://paystack.shop/pay/mireille-experience-complete",honte:"https://paystack.shop/pay/oh-la-honte"};
 document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('[data-lien]').forEach(function(a){var u=LIENS[a.getAttribute('data-lien')];if(u){a.href=u;a.hidden=false;}});document.querySelectorAll('[data-sans-lien]').forEach(function(e){if(LIENS[e.getAttribute('data-sans-lien')])e.hidden=true;});});
 
 document.addEventListener('DOMContentLoaded',()=>{

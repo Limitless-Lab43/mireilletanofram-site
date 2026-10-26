@@ -1,0 +1,742 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex, nofollow"><title>Oh la honte ! · Mon parcours</title><style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+:root{--ivory:#f6f0e7;--paper:#fbf8f3;--sand:#e8dccb;--brown:#3a2118;--deep:#241612;--terr:#8d4d39;--rust:#9a3d24;--gold:#b58a51;--gold-l:#efe1c8;--ink:#2c211d;--muted:#75665e;--line:rgba(58,33,24,.16);--shadow:0 18px 50px rgba(44,33,29,.10);color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ivory);color:var(--ink);font:16.5px/1.6 "DM Sans",system-ui,sans-serif}
+button{font:inherit;color:inherit}
+.demo{background:var(--deep);color:#f3dfc0;font-size:13px;padding-block:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;justify-content:space-between}
+.demo label{display:flex;gap:8px;align-items:center;cursor:pointer}
+.demo input{accent-color:var(--gold)}
+header.top{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px}
+.brand{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--brown)}
+.brand small{display:block;letter-spacing:.08em;font-weight:500;color:var(--gold)}
+.link{white-space:nowrap;background:none;border:0;color:var(--terr);font-weight:600;cursor:pointer;padding:6px 0}
+.daysbar{display:flex;gap:6px;padding-block:0 12px}
+.daysbar span{flex:1;height:6px;border-radius:9px;background:var(--sand)}
+.daysbar span.done{background:var(--gold)}
+.daysbar span.cur{background:var(--terr)}
+main{padding-block:26px 60px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:500;color:var(--brown);margin:0;text-wrap:balance}
+h1{font-size:clamp(32px,6vw,46px);line-height:1.05}
+h1 em{color:var(--rust);display:block}
+h2{font-size:clamp(25px,4.6vw,32px);line-height:1.12}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#8a6428}
+.lead{font-size:18px}
+.muted{color:var(--muted)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow)}
+.stack{display:grid;gap:16px}
+.daylist{display:grid;gap:10px}
+.dayrow{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;cursor:pointer}
+.dayrow[disabled]{cursor:not-allowed;opacity:.55}
+.dayrow .n{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:700;background:var(--gold-l);color:var(--brown)}
+.dayrow.done .n{background:var(--gold);color:#fff}
+.dayrow b{display:block;font-weight:600}
+.dayrow small{color:var(--muted)}
+.dayrow .st{margin-left:auto;font-size:13px;color:var(--muted);white-space:nowrap}
+.btns{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:6px}
+.btn{border:1px solid var(--brown);background:var(--brown);color:#fff;border-radius:999px;padding:13px 22px;font-weight:600;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--brown)}
+.btn.soft{background:transparent;border-color:transparent;color:var(--terr);padding-inline:10px}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.spacer{flex:1}
+.stepbar{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.stepbar .track{flex:1;height:4px;background:var(--sand);border-radius:9px;overflow:hidden}
+.stepbar .track i{display:block;height:100%;background:var(--terr);transition:width .3s}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;cursor:pointer;line-height:1.4}
+.opt .box{flex:none;width:22px;height:22px;margin-top:1px;border:2px solid var(--gold);border-radius:6px;display:grid;place-items:center;color:#fff;font-size:14px}
+.opt.radio .box{border-radius:50%}
+.opt[aria-pressed=true]{border-color:var(--terr);background:#fbf1ea}
+.opt[aria-pressed=true] .box{background:var(--terr);border-color:var(--terr)}
+label.f{display:grid;gap:6px;font-weight:600;font-size:15px}
+textarea,input[type=text],input[type=email]{width:100%;font:inherit;font-weight:400;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;color:var(--ink);resize:vertical;min-height:52px}
+textarea:focus,input:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent}
+.kenan{display:flex;gap:12px;align-items:flex-start}
+.kenan .av{flex:none;width:40px;height:40px;border-radius:50%;background:linear-gradient(150deg,#c39a62,#9c7340);color:#fff;display:grid;place-items:center;font-family:Fraunces,serif;font-size:18px}
+.kenan .bubble{background:#fff;border:1px solid var(--line);border-radius:4px 16px 16px 16px;padding:12px 15px;min-width:0}
+.kenan .who{font-size:12px;font-weight:700;letter-spacing:.06em;color:#8a6428;text-transform:uppercase;margin-bottom:2px}
+.me{display:flex;justify-content:flex-end}
+.me .bubble{background:var(--brown);color:#fff;border-radius:16px 4px 16px 16px;padding:11px 15px;max-width:85%;white-space:pre-wrap;overflow-wrap:anywhere}
+.chat{display:grid;gap:12px}
+.chatin{display:flex;gap:8px;align-items:flex-end}
+.chatin textarea{min-height:48px}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--gold-l);color:#7a5a2c;padding:3px 9px;border-radius:6px}
+.intro p{margin:0 0 10px}
+.chap h3{font-size:1.2rem;font-weight:600;margin:1.2em 0 .4em;color:var(--brown)}
+.chap p{margin:0 0 .8em;line-height:1.7}
+.chap ol{margin:.2em 0 .8em;padding-left:1.3em}
+.chap blockquote{margin:.6em 0 1em;padding:.2em 0 .2em 1em;border-left:3px solid var(--terr);font-style:italic;font-size:1.05rem}
+.avant summary{cursor:pointer;display:flex;flex-direction:column;gap:2px;list-style:none}
+.avant summary::-webkit-details-marker{display:none}
+.avant summary b::after{content:" ›";color:var(--terr)}
+.retenir{background:var(--sand);border-radius:12px;padding:12px 14px;margin-top:6px}
+.retenir p{margin:.3em 0 0}
+.action{border:1px dashed var(--terr);border-radius:12px;padding:12px 14px}
+.test{padding-top:6px;border-top:1px solid var(--sand)}
+.opt.juste{border-color:#4f7a4a;background:#eef5ec}
+.opt.faux{border-color:#b5542f;background:#fbefe9}
+.retour{margin:8px 0 0;font-size:15px}
+.retour.ok b{color:#3f6b3a}
+.bilan h3{font-size:20px;margin-bottom:4px}
+.bilan .item{border-top:1px solid var(--line);padding-top:14px}
+.bilan .vide{color:var(--muted);font-style:italic}
+.note{font-size:13.5px;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--deep);color:#fff;padding:9px 16px;border-radius:999px;font-size:14px;opacity:0;transition:.3s;pointer-events:none}
+.toast.on{opacity:1}
+
+/* ---------- Livret « Comprendre la honte » ---------- */
+.lv{display:grid;gap:18px}
+.lv-couv{position:relative;overflow:hidden;border-radius:18px;background:linear-gradient(180deg,#f3e6d1 0%,#f8eed9 55%,#f0dfc2 100%);color:#2E1A1F;min-height:600px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:34px 20px 150px;box-shadow:var(--shadow)}
+.lv-orn{width:84px}
+.lv-couv h1{font-family:"Playfair Display",Georgia,serif;font-weight:500;color:#2E1A1F;font-size:clamp(44px,10vw,64px);line-height:1.02;margin:6px 0 0}
+.lv-sep{display:block;width:min(240px,70%);height:1px;background:linear-gradient(90deg,transparent,#C9A34F,transparent);position:relative}
+.lv-sep::after{content:"";position:absolute;left:50%;top:-3px;width:7px;height:7px;background:#C9A34F;transform:translateX(-50%) rotate(45deg)}
+.lv-couv-sous{font-family:"Playfair Display",Georgia,serif;font-size:clamp(19px,4vw,23px);margin:0;max-width:20ch;line-height:1.35}
+.lv-couv-avant{margin:6px 0 0;font-size:13.5px;color:#6b4e3a;letter-spacing:.02em}
+.lv-auteur{margin:auto 0 0;font-family:"Playfair Display",Georgia,serif;font-size:19px;font-weight:600;letter-spacing:.03em;position:relative;z-index:1}
+.lv-marque{margin:0;font-size:12px;letter-spacing:.32em;color:#8a6a3c;position:relative;z-index:1}
+.lv-deco{position:absolute;bottom:0;pointer-events:none}
+.lv-deco-g{left:0;height:62%;max-height:360px}
+.lv-deco-d{right:0;height:66%;max-height:380px}
+@media(max-width:640px){.lv-couv{padding-bottom:250px;min-height:0}.lv-deco-g{height:240px}.lv-deco-d{height:250px}}
+.lv-page{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px 22px 14px;box-shadow:var(--shadow);display:grid;gap:12px;line-height:1.65}
+.lv-page p{margin:0}.lv-page h3{font-family:Fraunces,Georgia,serif;font-weight:500;color:var(--terr);font-size:21px;margin:6px 0 0}
+.lv-entete{justify-self:end;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#8a6428;border-top:1px solid var(--sand);padding-top:4px}
+.lv-titre{display:flex;align-items:center;gap:14px}
+.lv-num{font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:clamp(56px,11vw,78px);line-height:.9;color:#C9A34F;flex:none}
+.lv-titre h2{font-family:"Playfair Display",Georgia,serif;color:#2E1A1F;font-size:clamp(23px,4.6vw,30px);line-height:1.12}
+.lv-deux{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:start}
+.lv-deux>div{display:grid;gap:10px}
+.lv-citation{margin:0;font-family:Fraunces,Georgia,serif;font-style:italic;color:var(--terr);font-size:19px;line-height:1.45;padding-left:16px;border-left:2px solid #c39a62;position:relative}
+.lv-citation::before{content:"\201C";position:absolute;left:12px;top:-30px;font-size:54px;color:#d9b27a;font-style:normal}
+.lv-deux .lv-citation{padding-top:26px}
+.lv-encadre{background:#f6ece0;border-radius:14px;padding:16px;display:grid;gap:10px}
+.lv-encadre-titre{font-weight:700;color:var(--terr);letter-spacing:.04em}
+.lv-encadre ul,.lv-duo ul{margin:4px 0 0;padding-left:1.1em;display:grid;gap:3px;font-size:15px}
+.lv-ico{display:inline-grid;place-items:center;flex:none;width:34px;height:34px;border-radius:50%;background:#fbf3e8;border:1px solid #e3cfb4;margin-right:10px;vertical-align:middle}
+.lv-ico svg{width:18px;height:18px;fill:none;stroke:var(--terr);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.lv-liste{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.lv-liste li{display:flex;align-items:center;font-size:15.5px}
+.lv-liste-carte{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.lv-liste-carte li{align-items:flex-start}
+.lv-trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.lv-trio>div{display:grid;justify-items:center;text-align:center;gap:4px;font-size:14.5px}
+.lv-trio .lv-ico{margin:0}
+.lv-trio b{color:var(--brown)}
+.lv-duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.lv-duo>div{min-width:0}.lv-duo b{color:var(--brown)}
+.lv-note{display:flex;align-items:flex-start;gap:4px;background:#f6ece0;border-radius:14px;padding:14px;color:var(--terr)}
+.lv-gestes{list-style:none;counter-reset:g;padding:0;margin:0;display:grid;gap:12px}
+.lv-gestes li{counter-increment:g;display:grid;grid-template-columns:42px minmax(0,1fr);gap:2px 12px}
+.lv-gestes li::before{content:counter(g);grid-row:span 2;width:38px;height:38px;border-radius:50%;background:#a5532f;color:#fff;display:grid;place-items:center;font-family:Fraunces,Georgia,serif;font-size:19px}
+.lv-gestes b{color:var(--terr)}.lv-gestes p{font-size:15px}
+.lv-moteurs{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.lv-moteurs li{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:15px;font-style:italic;color:var(--muted)}
+.lv-moteurs b{display:block;font-style:normal;color:var(--terr)}
+.livrable{background:#fbf1ea;border:1px solid #e7cdb9;border-radius:12px;padding:12px 14px}
+.livrable p{margin:.35em 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.lv-final{background:#8a3f22;color:#fbefe2;border-radius:14px;padding:18px;display:grid;gap:8px}
+.lv-final h3{color:#fff;margin:0}
+.lv-pied{display:flex;justify-content:space-between;font-size:10.5px;letter-spacing:.14em;color:var(--muted);border-top:1px solid var(--sand);padding-top:8px;margin-top:4px}
+.lv-avert{font-size:13px;color:var(--muted);margin:0}
+.lv-fin{background:var(--brown);color:#fff;border-radius:18px;padding:20px;display:grid;gap:10px;justify-items:start}
+.lv-fin .btn{background:#c39a62;border-color:#c39a62;color:#241612}
+@media(max-width:640px){.lv-deux,.lv-duo{grid-template-columns:minmax(0,1fr)}.lv-trio{grid-template-columns:minmax(0,1fr)}.lv-trio>div{justify-items:start;text-align:left}.lv-page{padding:18px 16px 12px}}
+/* Direction afro chaude : ivoire, chocolat, or mat */
+:root{--ivory:#F8F6F2;--paper:#fffdf9;--brown:#2E1A1F;--deep:#2E1A1F;--gold:#C9A34F;--gold-l:#f1e4c4}
+h1,h2,h3,.lv-page h3{font-family:"Playfair Display",Georgia,serif}
+.btn{background:#C9A34F;border-color:#C9A34F;color:#2E1A1F}
+.btn.ghost{background:transparent;border-color:#2E1A1F;color:#2E1A1F}
+.btn.soft{background:transparent;border-color:transparent}
+.daysbar span.cur,.stepbar .track i{background:#C9A34F}
+.daysbar span.done{background:#8a6a3c}
+.lv-page p{text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.lv-page::before{content:"";justify-self:end;width:86px;height:14px;background:repeating-linear-gradient(90deg,#C9A34F 0 10px,transparent 10px 14px,#C9A34F 14px 16px,transparent 16px 22px);opacity:.55;border-radius:2px}
+@media(max-width:480px){.card{padding:18px}.btn{padding:12px 18px}.dayrow .st{display:none}}
+</style>
+
+</head><body>
+<header class="top"><div class="wrap"><div class="brand">FRAMYXCC<small>Oh la honte ! &amp; la peur d’avoir honte</small></div><button class="link" id="versAccueil">Mon parcours</button></div><div class="wrap"><div class="daysbar" id="daysbar"></div></div></header>
+<main><div class="wrap" id="app"></div></main>
+<div class="toast" id="toast"></div>
+
+<script>
+const JETON0 = (function(){ let t = ''; try { t = new URLSearchParams(location.search).get('a') || ''; } catch(e) {}
+  t = /^[A-Za-z0-9_-]{20,80}$/.test(t) ? t : '';
+  try { if (t) localStorage.setItem('olh-jeton', t); else t = localStorage.getItem('olh-jeton') || ''; } catch(e) {}
+  return /^[A-Za-z0-9_-]{20,80}$/.test(t) ? t : ''; })();
+let C = { jours: [], kenan_echanges_max: 4 };
+const KEY = 'olh-v1-' + JETON0.slice(0, 16);
+let E = { reponses:{}, exercices:{}, retenir:{}, tests:{}, syntheses:{}, chats:{}, termines:[], position:{jour:1,etape:0} };
+try { const s = localStorage.getItem(KEY); if (s) E = Object.assign(E, JSON.parse(s)); } catch(e) {}
+// nettoyage : messages vides ou en attente laissés par une interruption
+function nettoyerChats(){ for (const k in E.chats) { E.chats[k] = (E.chats[k] || []).filter(m => m && !m.attente && typeof m.t === 'string' && m.t); if (!E.chats[k].length) delete E.chats[k]; } }
+nettoyerChats();
+let tous = false;
+const $ = (s, r=document) => r.querySelector(s);
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const app = $('#app');
+
+function sauver(msg){ synchro(); try { const copie = JSON.parse(JSON.stringify(E)); for (const k in copie.chats) copie.chats[k] = copie.chats[k].filter(m => m && !m.attente); localStorage.setItem(KEY, JSON.stringify(copie)); } catch(e) {} if (msg) toast(msg); }
+function toast(t){ const el=$('#toast'); el.textContent=t; el.classList.add('on'); clearTimeout(toast.t); toast.t=setTimeout(()=>el.classList.remove('on'),1600); }
+const jour = n => C.jours.find(j => j.n === n);
+const ouvert = n => tous || (n === 1 ? !!E.livret || !C.livret : E.termines.includes(n-1));
+const ASSETS_LIVRET = '/assets/oh-la-honte/';
+const fait = n => E.termines.includes(n);
+const situation = () => (E.exercices.j1e4 || '').trim();
+const projetRef = () => (E.exercices.j1e5 || '').trim();
+const aideProjet = () => { const r = E.reponses.j1q1; return !!(r && r.choix.length && r.choix[0] > 0) || !!(E.chats.p && E.chats.p.length > 1); };
+const court = (t, n=90) => { t = String(t).trim().replace(/\s+/g,' '); return t.length > n ? t.slice(0, n-1).trim() + '…' : t; };
+const choixTextes = q => { const r = E.reponses[q.id]; return r && r.choix ? r.choix.map(i => q.options[i]) : []; };
+
+/* ---------- Kenan, conversation guidée ---------- */
+const SECURITE = /(suicid|me tuer|me supprimer|envie de mourir|veux mourir|en finir(?! avec)|me faire du mal|me blesser|plus envie de vivre|veux disparaître|disparaître pour toujours|à quoi bon (vivre|continuer)|plus la force de vivre)/i;
+const MSG_SECURITE = "Ce que vous écrivez est important, et vous n’avez pas à le porter sans aide. Je ne suis pas en mesure de vous aider sur ce point : contactez sans attendre un professionnel de santé, un service d’urgence ou une personne de confiance. Vous pourrez reprendre le parcours quand vous le souhaiterez.";
+
+function rappelSituation(){ const p = projetRef(); return p ? `Gardons en tête votre projet : « ${court(p, 80)} ». ` : ''; }
+
+const REACTIONS = {
+  j1q1: c => c[0] === 'Oui, je sais lequel' ? `Très bien. Vous l’écrirez en une phrase dans l’exercice, tout à l’heure.` : c.length ? `Aucun souci, c’est fréquent. Dans l’exercice, je vous poserai quelques questions pour le faire apparaître, ensemble.` : null,
+  j1q2: c => c.includes('Je ne sais pas encore') ? `Ce n’est pas grave. En écrivant votre projet et ce que vous redoutez, le moteur apparaîtra souvent de lui-même.` : c.length ? `« ${court(c[0],70)} » : c’est le moteur sur lequel nous allons nous appuyer. Savoir lequel agit chez vous, c’est déjà reprendre un peu de pouvoir sur lui.` : null,
+  j1q3: c => /Plus d’un an|Plusieurs années/.test(c[0]||'') ? `Merci pour votre franchise. Un projet que l’on garde aussi longtemps compte vraiment : il mérite ces sept jours.` : c.length ? `Gardez cette durée en tête : au septième jour, vous fixerez une date pour vous lancer.` : null,
+  j2q1: c => c.length ? `Vous imaginez qu’on pourrait penser : « ${court(c[0],60)} »${c.length>1?' et d’autres choses encore':''}. Notez que c’est une pensée sur ce que les autres penseraient, pas un fait.` : null,
+  j2q2: c => /pas de preuve|Je ne sais pas/.test(c[0]||'') ? `Sans preuve, ce scénario reste une hypothèse. C’est une bonne nouvelle : une hypothèse peut être vérifiée, ou remplacée.` : c.length ? `Une expérience passée compte. Elle ne dit pourtant pas à coup sûr ce qui se passera cette fois-ci, avec d’autres personnes et un autre vous.` : null,
+  j2q3: c => /m’en remettrais|pas grand-chose/.test(c[0]||'') ? `Vous voyez déjà que l’issue serait supportable. Ce recul est précieux.` : c[0] === 'Les conséquences seraient sérieuses' ? `Dans ce cas, il est légitime d’être prudent. Choisissons ensemble une première étape plus petite et sans risque.` : c.length ? `Se poser la question, c’est déjà desserrer un peu l’étau.` : null,
+  j3q1: c => c.length ? `Vous reconnaissez : « ${court(c[0],60)} »${c.length>1?` et ${c.length-1} autre${c.length>2?'s':''} stratégie${c.length>2?'s':''}`:''}. Ces stratégies ne sont pas des défauts : ce sont des protections apprises.` : null,
+  j3q2: c => c.length ? `Ce que la stratégie vous évite est réel. La question n’est pas de la supprimer, mais de savoir quand elle vous sert et quand elle vous freine.` : null,
+  j3q3: c => c.length ? `« ${court(c[0],60)} » : voilà ce que cette protection peut vous coûter. Le voir clairement aide à choisir autrement.` : null,
+  j4q1: c => c.length ? `Vous craignez ce jugement : « ${court(c[0],60)} ». Un jugement décrit au mieux un moment, jamais une personne tout entière.` : null,
+  j4q2: c => /moment|petite partie/.test(c[0]||'') ? `Exactement : votre identité est bien plus vaste que ce jugement.` : c.length ? `Ce sentiment est fréquent. Aujourd’hui, nous allons justement chercher une façon plus juste de vous voir.` : null,
+  j4q3: c => c.length ? `Vous diriez à quelqu’un que vous respectez : « ${court(c[0],60)} ». Et si vous vous l’accordiez aussi ?` : null,
+  j5q1: c => c.length ? `« ${c[0]} » : c’est une action concrète et accessible. ${rappelSituation()}` : null,
+  j5q2: c => c[0] === 'Le faire directement' ? `Vous choisissez d’y aller directement. Il reste à choisir le moment.` : c.length ? `« ${c[0]} » : un petit pas, c’est souvent ce qui rend le grand possible.` : null,
+  j5q3: c => c[0] === 'Simplement l’avoir fait' ? `C’est le meilleur critère de réussite : avoir osé, quel que soit le résultat.` : c.length ? `Gardez un objectif réaliste. L’important est d’agir, pas d’être parfait.` : null,
+  j6q1: c => c.length ? `Vous redoutez surtout : « ${court(c[0],60)} ». Préparer une réponse à l’avance aide à ne pas rester figé.` : null,
+  j6q2: c => c[0] === 'Je prends du recul et je réponds calmement' ? `Vous avez déjà une belle ressource. Nous allons la renforcer.` : c.length ? `Cette réaction est compréhensible. Aujourd’hui, vous allez préparer une autre option, plus calme, à garder en réserve.` : null,
+  j6q3: c => c.includes('Je ne vois personne pour l’instant') ? `Pour l’instant, personne ne vous vient à l’esprit. C’est fréquent. Une personne bienveillante peut être un ancien collègue, un voisin, un groupe : gardez la question ouverte.` : c.length ? `S’appuyer sur quelqu’un n’est pas une faiblesse : c’est une ressource.` : null,
+  j7q1: c => c.length ? `« ${c[0]} » : voilà ce que vous emportez de ces sept jours.` : null,
+  j7q2: c => c[0] === 'Oui' ? `Bravo. Vous l’avez fait : souvenez-vous de ce moment la prochaine fois que la peur se présentera.` : c[0] === 'En partie' ? `En partie, c’est déjà un pas réel. Il compte.` : c[0] === 'Pas encore' ? `Pas encore, et ce n’est pas un échec. Votre action reste devant vous, prête quand vous le serez.` : c.length ? `Vous avez adapté votre action : c’est de la souplesse, pas un renoncement.` : null,
+  j7q3: c => c.length ? `Votre stratégie pour la prochaine fois : « ${court(c[0],60)} ». Vous savez maintenant quoi faire.` : null,
+};
+function reactionKenan(q){
+  const r = E.reponses[q.id] || {};
+  if (r.texte && SECURITE.test(r.texte)) return MSG_SECURITE;
+  const f = REACTIONS[q.id]; const t = f ? f(choixTextes(q)) : null;
+  if (t) return t;
+  if (r.texte) return `Merci d’avoir précisé : « ${court(r.texte, 80)} ».`;
+  return null;
+}
+function reponseChat(j, histo, texte){
+  if (SECURITE.test(texte)) return MSG_SECURITE;
+  const nbUser = histo.filter(m => m.r === 'u').length;
+  const relance = j.kenan_relances[nbUser];
+  const echo = texte.trim().split(/\s+/).length > 3 ? `Vous dites : « ${court(texte, 70)} ». ` : '';
+  const accueil = ['Merci de l’avoir écrit. ', 'Je vous entends. ', 'C’est précieux de le formuler. '][nbUser % 3];
+  if (relance) return accueil + echo + relance;
+  return accueil + echo + `Gardez ce qui vous paraît le plus important : vous pourrez le noter dans « ${j.retenir} ».`;
+}
+
+/* ---------- Kenan, agent IA ---------- */
+const ROLE = 'votre interlocuteur en développement humain durable';
+let MAX_ECH = 4;
+const SYNTH_CONSIGNE = 'C’est le dernier échange. Fais maintenant la synthèse : reformule en deux ou trois phrases ce que la personne a exprimé, propose une seule action concrète, petite et réaliste pour aujourd’hui, en lien avec l’objectif du jour (par exemple : «ACTION»), puis conclus brièvement en l’invitant à passer au test du jour, puis à « Ce que je retiens ». Ne pose aucune nouvelle question.';
+// BACKEND : null dans l'aperçu (moteur IA de démonstration) ; en ligne, adresse du relais de la formation.
+const BACKEND = 'https://framyxcc-academie.rubiscc-voyages.workers.dev';
+const JETON = JETON0;
+function contexteKenan(j){
+  const L = [`Jour ${j.n} : « ${j.titre} ». Objectif : ${j.objectif}`];
+  if (projetRef()) L.push(`Projet de la personne, fil rouge des sept jours (repoussé à cause de la honte) : ${court(projetRef(), 300)}`);
+  if ((E.exercices.j1e6||'').trim()) L.push(`Pourquoi ce projet compte : ${court(E.exercices.j1e6, 200)}`);
+  if ((E.exercices.j1e7||'').trim()) L.push(`Ce que la personne redoute réellement : ${court(E.exercices.j1e7, 200)}`);
+  { const r = E.reponses.j1q2, q = C.jours[0] && C.jours[0].questions && C.jours[0].questions[1]; if (r && q && r.choix.length) L.push(`Moteur de honte reconnu au jour 1 : ${r.choix.map(i => q.options[i]).join(' ; ')}`); }
+  const s = situation(); if (s) L.push(`Moment où la peur du jugement l’a fait reculer face au projet : ${court(s, 300)}`);
+  for (const q of j.questions) { const c = choixTextes(q), r = E.reponses[q.id] || {}; if (c.length || r.texte) L.push(`Question « ${q.texte} » : ${[c.join(' ; '), r.texte].filter(Boolean).join(' | ')}`); }
+  for (const f of j.exercice.champs) { const v = (E.exercices[f.id]||'').trim(); if (v) L.push(`${f.label} : ${court(v, 300)}`); }
+  if (j.n > 2 && E.exercices.j2e3) L.push(`Autre issue imaginée au jour 2 : ${court(E.exercices.j2e3, 200)}`);
+  if (j.n > 3 && E.exercices.j3e4) L.push(`Vrais besoins pour commencer, notés au jour 3 : ${court(E.exercices.j3e4, 200)}`);
+  if (j.n > 5 && E.exercices.j5e1) L.push(`Première action vers le projet, choisie au jour 5 : ${court(E.exercices.j5e1, 200)}`);
+  if (j.n > 6 && E.exercices.j6e3) L.push(`Personne à qui parler du projet en premier : ${court(E.exercices.j6e3, 120)}`);
+  return L.join('\n').slice(0, 2500);
+}
+let sampleNS;
+async function moteurDemo(){ if (sampleNS === undefined) { try { sampleNS = (window.claude && await window.claude.use('sample')) || null; } catch(e) { sampleNS = null; } } return sampleNS; }
+async function repondreIA(j, h, synthese, mode){
+  const RP = C.recherche_projet || {};
+  const msgs = h.map(m => ({ role: m.r === 'u' ? 'user' : 'assistant', content: m.t.slice(0, 1500) }));
+  if (BACKEND) {
+    try {
+      const r = await fetch(BACKEND + '/oh-la-honte/kenan', { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({ a: JETON, jour: j.n, mode: mode || '', contexte: contexteKenan(j), messages: msgs, synthese: !!synthese, echange: msgs.filter(m => m.role==='user').length }) });
+      const d = await r.json(); if (d.texte) return { t: d.texte, ia: d.mode === 'ia' };
+    } catch(e) {}
+    return null;
+  }
+  const s = await moteurDemo(); if (!s) return null;
+  // premier message : consignes + contexte + ouverture de Kenan, puis l'échange
+  if (mode === 'projet') {
+    const tp = `${C.kenan_consignes}\n${RP.consigne}\n\nContexte du parcours (réponses réelles de la personne) :\n${contexteKenan(j)}\n\nTu as ouvert l’échange par : « ${msgs[0].content} »\n\nRéponse de la personne : `;
+    if (synthese) msgs[msgs.length-1] = { role:'user', content: msgs[msgs.length-1].content + '\n\n[Consigne pour Kenan : ' + RP.synthese + ']' };
+    const inp = [{ role:'user', content: tp + msgs[1].content }].concat(msgs.slice(2));
+    try { const r = await s(inp, { modelTier:'quick', cache:false }); const t = (r && r.text || '').replace(/—/g, ',').trim(); return t ? { t, ia:true } : null; } catch(e) { return null; }
+  }
+  const tete = `${C.kenan_consignes}\n- Déroulé : l’échange compte ${MAX_ECH} réponses de la personne au maximum. Pose une seule question à la fois et fais avancer la réflexion vers une action.\n\nObjectif du jour : ${j.objectif}\n\nContexte du parcours (réponses réelles de la personne) :\n${contexteKenan(j)}\n\nTu as ouvert l’échange par : « ${msgs[0].content} »\n\nRéponse de la personne : `;
+  if (synthese) msgs[msgs.length-1] = { role:'user', content: msgs[msgs.length-1].content + '\n\n[Consigne pour Kenan : ' + SYNTH_CONSIGNE.replace('ACTION', j.kenan_action) + ']' };
+  const input = [{ role:'user', content: tete + msgs[1].content }].concat(msgs.slice(2));
+  try { const r = await s(input, { modelTier:'quick', cache:false }); const t = (r && r.text || '').replace(/—/g, ',').trim(); return t ? { t, ia:true } : null; } catch(e) { return null; }
+}
+
+function syntheseGuidee(j, h){
+  const dits = h.filter(m => m.r === 'u' && !/^Je souhaite terminer/.test(m.t)).map(m => court(m.t, 70));
+  const rappel = dits.length ? `Vous avez parlé de : « ${dits[dits.length-1]} ». ` : '';
+  return `Merci pour cet échange. ${rappel}Pour aujourd’hui, je vous propose une petite action : ${j.kenan_action} Passez maintenant au test du jour, puis à « ${j.retenir} ».`;
+}
+
+/* ---------- Écrans ---------- */
+function barreJours(cur){
+  $('#daysbar').innerHTML = C.jours.map(j => `<span class="${fait(j.n)?'done':''} ${cur===j.n?'cur':''}" title="Jour ${j.n}"></span>`).join('');
+}
+
+function accueil(){
+  barreJours(0);
+  const prochain = C.jours.find(j => !fait(j.n) && ouvert(j.n));
+  const commence = Object.keys(E.reponses).length || E.termines.length;
+  app.innerHTML = `<div class="stack">
+    <div class="eyebrow">Parcours interactif · 7 jours</div>
+    <h1>Oh la honte&nbsp;!<em>&amp; la peur d’avoir honte</em></h1>
+    <div class="kenan"><div class="av">K</div><div class="bubble"><div class="who">Kenan</div>${C.accueil_kenan.split(/\n\n/).map(x=>`<p style="margin:0 0 .6em">${esc(x)}</p>`).join('')}</div></div>
+    <div class="card"><div class="eyebrow">La question de ces sept jours</div><p class="lead" style="margin:.4em 0 0">${esc(C.question_centrale)}</p></div>
+    <details class="card avant" ${commence ? '' : 'open'}><summary><span class="eyebrow">Avant de commencer</span><b>${esc(C.introduction.titre)}</b></summary>
+      <div class="chap">${C.introduction.paragraphes.map(x=>`<p>${x}</p>`).join('')}
+      <h3>Comment utiliser ce parcours</h3><ol>${C.mode_emploi.etapes.map(x=>`<li>${x}</li>`).join('')}</ol>${C.mode_emploi.texte.map(x=>`<p>${x}</p>`).join('')}</div></details>
+    <div class="btns">${C.livret && !E.livret ? `<button class="btn" id="lireLivret">Lire le livret « ${esc(C.livret.titre)} »</button>` : E.termines.length===7?`<button class="btn" id="voirBilan">Voir mon bilan</button>`:prochain?`<button class="btn" id="go">${commence?'Reprendre':'Commencer'} le jour ${prochain.n}</button>`:''}</div>
+    <h2 style="margin-top:10px">Mon parcours</h2>
+    <div class="daylist">${C.livret ? `<button class="dayrow ${E.livret?'done':''}" id="livretRow"><span class="n">${E.livret?'✓':'L'}</span><span><b>Livret · ${esc(C.livret.titre)}</b><small>${esc(C.livret.sous_titre)}</small></span><span class="st">${E.livret?'Lu':'À lire'}</span></button>` : ''}${C.jours.map(j => {
+      const o = ouvert(j.n), d = fait(j.n);
+      return `<button class="dayrow ${d?'done':''}" data-j="${j.n}" ${o?'':'disabled'}><span class="n">${d?'✓':j.n}</span><span><b>Jour ${j.n} · ${esc(j.titre)}</b><small>${esc(j.objectif)}</small></span><span class="st">${d?'Terminé':o?'Ouvert':'Fermé'}</span></button>`;}).join('')}
+      ${E.termines.length===7?`<button class="dayrow done" id="bilanRow"><span class="n">★</span><span><b>Mon bilan</b><small>Construit à partir de vos réponses</small></span></button>`:''}
+    </div>
+    <p class="note">${esc(C.avertissement)}</p>
+    ${blocAssistance()}
+  </div>`;
+  const go = $('#go'); if (go) go.onclick = () => ouvrir(prochain.n, fait(prochain.n) ? 0 : (E.position.jour===prochain.n ? E.position.etape : 0));
+  app.querySelectorAll('.dayrow[data-j]').forEach(b => b.onclick = () => ouvrir(+b.dataset.j, 0));
+  const ll = $('#lireLivret'), lr = $('#livretRow'); if (ll) ll.onclick = livret; if (lr) lr.onclick = livret;
+  const vb = $('#voirBilan'), br = $('#bilanRow'); if (vb) vb.onclick = bilan; if (br) br.onclick = bilan;
+  window.scrollTo(0,0);
+}
+
+// étapes : 0 chapitre, 1..3 questions, 4 exercice, 5 Kenan, 6 test du jour, 7 bilan du jour
+const ETAPES = 8;
+function livret(){
+  barreJours(0);
+  const L = C.livret; if (!L) return accueil();
+  app.innerHTML = `<div class="lv">${L.html.split('__ASSETS__').join(ASSETS_LIVRET)}
+    <div class="lv-fin"><b style="font-family:Fraunces,Georgia,serif;font-size:22px;font-weight:500">Vous êtes prêt&nbsp;?</b><p style="margin:0">Vous avez identifié votre projet le plus difficile, ou vous voulez de l’aide pour le trouver&nbsp;: le jour 1 vous attend.</p><button class="btn" id="lvFin">Ouvrir le jour 1</button></div>
+    <button class="btn ghost" id="lvRetour" style="justify-self:start">Mon parcours</button></div>`;
+  $('#lvFin').onclick = () => { E.livret = true; sauver('Livret lu'); ouvrir(1, 0); };
+  $('#lvRetour').onclick = accueil;
+  window.scrollTo(0,0);
+}
+
+function ouvrir(n, etape, essai){
+  if (!ouvert(n)) return;
+  if (!(jour(n) && jour(n).questions)) {
+    if (essai) { app.innerHTML = '<div class="card"><p>Le contenu de ce jour n’a pas pu être chargé. Vérifiez votre connexion, puis réessayez.</p><button class="btn" id="reessayer">Réessayer</button></div>'; $('#reessayer').onclick = () => ouvrir(n, etape); return; }
+    app.innerHTML = '<p class="muted">Chargement du jour ' + n + '…</p>';
+    synchro(true).then(charger).then(() => ouvrir(n, etape, true), () => ouvrir(n, etape, true)); return;
+  }
+  if (window.speechSynthesis && speechSynthesis.speaking) speechSynthesis.cancel();
+  const j = jour(n);
+  E.position = { jour:n, etape }; sauver();
+  barreJours(n);
+  const pct = Math.round((etape+1)/ETAPES*100);
+  const tete = `<div class="stack" style="gap:6px"><div class="eyebrow">Jour ${n} sur 7</div><h2>${esc(j.titre)}</h2>
+    <div class="stepbar"><span>Étape ${etape+1}/${ETAPES}</span><span class="track"><i style="width:${pct}%"></i></span></div></div>`;
+  let corps = '', valide = true, passer = false;
+
+  if (etape === 0) {
+    corps = `<div class="card intro"><div class="eyebrow">Objectif du jour</div><p class="lead" style="margin:.3em 0 0">${esc(j.objectif)}</p></div>
+      <article class="card chap"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><div class="eyebrow">Chapitre ${n} · À lire</div>${'speechSynthesis' in window ? '<button class="link" id="ecouter">Écouter le chapitre</button>' : ''}</div>
+        ${j.chapeau ? `<blockquote>${esc(j.chapeau)}</blockquote>` : ''}
+        ${j.chapitre.map(sec => `<h3>${esc(sec.titre)}</h3>${sec.paragraphes.map(x => `<p>${x}</p>`).join('')}`).join('')}
+        <div class="retenir"><div class="eyebrow">À retenir</div><p>${j.a_retenir}</p></div></article>
+      <div class="kenan"><div class="av">K</div><div class="bubble"><div class="who">Kenan</div>${n>1?esc(rappelSituation()):''}${esc(j.kenan_ouverture)}</div></div>`;
+  } else if (etape <= 3) {
+    const q = j.questions[etape-1]; const r = E.reponses[q.id] || { choix:[], texte:'' };
+    passer = true;
+    corps = `<div class="card stack"><div><p class="lead" style="margin:0;font-weight:600">${esc(q.texte)}</p><p class="note" style="margin:4px 0 0">${q.multiple?'Plusieurs réponses possibles.':'Une réponse.'}</p></div>
+      <div class="opts" role="group">${q.options.map((o,i)=>`<button class="opt ${q.multiple?'':'radio'}" data-i="${i}" aria-pressed="${r.choix.includes(i)}"><span class="box">${r.choix.includes(i)?'✓':''}</span><span>${esc(o)}</span></button>`).join('')}</div>
+      <label class="f">Préciser avec vos mots (facultatif)<textarea id="qtexte" rows="2" placeholder="Votre réponse…">${esc(r.texte)}</textarea></label></div>
+      <div id="reac"></div>`;
+    valide = r.choix.length > 0 || !!r.texte;
+  } else if (etape === 4) {
+    const ex = j.exercice; passer = true;
+    const projet = n > 1 ? projetRef() : '';
+    let blocP = '';
+    if (n === 1 && aideProjet() && C.recherche_projet) {
+      const RP = C.recherche_projet;
+      const hp = E.chats.p || (E.chats.p = [{ r:'k', t: RP.ouverture }]);
+      const nbP = hp.filter(m => m.r === 'u').length, finiP = hp.some(m => m.synthese);
+      blocP = `<div class="card stack" id="trouver"><div class="eyebrow">${esc(RP.titre)}</div><p class="note" style="margin:0;font-size:15px">${esc(RP.intro)}</p>
+        <div class="chat" id="chatp">${hp.map(m => m.r==='k' ? `<div class="kenan"><div class="av">K</div><div class="bubble"><div class="who">Kenan${m.g?' · mode guidé':''}</div>${m.attente?'<span class="muted">Kenan écrit…</span>':esc(m.t)}</div></div>` : `<div class="me"><div class="bubble">${esc(m.t)}</div></div>`).join('')}</div>
+        ${finiP ? '' : `<div class="chatin"><textarea id="msgp" rows="2" placeholder="Répondre à Kenan…"></textarea><button class="btn" id="envoyerp">Envoyer</button></div>${nbP ? `<button class="link" id="terminerp" style="justify-self:start;white-space:normal;text-align:left">J’ai trouvé, je passe à l’écriture de mon projet</button>` : ''}`}</div>`;
+    }
+    corps = blocP + `<div class="card stack"><div><div class="eyebrow">Exercice · ${esc(ex.titre)}</div><p style="margin:.4em 0 0">${esc(ex.consigne)}</p></div>
+      ${projet ? `<div class="retenir"><div class="eyebrow">Votre projet</div><p>${esc(projet)}</p></div>` : ''}
+      ${ex.champs.map(f=>`<label class="f">${esc(f.label)}<textarea data-f="${f.id}" rows="2">${esc(E.exercices[f.id]||'')}</textarea></label>`).join('')}</div>`;
+  } else if (etape === 5) {
+    const h = E.chats[n] || (E.chats[n] = [{ r:'k', t: (n>1?rappelSituation():'') + j.kenan_relances[0] }]);
+    passer = true;
+    const nbU = h.filter(m => m.r === 'u').length, fini = h.some(m => m.synthese);
+    corps = `<div class="card stack"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap"><div class="eyebrow">Échange avec Kenan</div><span class="tag">${esc(ROLE.replace(/^votre /,''))}</span></div>
+      <p class="note" style="margin:0;font-size:15px">${esc(C.kenan_intro)}</p>
+      <div class="note" style="margin:0;font-weight:600">${fini ? 'Échange terminé' : `Échange ${Math.min(nbU+1, MAX_ECH)} sur ${MAX_ECH}`}</div>
+      <div class="chat" id="chat">${h.map(m => m.r==='k' ? `<div class="kenan"><div class="av">K</div><div class="bubble"><div class="who">Kenan${m.g?' · mode guidé':''}</div>${m.attente?'<span class="muted">Kenan écrit…</span>':esc(m.t)}</div></div>` : `<div class="me"><div class="bubble">${esc(m.t)}</div></div>`).join('')}</div>
+      ${fini ? `<p class="note" style="margin:0">L’échange est terminé. Touchez « Continuer » pour faire le test du jour.</p>` : `<div class="chatin"><textarea id="msg" rows="2" placeholder="Écrire à Kenan…"></textarea><button class="btn" id="envoyer">Envoyer</button></div>${nbU ? `<button class="link" id="terminer" style="justify-self:start;white-space:normal;text-align:left">Terminer l’échange et voir la synthèse</button>` : ''}`}
+      <p class="note" style="margin:0">Kenan, ${esc(ROLE)}, tient compte de vos réponses et de votre projet. Il ne remplace pas un professionnel.</p></div>`;
+  } else if (etape === 6) {
+    passer = true;
+    corps = `<div class="card stack"><div><div class="eyebrow">Test du jour</div><p class="note" style="margin:.3em 0 0">Quelques questions pour vérifier ce que vous avez compris du chapitre. Ce n’est ni une note ni un diagnostic : la réponse et son explication s’affichent après votre choix.</p></div>
+      ${j.test.map((q, qi) => { const rep = E.tests[q.id]; const deja = Number.isInteger(rep);
+        return `<div class="test" data-q="${qi}"><p style="margin:0 0 8px;font-weight:600">${qi+1}. ${esc(q.texte)}</p>
+          <div class="opts">${q.options.map((o,i)=>`<button class="opt radio${deja && i===q.bonne?' juste':''}${deja && i===rep && i!==q.bonne?' faux':''}" data-i="${i}" ${deja?'disabled':''} aria-pressed="${deja && i===rep}"><span class="box">${deja && i===rep?'✓':''}</span><span>${esc(o)}</span></button>`).join('')}</div>
+          ${deja ? `<p class="retour ${rep===q.bonne?'ok':''}"><b>${rep===q.bonne?'C’est juste.':'Pas tout à fait.'}</b> ${esc(q.explication)}</p>` : ''}</div>`; }).join('')}</div>`;
+  } else {
+    const prod = j.exercice.champs.map(f => [f.label, (E.exercices[f.id]||'').trim()]).filter(x => x[1]);
+    const blocProd = prod.length ? `<div class="livrable"><div class="eyebrow">Ce que vous avez produit aujourd’hui</div>${prod.map(x => `<p><b>${esc(x[0])}</b> : ${esc(court(x[1], 220))}</p>`).join('')}</div>` : '';
+    corps = `<div class="card stack"><div class="eyebrow">Bilan du jour</div>${blocProd}
+      <div class="retenir"><div class="eyebrow">À retenir</div><p>${j.a_retenir}</p></div>
+      <label class="f">${esc(j.retenir)}<textarea id="ret" rows="3">${esc(E.retenir[n]||'')}</textarea></label>
+      <div class="action"><div class="eyebrow">Ma petite action</div><p style="margin:.3em 0 0">${esc(j.kenan_action)}</p></div></div>`;
+  }
+
+  const fin = etape === ETAPES-1;
+  app.innerHTML = `<div class="stack">${tete}${corps}
+    <div class="btns"><button class="btn ghost" id="prec">${etape===0?'Mon parcours':'Retour'}</button><span class="spacer"></span>
+    ${passer?`<button class="btn soft" id="passer">Passer</button>`:''}
+    <button class="btn" id="suiv" ${valide?'':'disabled'}>${fin?(n===7?'Terminer et voir mon bilan':'Terminer le jour '+n):'Continuer'}</button></div>
+    <button class="link" id="plusTard" style="justify-self:start">Reprendre plus tard</button>
+    <p class="note" style="margin:0">Un problème technique ? <button class="link" id="versAssistance" style="white-space:normal">Signaler un problème</button></p></div>`;
+  window.scrollTo(0,0);
+
+  const suiv = $('#suiv');
+  $('#prec').onclick = () => etape === 0 ? accueil() : ouvrir(n, etape-1);
+  $('#plusTard').onclick = () => { sauver('Progression enregistrée'); accueil(); };
+  $('#versAssistance').onclick = () => { sauver(); accueil(); setTimeout(() => { const x = $('#assistance'); if (x) { x.scrollIntoView({ block:'start' }); $('#asMsg').focus(); } }, 50); };
+  const avancer = () => {
+    if (fin) {
+      if (!E.termines.includes(n)) E.termines.push(n);
+      E.position = { jour: Math.min(n+1,7), etape:0 }; sauver(`Jour ${n} terminé`);
+      return n === 7 ? bilan() : accueil();
+    }
+    ouvrir(n, etape+1);
+  };
+  suiv.onclick = avancer;
+  const ps = $('#passer'); if (ps) ps.onclick = () => ouvrir(n, etape+1);
+
+  if (etape >= 1 && etape <= 3) {
+    const q = j.questions[etape-1];
+    const maj = () => {
+      const r = E.reponses[q.id] || { choix:[], texte:'' };
+      suiv.disabled = !(r.choix.length || r.texte);
+      const t = reactionKenan(q);
+      $('#reac').innerHTML = t ? `<div class="kenan"><div class="av">K</div><div class="bubble"><div class="who">Kenan</div>${esc(t)}</div></div>` : '';
+    };
+    app.querySelectorAll('.opt').forEach(b => b.onclick = () => {
+      const i = +b.dataset.i; const r = E.reponses[q.id] || (E.reponses[q.id] = { choix:[], texte:'' });
+      if (q.multiple) r.choix = r.choix.includes(i) ? r.choix.filter(x=>x!==i) : r.choix.concat(i).sort((a,b)=>a-b);
+      else r.choix = r.choix[0] === i ? [] : [i];
+      app.querySelectorAll('.opt').forEach(o => { const on = r.choix.includes(+o.dataset.i); o.setAttribute('aria-pressed', on); o.querySelector('.box').textContent = on ? '✓' : ''; });
+      sauver(); maj();
+    });
+    $('#qtexte').oninput = e => { const r = E.reponses[q.id] || (E.reponses[q.id] = { choix:[], texte:'' }); r.texte = e.target.value; sauver(); maj(); };
+    maj();
+  }
+  if (etape === 4) app.querySelectorAll('textarea[data-f]').forEach(t => t.oninput = () => { E.exercices[t.dataset.f] = t.value; sauver(); });
+  if (etape === 4 && $('#trouver')) {
+    const RP = C.recherche_projet, MAXP = RP.echanges_max || 5; let occupeP = false;
+    const defP = () => setTimeout(() => { const c = $('#chatp'); if (c) c.lastElementChild.scrollIntoView({ block:'nearest' }); const m = $('#msgp'); if (m) m.focus(); }, 0);
+    const echP = async (t, fin) => {
+      if (occupeP || !t) return;
+      const h = E.chats.p; if (h.some(m => m.synthese)) return;
+      h.push({ r:'u', t });
+      if (SECURITE.test(t)) { h.push({ r:'k', t: MSG_SECURITE }); sauver(); ouvrir(n, 4); return defP(); }
+      const nbU = h.filter(m => m.r === 'u').length, synth = fin || nbU >= MAXP;
+      occupeP = true; h.push({ r:'k', t:'', attente:true }); ouvrir(n, 4); defP();
+      const rep = await repondreIA(j, h.slice(0, -1), synth, 'projet');
+      h.pop();
+      if (rep) h.push({ r:'k', t: rep.t, synthese: synth });
+      else h.push({ r:'k', t: synth ? RP.synthese_guidee : (RP.questions_guidees[nbU-1] || RP.synthese_guidee), g:true, synthese: synth || !RP.questions_guidees[nbU-1] });
+      occupeP = false; sauver(); ouvrir(n, 4); defP();
+      if (h[h.length-1].synthese) setTimeout(() => { const f = app.querySelector('textarea[data-f="j1e5"]'); if (f) f.scrollIntoView({ block:'center' }); }, 50);
+    };
+    const envP = () => { const ta = $('#msgp'); if (ta) echP(ta.value.trim().slice(0, 1500), false); };
+    const be = $('#envoyerp'); if (be) be.onclick = envP;
+    const mg = $('#msgp'); if (mg) mg.onkeydown = e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); envP(); } };
+    const bt = $('#terminerp'); if (bt) bt.onclick = () => echP('J’ai trouvé, je souhaite écrire mon projet.', true);
+  }
+  if (etape === 7) $('#ret').oninput = e => { E.retenir[n] = e.target.value; sauver(); };
+  if (etape === 0 && $('#ecouter')) {
+    $('#ecouter').onclick = () => {
+      const synth = window.speechSynthesis;
+      if (synth.speaking) { synth.cancel(); $('#ecouter').textContent = 'Écouter le chapitre'; return; }
+      const tmp = document.createElement('div'); tmp.innerHTML = $('.chap').innerHTML.replace(/<br>/g, ' ');
+      const u = new SpeechSynthesisUtterance(tmp.textContent.replace('Écouter le chapitre', '').replace(/Chapitre \d+ · À lire/, ''));
+      u.lang = 'fr-FR'; u.rate = 0.95; u.onend = () => { const b = $('#ecouter'); if (b) b.textContent = 'Écouter le chapitre'; };
+      synth.speak(u); $('#ecouter').textContent = 'Arrêter la lecture';
+    };
+  }
+  if (etape === 6) app.querySelectorAll('.test').forEach(bloc => {
+    const q = j.test[+bloc.dataset.q];
+    bloc.querySelectorAll('.opt').forEach(b => b.onclick = () => {
+      if (Number.isInteger(E.tests[q.id])) return;
+      E.tests[q.id] = +b.dataset.i; sauver(); ouvrir(n, 6);
+      setTimeout(() => { const x = app.querySelector(`.test[data-q="${bloc.dataset.q}"]`); if (x) x.scrollIntoView({ block:'nearest' }); }, 0);
+    });
+  });
+  if (etape === 5) {
+    let occupe = false;
+    const defiler = () => setTimeout(() => { const c = $('#chat'); if (c) c.lastElementChild.scrollIntoView({ block:'nearest' }); const m = $('#msg'); if (m) m.focus(); }, 0);
+    const echanger = async (t, forcerSynthese) => {
+      if (occupe || !t) return;
+      const h = E.chats[n]; if (h.some(m => m.synthese)) return;
+      h.push({ r:'u', t });
+      if (SECURITE.test(t)) { h.push({ r:'k', t: MSG_SECURITE }); sauver(); ouvrir(n, 5); return defiler(); }
+      const synthese = forcerSynthese || h.filter(m => m.r === 'u').length >= MAX_ECH;
+      occupe = true; h.push({ r:'k', t:'', attente:true }); ouvrir(n, 5); defiler();
+      const rep = await repondreIA(j, h.slice(0, -1), synthese);
+      h.pop();
+      if (rep) h.push({ r:'k', t: rep.t, synthese });
+      else h.push({ r:'k', t: synthese ? syntheseGuidee(j, h) : reponseChat(j, h, t), g:true, synthese });
+      if (synthese) E.syntheses[n] = h[h.length-1].t.slice(0, 1500);
+      occupe = false; sauver(); ouvrir(n, 5); defiler();
+    };
+    const envoyer = () => { const ta = $('#msg'); if (ta) echanger(ta.value.trim().slice(0, 1500), false); };
+    const be = $('#envoyer'); if (be) be.onclick = envoyer;
+    const mg = $('#msg'); if (mg) mg.onkeydown = e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); envoyer(); } };
+    const bt = $('#terminer'); if (bt) bt.onclick = () => echanger('Je souhaite terminer l’échange.', true);
+  }
+}
+
+/* ---------- Bilan final : le regard de Kenan (progrès, axes, recommandations) ---------- */
+function contexteBilan(){
+  const L = [], ex = id => (E.exercices[id]||'').trim();
+  const qx = id => { for (const j of C.jours) for (const x of j.questions) if (x.id===id) return x; };
+  if (ex('j1e5')) L.push('Projet (fil rouge) : ' + court(ex('j1e5'), 300));
+  if (ex('j1e7')) L.push('Ce que la personne redoutait réellement : ' + court(ex('j1e7'), 200));
+  if (ex('j7e7')) L.push('Premier pas daté dans les 48 heures : ' + court(ex('j7e7'), 160));
+  for (const j of C.jours) {
+    const R = [];
+    for (const q of j.questions) { const c = choixTextes(q), r = E.reponses[q.id] || {}; if (c.length || r.texte) R.push(`${q.texte} ${[c.join(' ; '), r.texte].filter(Boolean).join(' | ')}`); }
+    for (const f of j.exercice.champs) if (ex(f.id)) R.push(`${f.label} : ${court(ex(f.id), 220)}`);
+    if ((E.retenir[j.n]||'').trim()) R.push('Ce que je retiens : ' + court(E.retenir[j.n], 200));
+    if (E.syntheses[j.n]) R.push('Synthèse de Kenan : ' + court(E.syntheses[j.n], 300));
+    if (R.length) L.push(`Jour ${j.n} (${j.titre}) :\n- ` + R.join('\n- '));
+  }
+  return L.join('\n').slice(0, 6000);
+}
+function bilanGuide(){
+  const ex = id => (E.exercices[id]||'').trim(), c1 = id => { const r = E.reponses[id]; const q = C.jours.flatMap(j => j.questions).find(x => x.id===id); return r && q ? choixTextes(q) : []; };
+  const P = [], A = [], Rc = [];
+  if (ex('j1e5')) P.push('Vous avez nommé le projet que vous repoussiez : « ' + court(ex('j1e5'), 90) + ' ».');
+  if (ex('j3e4') || ex('j3e5')) P.push('Vous avez séparé vos vrais besoins pour commencer de ce qui relevait seulement de la peur.');
+  if (ex('j2e2') || ex('j2e3')) P.push('Vous avez séparé ce qui s’était passé de ce que vous imaginiez, et envisagé une autre issue.');
+  if (ex('j4e2')) P.push('Vous avez remplacé une pensée dévalorisante par une formulation plus juste.');
+  if (ex('j6e2')) P.push('Vous avez préparé une réponse calme, prête à servir.');
+  const fait = c1('j7q2')[0] || '';
+  if (fait === 'Oui') P.push('Vous avez réalisé l’action choisie au jour 5 : c’est un vrai premier pas.');
+  if (fait === 'En partie' || fait === 'Pas encore') A.push('Passer de l’intention à l’acte : votre action est ' + (fait === 'En partie' ? 'commencée' : 'encore à faire') + '. Réduisez-la si besoin à un geste de quelques minutes.');
+  const strat = c1('j3q1'); if (strat.length) A.push('Repérer votre stratégie d’évitement au moment où elle apparaît : ' + strat.slice(0, 2).join(', ').toLowerCase() + '.');
+  if ((c1('j4q2')[0]||'') === 'J’ai parfois l’impression que oui') A.push('Continuer à séparer une erreur ou un jugement de votre valeur.');
+  if ((c1('j6q3')[0]||'') === 'Je ne vois personne pour l’instant') A.push('Identifier une personne de confiance à qui parler de votre projet.');
+  if (!A.length) A.push('Garder le réflexe du premier jour : remarquer quand la peur du jugement décide à votre place.');
+  if (ex('j7e3')) Rc.push('Commencez par votre première étape : « ' + court(ex('j7e3'), 80) + ' »' + (ex('j7e6') ? ', à la date choisie : ' + court(ex('j7e6'), 40) + '.' : '. Fixez-lui une date.'));
+  else if (ex('j1e5')) Rc.push('Pour votre projet « ' + court(ex('j1e5'), 80) + ' » : choisissez un premier geste de quinze minutes et fixez-lui un jour et une heure.');
+  if (ex('j6e3')) Rc.push('Parlez de votre projet à la personne choisie : ' + court(ex('j6e3'), 60) + '.');
+  if (ex('j7e1')) Rc.push('Relisez chaque matin votre engagement : « ' + court(ex('j7e1'), 90) + ' ».');
+  Rc.push('Quand la peur revient, revenez à la question du jour 2 : quel est le fait, ici ?');
+  if (ex('j6e2')) Rc.push('Gardez votre réponse calme à portée de main, et relisez-la avant une situation qui vous inquiète.');
+  if (!P.length) P.push('Vous avez parcouru les sept jours jusqu’au bout : c’est déjà vous choisir.');
+  return `Vos progrès\n${P.map(x=>'• '+x).join('\n')}\nVos axes à travailler\n${A.map(x=>'• '+x).join('\n')}\nMes recommandations\n${Rc.map(x=>'• '+x).join('\n')}`;
+}
+function rendreRegard(t, guide){
+  const z = $('#bilanKenan'); if (!z) return;
+  const parts = []; let cur = null;
+  for (const l of t.split('\n').map(x => x.trim()).filter(Boolean)) {
+    const tit = /^(Vos progrès|Vos axes à travailler|Mes recommandations)\s*:?$/i.test(l.replace(/[«»*#]/g, '').trim());
+    if (tit) { cur = { t: l.replace(/[«»*#:]/g, '').trim(), li: [] }; parts.push(cur); }
+    else if (cur) cur.li.push(l.replace(/^[•\-*]\s*/, ''));
+  }
+  if (!parts.length) return rendreRegard(bilanGuide(), true);
+  z.innerHTML = `<div class="eyebrow">Le regard de Kenan${guide ? ' · mode guidé' : ''}</div>` + parts.map(p => `<div class="item"><h3>${esc(p.t)}</h3><ul style="margin:0;padding-left:1.1em">${p.li.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>`).join('')
+    + `<p class="note" style="margin:0">Ce regard s’appuie uniquement sur vos réponses. Ce n’est ni une note ni un diagnostic.</p>`;
+}
+async function regardKenan(){
+  if (E.regard) return rendreRegard(E.regard.t, E.regard.guide);
+  let t = null;
+  try {
+    if (BACKEND) {
+      const r = await fetch(BACKEND + '/oh-la-honte/kenan', { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({ a: JETON, jour: 7, bilan: true, contexte: contexteBilan(), messages: [{ role:'user', content:'Rédigez mon bilan final.' }] }) });
+      const d = await r.json(); if (d.mode === 'ia' && d.texte) t = d.texte;
+    } else {
+      const sm = await moteurDemo();
+      if (sm) { const r = await sm(`${C.kenan_consignes}\n${C.bilan_consigne}\n\nRéponses de la personne :\n${contexteBilan()}`, { modelTier:'quick', cache:false }); t = (r && r.text || '').replace(/—/g, ',').trim() || null; }
+    }
+  } catch(e) { t = null; }
+  E.regard = t ? { t, guide:false } : { t: bilanGuide(), guide:true };
+  sauver(); rendreRegard(E.regard.t, E.regard.guide);
+}
+
+function bilan(){
+  barreJours(0);
+  const ex = id => (E.exercices[id]||'').trim();
+  const bloc = (titre, contenu) => `<div class="item"><h3>${esc(titre)}</h3>${contenu ? `<p style="margin:0;white-space:pre-wrap">${esc(contenu)}</p>` : `<p class="vide" style="margin:0">Vous n’avez pas répondu à cette partie.</p>`}</div>`;
+  const q = id => { for (const j of C.jours) for (const x of j.questions) if (x.id===id) return x; };
+  const choix = id => choixTextes(q(id)).join(' · ');
+  const dapres = id => { const c = choix(id); return c ? 'D’après vos choix : ' + c : ''; };
+    app.innerHTML = `<div class="stack bilan">
+    <div class="eyebrow">Mon bilan</div><h2>Ce que vous emportez de ces sept jours</h2>
+    <p class="muted" style="margin:0">Ce bilan reprend uniquement vos propres réponses. Ce n’est ni un score ni un diagnostic : c’est un support de réflexion.</p>
+    <div class="card stack">
+      <div class="eyebrow">Mon projet</div>
+      ${bloc('Le projet que je n’osais pas entreprendre', [ex('j1e5'), ex('j1e7') && 'Ce que je redoutais réellement : '+ex('j1e7'), ex('j1e6') && 'Pourquoi il compte : '+ex('j1e6')].filter(Boolean).join('\n'))}
+      ${bloc('Mon premier pas vers ce projet', [ex('j5e1'), ex('j5e3') && 'Premier geste : '+ex('j5e3'), choix('j7q2') && 'Où j’en suis : '+choix('j7q2')].filter(Boolean).join('\n'))}
+      ${bloc('Mes trois prochaines étapes', [ex('j7e3') && '1. '+ex('j7e3'), ex('j7e4') && '2. '+ex('j7e4'), ex('j7e5') && '3. '+ex('j7e5')].filter(Boolean).join('\n'))}
+      ${bloc('Mon premier pas, daté', ex('j7e7'))}
+      ${bloc('Ma date de démarrage', ex('j7e6'))}
+      ${bloc('La personne à qui j’en parle en premier', ex('j6e3'))}
+    </div>
+    <div class="card stack">
+      <div class="eyebrow">Au début, et aujourd’hui</div>
+      ${bloc('Au début du parcours', [dapres('j1q3') && 'Je repoussais ce projet depuis : ' + choix('j1q3').toLowerCase(), dapres('j1q2') && 'Le moteur de ma honte : ' + choix('j1q2'), ex('j1e4') && 'Un moment où j’ai reculé : ' + ex('j1e4')].filter(Boolean).join('\n'))}
+      ${bloc('Aujourd’hui', [choix('j7q2') && 'L’action choisie au jour 5 : ' + choix('j7q2'), choix('j7q1') && 'Ma découverte : ' + choix('j7q1'), choix('j7q3') && 'La prochaine fois que la peur apparaîtra : ' + choix('j7q3')].filter(Boolean).join('\n'))}
+    </div>
+    ${Object.keys(E.syntheses).length ? `<div class="card stack"><div class="eyebrow">Ce que Kenan a relevé, jour après jour</div>${C.jours.filter(j => E.syntheses[j.n]).map(j => bloc('Jour ' + j.n + ' · ' + j.titre, E.syntheses[j.n])).join('')}</div>` : ''}
+    <div class="card stack" id="bilanKenan"><div class="eyebrow">Le regard de Kenan</div><p class="muted" style="margin:0">Kenan prépare vos progrès, vos axes à travailler et ses recommandations…</p></div>
+    <div class="card stack"><div class="eyebrow">Le détail de mon parcours</div>
+      ${bloc('Ce que j’avais déjà essayé, ou évité', ex('j1e1'))}
+      ${bloc('Le film et les faits', [ex('j2e2') && 'Le film : '+ex('j2e2'), ex('j2e4') && 'La critique redoutée : '+ex('j2e4'), ex('j2e5') && 'Ce que je ressens : '+ex('j2e5'), ex('j2e1') && 'Les faits : '+ex('j2e1'), ex('j2e3') && 'Une issue plus réaliste : '+ex('j2e3')].filter(Boolean).join('\n') || dapres('j2q1'))}
+      ${bloc('Ma façon d’éviter ce projet, et son prix', [ex('j3e1'), ex('j3e3') && 'Ce qu’elle me coûte : '+ex('j3e3')].filter(Boolean).join('\n') || dapres('j3q1'))}
+      ${bloc('Ce dont j’ai vraiment besoin pour commencer', [ex('j3e4'), ex('j3e5') && 'Ce qui relève seulement de la peur : '+ex('j3e5')].filter(Boolean).join('\n'))}
+      ${bloc('Une façon plus juste de me voir', ex('j4e2'))}
+      ${bloc('La phrase que je me dirai quand cette pensée reviendra', ex('j4e3'))}
+      ${bloc('L’action que j’ai choisie', [ex('j5e1'), ex('j5e2') && 'Quand : '+ex('j5e2'), ex('j5e3') && 'Premier geste : '+ex('j5e3')].filter(Boolean).join('\n'))}
+      ${bloc('Où j’en suis de cette action', dapres('j7q2'))}
+      ${bloc('Ma réponse calme, prête à servir', ex('j6e2'))}
+      ${bloc('Ma découverte la plus importante', dapres('j7q1'))}
+      ${bloc('La prochaine fois que la peur apparaîtra', dapres('j7q3'))}
+      ${bloc('Mon engagement pour les sept prochains jours', [ex('j7e1'), ex('j7e2') && 'Ce qui m’aidera : '+ex('j7e2')].filter(Boolean).join('\n'))}
+    </div>
+    <div class="kenan"><div class="av">K</div><div class="bubble"><div class="who">Kenan</div>Vous avez parcouru ces sept jours à votre rythme. Gardez ce bilan près de vous. La prochaine fois que la peur du jugement voudra décider à votre place, souvenez-vous : vous pouvez vous choisir.</div></div>
+    <article class="card chap"><div class="eyebrow">Pour conclure</div>${C.conclusion.map(x=>`<p>${x}</p>`).join('')}</article>
+    <div class="card"><div class="eyebrow">${esc(C.suite.titre)}</div><p style="margin:.4em 0 0">${esc(C.suite.texte)}</p></div>
+    <p class="note">Confidentialité : vos réponses sont enregistrées sur le serveur de FRAMYXCC Intelligence Agency et liées à votre lien personnel. Elles ne sont ni publiées ni partagées ; elles ne sont consultées qu’en cas de demande d’assistance de votre part. Vos messages à Kenan sont transmis au moteur d’intelligence artificielle uniquement pour produire ses réponses.</p>
+    <p class="note">${esc(C.avertissement)}</p>
+    ${blocAssistance()}
+    <div class="btns"><button class="btn" id="copier">Copier mon bilan</button><button class="btn ghost" id="retour">Mon parcours</button></div></div>`;
+  $('#retour').onclick = accueil; window.scrollTo(0,0);
+  regardKenan();
+  $('#copier').onclick = () => {
+    const texte = 'Mon bilan · Oh la honte ! & la peur d’avoir honte\n\n' + [...app.querySelectorAll('.bilan .item')].map(i => i.querySelector('h3').textContent + '\n' + [...i.querySelectorAll('p,li')].map(x => (x.tagName === 'LI' ? '• ' : '') + x.textContent).join('\n')).join('\n\n');
+    const repli = () => { const t = document.createElement('textarea'); t.value = texte; t.style.position='fixed'; t.style.opacity='0'; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); toast('Bilan copié'); } catch(e) { toast('Copie impossible'); } t.remove(); };
+    try { navigator.clipboard.writeText(texte).then(() => toast('Bilan copié'), repli); } catch(e) { repli(); }
+  };
+}
+
+const SUPPORT = 'meetme@mireilletanofram.com';
+function infosTechniques(){
+  const p = E.position || {};
+  return ['Formation : Oh la honte ! & la peur d’avoir honte', 'Date : ' + new Date().toLocaleString('fr-FR'), 'Jour : ' + (p.jour||1) + ', étape : ' + ((p.etape||0)+1) + '/' + ETAPES, 'Jours terminés : ' + (E.termines.join(', ') || 'aucun'), 'Appareil : ' + navigator.userAgent].join('\n');
+}
+function blocAssistance(){
+  return `<div class="card stack" id="assistance" style="gap:10px"><div class="eyebrow">Un problème technique ?</div>
+    <p style="margin:0">Décrivez ce qui se passe. Votre message part directement à l’assistance, avec les informations utiles pour régler le problème. Vos réponses restent enregistrées.</p>
+    <label class="f">Votre adresse e-mail<input type="email" id="asEmail" placeholder="pour vous répondre" autocomplete="email"></label>
+    <label class="f">Le problème<textarea id="asMsg" rows="3" placeholder="Par exemple : la page ne s’affiche pas, Kenan ne répond plus…"></textarea></label>
+    <div class="btns"><button class="btn" id="asEnvoyer">Envoyer à l’assistance</button></div>
+    <p class="note" id="asNote" style="margin:0">Vous pouvez aussi écrire à <strong style="user-select:all">${SUPPORT}</strong>.</p></div>`;
+}
+async function envoyerAssistance(){
+  const msg = ($('#asMsg').value || '').trim(), email = ($('#asEmail').value || '').trim(), note = $('#asNote');
+  if (!msg) { note.textContent = 'Décrivez le problème en quelques mots.'; return; }
+  $('#asEnvoyer').disabled = true;
+  if (!BACKEND) { note.textContent = 'Aperçu : dans la version en ligne, ce message partira directement à l’assistance. Rien n’a été envoyé ici.'; $('#asEnvoyer').disabled = false; return; }
+  try {
+    const r = await fetch(BACKEND + '/oh-la-honte/assistance', { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({ a: JETON, email, message: msg, infos: infosTechniques() }) });
+    const d = await r.json();
+    note.textContent = d.ok ? 'Message envoyé. Nous vous répondons au plus vite.' : 'L’envoi n’a pas abouti. Écrivez-nous à ' + SUPPORT + '.';
+    if (d.ok) $('#asMsg').value = '';
+  } catch(err) { note.textContent = 'L’envoi n’a pas abouti. Écrivez-nous à ' + SUPPORT + '.'; }
+  $('#asEnvoyer').disabled = false;
+}
+document.addEventListener('click', e => {
+  if (e.target && e.target.id === 'asEnvoyer') return envoyerAssistance();
+  if (e.target && e.target.id === 'copierInfos') {
+    const t = infosTechniques();
+    const repli = () => { const x = document.createElement('textarea'); x.value = t; x.style.position='fixed'; x.style.opacity='0'; document.body.appendChild(x); x.select(); try { document.execCommand('copy'); toast('Informations copiées'); } catch(err) { toast('Copie impossible'); } x.remove(); };
+    try { navigator.clipboard.writeText(t).then(() => toast('Informations copiées'), repli); } catch(err) { repli(); }
+  }
+});
+$('#versAccueil').onclick = accueil;
+
+/* ---------- Version en ligne : serveur ---------- */
+let tSync = null;
+function etatServeur(){ const c = JSON.parse(JSON.stringify(E)); delete c.chats; return c; }
+function synchro(immediat){
+  if (!JETON) return Promise.resolve();
+  clearTimeout(tSync);
+  const go = () => fetch(BACKEND + '/oh-la-honte/progression', { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({ a: JETON, etat: etatServeur() }) })
+    .then(r => r.json()).then(d => { if (d && d.ok && Array.isArray(d.jours)) fusionJours(d.jours); }).catch(() => {});
+  if (immediat) return go();
+  tSync = setTimeout(go, 1200); return Promise.resolve();
+}
+function fusionJours(js){ C.jours = js.map(j => { const ancien = (C.jours || []).find(x => x.n === j.n); return j.questions ? j : (ancien && ancien.questions ? ancien : j); }); }
+async function charger(){
+  const r = await fetch(BACKEND + '/oh-la-honte/parcours', { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({ a: JETON }) });
+  const d = await r.json();
+  if (!d || !d.ok) { const e = new Error((d && d.erreur) || 'acces'); e.acces = true; throw e; }
+  const js = d.jours; delete d.jours; delete d.ok;
+  C = Object.assign({}, C, d); fusionJours(js); MAX_ECH = C.kenan_echanges_max || 4;
+  return d;
+}
+function sansAcces(refuse){
+  $('#versAccueil').hidden = true;
+  app.innerHTML = `<div class="stack"><div class="eyebrow">Parcours interactif · 7 jours</div>
+    <h1>Oh la honte&nbsp;!<em>&amp; la peur d’avoir honte</em></h1>
+    <div class="card"><p style="margin-top:0">${refuse ? 'Ce lien d’accès n’est pas reconnu.' : 'Votre accès personnel se trouve dans l’e-mail reçu après votre achat.'}</p>
+    <p>Vous ne le retrouvez pas ? Indiquez l’adresse e-mail utilisée lors de l’achat : nous vous le renvoyons.</p>
+    <form id="rf" novalidate style="display:grid;gap:10px"><input type="email" id="rEmail" autocomplete="email" placeholder="Votre adresse e-mail" aria-label="Votre adresse e-mail" style="padding:13px;border-radius:10px;border:1px solid #c9a25b;font:inherit;font-size:16px">
+    <button class="btn" type="submit">Recevoir mon lien</button></form><p class="note" id="rNote"></p></div>
+    <p class="note">Vous n’avez pas encore le parcours ? <a href="../../oh-la-honte.html">Découvrir la formation</a></p></div>`;
+  $('#rf').addEventListener('submit', e => { e.preventDefault();
+    const email = $('#rEmail').value.trim(), n = $('#rNote');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { n.textContent = 'Vérifiez l’adresse e-mail.'; return; }
+    fetch(BACKEND + '/oh-la-honte/retrouver', { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({ email }) })
+      .then(() => { n.textContent = 'Si cette adresse correspond à un achat, votre lien vient de vous être envoyé. Pensez à regarder dans les courriers indésirables.'; })
+      .catch(() => { n.innerHTML = 'L’envoi n’a pas abouti. Écrivez-nous à <strong>meetme@mireilletanofram.com</strong>.'; });
+  });
+}
+async function demarrer(){
+  if (!JETON) return sansAcces(false);
+  app.innerHTML = '<p class="muted">Chargement de votre parcours…</p>';
+  try {
+    const d = await charger();
+    const srv = d.etat || {}, loc = E;
+    const poids = x => ((x.termines || []).length * 1000) + Object.keys(x.reponses || {}).length + Object.keys(x.exercices || {}).length + (x.livret ? 1 : 0);
+    if (poids(srv) >= poids(loc)) E = Object.assign({ reponses:{}, exercices:{}, retenir:{}, tests:{}, syntheses:{}, chats:{}, termines:[], position:{jour:1,etape:0} }, srv, { chats: loc.chats || {} });
+    else synchro(true);
+    nettoyerChats(); accueil();
+  } catch(e) {
+    if (e.acces) { try { localStorage.removeItem('olh-jeton'); } catch(x) {} return sansAcces(true); }
+    app.innerHTML = '<div class="card"><p>Votre parcours n’a pas pu être chargé. Vérifiez votre connexion, puis réessayez.</p><button class="btn" id="reessayer">Réessayer</button></div>';
+    $('#reessayer').onclick = demarrer;
+  }
+}
+demarrer();
+</script>
+
+</body></html>
