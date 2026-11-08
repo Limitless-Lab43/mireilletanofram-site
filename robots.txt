@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
 Sitemap: https://mireilletanofram.com/sitemap.xml
+Sitemap: https://mireilletanofram.com/blog/sitemap-blog.xml
