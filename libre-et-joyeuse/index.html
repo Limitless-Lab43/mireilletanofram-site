@@ -85,6 +85,7 @@
   .form input,.form textarea{width:100%;padding:13px 14px;border:1px solid #D9C7BD;border-radius:10px;font-size:16px;font-family:inherit;background:#fff}
   .form .btn{border:0;cursor:pointer;justify-self:center;margin-top:6px}
   .err{color:#A3263F;font-family:Inter,sans-serif;font-size:14px;text-align:center;min-height:1em}
+  .coffret-img{display:block;width:100%;height:auto;border-radius:14px;margin:0 0 18px;box-shadow:0 8px 24px rgba(51,35,27,.15)}
 </style>
 </head>
 <body>
@@ -166,6 +167,7 @@
   <section id="papier">
     <h2>La version papier</h2>
     <span class="orn">✦</span>
+    <img class="coffret-img" src="coffret.jpg" alt="Le coffret et les options" onerror="this.remove()">
     <p class="center" style="text-align:center">Choisissez votre formule, ajoutez des options si vous le souhaitez, puis réglez votre commande en ligne.</p>
 
     <div class="sub-h">1. Votre formule</div>
@@ -176,7 +178,11 @@
         <span class="co-t">Le coffret</span><span class="co-d">Le livre imprimé, un bloc-notes et un stylo, présentés dans un coffret.</span><span class="co-p">29&nbsp;500&nbsp;FCFA</span></label>
     </div>
 
-    <div class="sub-h">2. Les options <small>(vendues séparément)</small></div>
+    <div class="sub-h">2. Votre commande</div>
+    <div class="recap" id="recap"></div>
+    <p class="note" style="text-align:center">Chaque commande est préparée pour vous&nbsp;: comptez environ trois semaines avant la livraison. Les frais de livraison ne sont pas compris&nbsp;; ils vous sont communiqués selon votre adresse et se règlent à la livraison.</p>
+
+    <div class="sub-h">3. Les options <small>(vendues séparément)</small></div>
     <div class="choices three">
       <label class="card-opt"><input type="checkbox" class="opt" data-label="Mug" data-price="5500">
         <span class="co-t">Le mug</span><span class="co-p">5&nbsp;500&nbsp;FCFA</span></label>
@@ -186,10 +192,6 @@
         <span class="co-t">Le t-shirt</span><span class="co-p">5&nbsp;500&nbsp;FCFA</span>
         <select id="taille" aria-label="Taille du t-shirt"><option value="">Votre taille</option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option><option>3XL</option></select></label>
     </div>
-
-    <div class="sub-h">3. Votre commande</div>
-    <div class="recap" id="recap"></div>
-    <p class="note" style="text-align:center">Les frais de livraison ne sont pas compris. Ils vous sont communiqués selon votre adresse et se règlent à la livraison.</p>
 
     <div class="sub-h">4. Vos coordonnées</div>
     <form id="cmd" class="form" novalidate>
