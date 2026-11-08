@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Merci – Je choisis d’être Libre et Joyeuse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF3EA; --cream2:#FFF9F2; --crimson:#A3263F; --crimson2:#C93D55;
+    --gold:#D9A02B; --gold2:#F2C14E; --brown:#3A1E14;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--cream);color:var(--brown);font-family:"Cormorant Garamond",Georgia,serif;
+       min-height:100vh;display:flex;justify-content:center;padding:24px 16px}
+  .card{position:relative;width:100%;max-width:560px;background:linear-gradient(var(--cream2),var(--cream));
+        border:1.5px solid var(--gold);border-radius:28px;padding:40px 28px 84px;text-align:center;overflow:hidden}
+  .author{display:flex;align-items:center;justify-content:center;gap:10px;
+          font-family:"Playfair Display",serif;font-weight:700;font-size:1.25rem;letter-spacing:.01em}
+  .sep{display:flex;align-items:center;justify-content:center;gap:10px;margin:18px 0}
+  .sep::before,.sep::after{content:"";height:1.5px;width:90px;background:linear-gradient(90deg,transparent,var(--gold))}
+  .sep::after{background:linear-gradient(90deg,var(--gold),transparent)}
+  .sep span{color:var(--gold);font-size:1.1rem;line-height:1}
+  h1{font-family:"Playfair Display",serif;font-style:italic;font-weight:700;color:var(--crimson);
+     font-size:clamp(3.4rem,14vw,5.2rem);line-height:1;margin-top:6px}
+  .swoosh{display:block;margin:4px auto 10px;width:62%;height:14px}
+  .lead{font-family:"Playfair Display",serif;font-weight:600;font-size:clamp(1.35rem,5vw,1.7rem)}
+  .title-band{position:relative;margin:22px -10px 26px;padding:22px 16px 26px;color:#fff;
+     background:var(--crimson);border-radius:46% 54% 50% 50% / 40% 46% 54% 60%;
+     box-shadow:0 0 0 6px rgba(163,38,63,.15)}
+  .title-band .pre{font-family:"Playfair Display",serif;font-style:italic;font-weight:600;
+     font-size:clamp(1.3rem,5.4vw,1.75rem);color:#FBE3D9}
+  .title-band .main{font-family:"Playfair Display",serif;font-style:italic;font-weight:700;
+     font-size:clamp(2.1rem,9vw,3rem);line-height:1.1;margin-top:2px}
+  .title-band .main em{font-style:italic;color:var(--gold2)}
+  h2{font-family:"Playfair Display",serif;font-style:italic;font-weight:700;font-size:clamp(1.4rem,5.6vw,1.8rem);margin-bottom:12px}
+  .msg{font-style:italic;font-weight:600;font-size:clamp(1.1rem,4.4vw,1.3rem);line-height:1.45;max-width:30em;margin:0 auto}
+  .btn{display:inline-flex;align-items:center;gap:14px;margin-top:6px;padding:16px 34px;
+       background:linear-gradient(var(--crimson2),var(--crimson));color:#fff;text-decoration:none;
+       border:2px solid var(--gold);border-radius:999px;font-family:"Playfair Display",serif;font-weight:600;
+       font-size:clamp(1.15rem,4.6vw,1.4rem);box-shadow:0 6px 16px rgba(163,38,63,.28);transition:transform .15s,box-shadow .15s}
+  .btn:hover,.btn:focus-visible{transform:translateY(-2px);box-shadow:0 10px 22px rgba(163,38,63,.35);outline:none}
+  .btn svg{width:30px;height:30px;flex:none}
+  .btn .bar{width:1px;height:28px;background:rgba(255,255,255,.5)}
+  .help{margin-top:24px;font-weight:600;font-size:1.08rem;line-height:1.45}
+  .help a{white-space:nowrap;color:var(--crimson);font-weight:700;text-decoration:none;border-bottom:1px solid var(--gold)}
+  .prog{margin:34px -10px 0}
+  .prog .k{font-family:"Playfair Display",serif;font-style:italic;font-weight:600;font-size:1.25rem;color:var(--crimson);margin-bottom:12px}
+  .prog img{display:block;width:100%;height:auto;border-radius:18px;border:1px solid rgba(217,160,43,.5)}
+  .prog .btn{margin-top:18px}
+  .wave{position:absolute;left:0;right:0;bottom:0;width:100%;height:56px}
+  .nw{white-space:nowrap}
+  body{hyphens:none;-webkit-hyphens:none}
+  h1,h2,.sub,.kicker,.lead,.msg{text-wrap:balance}
+  p,li{text-wrap:pretty}
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="author"><span class="nw">Mireille TANO‑FRAM</span></div>
+  <div class="sep" aria-hidden="true"><span>✦</span></div>
+
+  <h1>Merci&nbsp;!</h1>
+  <svg class="swoosh" viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M5 11 Q150 -6 295 7" stroke="#D9A02B" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  </svg>
+  <p class="lead">d’avoir choisi le livre</p>
+
+  <div class="title-band">
+    <div class="pre">Je choisis d’être</div>
+    <div class="main">Libre et <em>Joyeuse</em></div>
+  </div>
+
+  <h2>Ton exemplaire t’attend&nbsp;!</h2>
+  <p class="msg">J’espère que ces pages t’accompagneront dans tes réflexions, tes découvertes et ta manière de regarder ta propre histoire.</p>
+
+  <div class="sep" aria-hidden="true"><span>✦</span></div>
+
+  <a class="btn" href="https://mireilletanofram.com/lire/libre-et-joyeuse-j62bfz/">
+    <svg viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true">
+      <path d="M16 8c-3-2-7-2.5-12-2v18c5-.5 9 0 12 2 3-2 7-2.5 12-2V6c-5-.5-9 0-12 2z"/><path d="M16 8v18"/>
+    </svg>
+    <span class="bar" aria-hidden="true"></span>
+    Accéder à mon livre
+  </a>
+
+  <section class="prog" hidden>
+    <p class="k">Et pour aller plus loin…</p>
+    <img src="programme-libre-joyeuse.jpg" alt="Programme Libre &amp; Joyeuse : un programme 100 % en ligne, construit à partir de ton histoire.">
+    <a class="btn" href="https://mireilletanofram.com/">Découvrir le programme</a>
+  </section>
+
+  <p class="help">Une difficulté pour accéder au livre&nbsp;?<br>
+    Écris-moi sur WhatsApp&nbsp;: <a href="https://wa.me/2250546066257"><span class="nw">+225 05 46 06 62 57</span></a><br>
+    ou par e-mail&nbsp;: <a href="mailto:meetme@mireilletanofram.com">meetme@mireilletanofram.com</a></p>
+
+  <svg class="wave" viewBox="0 0 560 90" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 40 C140 90 300 0 560 30 L560 90 L0 90 Z" fill="#A3263F"/>
+    <path d="M0 40 C140 90 300 0 560 30" stroke="#D9A02B" stroke-width="3" fill="none"/>
+    <path d="M0 60 C160 100 330 20 560 52" stroke="#F2C14E" stroke-width="1.5" fill="none" opacity=".8"/>
+  </svg>
+</main>
+</body>
+</html>
