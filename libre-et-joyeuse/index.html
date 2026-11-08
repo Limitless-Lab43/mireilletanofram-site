@@ -66,6 +66,25 @@
   body{hyphens:none;-webkit-hyphens:none}
   h1,h2,.sub,.kicker,.lead,.msg{text-wrap:balance}
   p,li{text-wrap:pretty}
+  .sub-h{font-family:Inter,sans-serif;font-weight:600;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--rose2);margin:26px 0 10px}
+  .sub-h small{text-transform:none;letter-spacing:0;font-weight:500;color:#7a6358}
+  .choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .choices.three{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:520px){.choices,.choices.three{grid-template-columns:1fr}}
+  .card-opt{position:relative;display:flex;flex-direction:column;gap:4px;background:#fff;border:1.5px solid #EADBD3;border-radius:14px;padding:14px 14px 14px 42px;cursor:pointer;transition:border-color .15s,background .15s}
+  .card-opt input[type=radio],.card-opt input[type=checkbox]{position:absolute;left:14px;top:17px;width:18px;height:18px;accent-color:var(--rose)}
+  .card-opt:has(input:checked){border-color:var(--rose);background:#FDF3F2}
+  .co-t{font-weight:600;font-size:17px}
+  .co-d{font-size:15px;color:#5a463c;line-height:1.45}
+  .co-p{font-family:Inter,sans-serif;font-weight:600;color:var(--rose2);font-size:15px}
+  .card-opt select{margin-top:6px;padding:8px;border:1px solid #D9C7BD;border-radius:8px;font-size:15px;background:#fff}
+  .recap{background:#fff;border:1px solid #EADBD3;border-radius:14px;padding:14px 18px;font-family:Inter,sans-serif;font-size:15px}
+  .recap .l{display:flex;justify-content:space-between;gap:12px;padding:5px 0}
+  .recap .tot{border-top:1px solid #EADBD3;margin-top:6px;padding-top:10px;font-weight:600;font-size:17px}
+  .form{display:grid;gap:10px}
+  .form input,.form textarea{width:100%;padding:13px 14px;border:1px solid #D9C7BD;border-radius:10px;font-size:16px;font-family:inherit;background:#fff}
+  .form .btn{border:0;cursor:pointer;justify-self:center;margin-top:6px}
+  .err{color:#A3263F;font-family:Inter,sans-serif;font-size:14px;text-align:center;min-height:1em}
 </style>
 </head>
 <body>
@@ -82,6 +101,7 @@
     <div class="price">Édition numérique, à lire en ligne&nbsp;: <strong>9&nbsp;900&nbsp;FCFA</strong></div>
     <a class="btn pay" href="#">Lire le livre maintenant</a>
     <div class="note">Accès immédiat après le paiement. Paiement sécurisé par Paystack.</div>
+    <div class="note" style="margin-top:10px">Vous préférez le papier&nbsp;? <a href="#papier">Voir la version papier et le coffret</a></div>
   </div>
 
   <section>
@@ -119,7 +139,7 @@
   </section>
 
   <section>
-    <h2>Pourquoi le lire</h2>
+    <h2>Pourquoi le lire&nbsp;?</h2>
     <span class="orn">✦</span>
     <ul class="list">
       <li><strong>Pour mettre des mots sur ce que vous vivez</strong>, peut-être depuis longtemps, sans l’avoir jamais formulé.</li>
@@ -143,13 +163,46 @@
     </div>
   </section>
 
-  <section>
-    <div class="box">
-      <h2 style="margin-bottom:10px">Vous préférez le papier&nbsp;?</h2>
-      <p>Le livre existe aussi en coffret&nbsp;: le livre imprimé, un bloc-notes et un stylo, pour écrire vos propres réponses au fil de la lecture.</p>
-      <p><strong>17&nbsp;500&nbsp;FCFA</strong>, sur commande.</p>
-      <a class="btn ghost" href="https://wa.me/2250546066257?text=Bonjour%2C%20je%20souhaite%20commander%20le%20coffret%20%C2%AB%20Je%20choisis%20d%E2%80%99%C3%AAtre%20Libre%20et%20Joyeuse%20%C2%BB.">Commander le coffret sur WhatsApp</a>
+  <section id="papier">
+    <h2>La version papier</h2>
+    <span class="orn">✦</span>
+    <p class="center" style="text-align:center">Choisissez votre formule, ajoutez des options si vous le souhaitez, puis réglez votre commande en ligne.</p>
+
+    <div class="sub-h">1. Votre formule</div>
+    <div class="choices" id="formules">
+      <label class="card-opt"><input type="radio" name="formule" value="livre" data-label="Livre papier seul" data-price="17500">
+        <span class="co-t">Le livre papier seul</span><span class="co-d">Le livre imprimé.</span><span class="co-p">17&nbsp;500&nbsp;FCFA</span></label>
+      <label class="card-opt"><input type="radio" name="formule" value="coffret" data-label="Coffret : livre, bloc-notes et stylo" data-price="29500" checked>
+        <span class="co-t">Le coffret</span><span class="co-d">Le livre imprimé, un bloc-notes et un stylo, présentés dans un coffret.</span><span class="co-p">29&nbsp;500&nbsp;FCFA</span></label>
     </div>
+
+    <div class="sub-h">2. Les options <small>(vendues séparément)</small></div>
+    <div class="choices three">
+      <label class="card-opt"><input type="checkbox" class="opt" data-label="Mug" data-price="5500">
+        <span class="co-t">Le mug</span><span class="co-p">5&nbsp;500&nbsp;FCFA</span></label>
+      <label class="card-opt"><input type="checkbox" class="opt" data-label="Gourde" data-price="5500">
+        <span class="co-t">La gourde</span><span class="co-p">5&nbsp;500&nbsp;FCFA</span></label>
+      <label class="card-opt"><input type="checkbox" class="opt" id="tshirt" data-label="T-shirt" data-price="5500">
+        <span class="co-t">Le t-shirt</span><span class="co-p">5&nbsp;500&nbsp;FCFA</span>
+        <select id="taille" aria-label="Taille du t-shirt"><option value="">Votre taille</option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option><option>3XL</option></select></label>
+    </div>
+
+    <div class="sub-h">3. Votre commande</div>
+    <div class="recap" id="recap"></div>
+    <p class="note" style="text-align:center">Les frais de livraison ne sont pas compris. Ils vous sont communiqués selon votre adresse et se règlent à la livraison.</p>
+
+    <div class="sub-h">4. Vos coordonnées</div>
+    <form id="cmd" class="form" novalidate>
+      <input id="c-nom" placeholder="Nom et prénom" required>
+      <input id="c-tel" placeholder="Téléphone (WhatsApp)" inputmode="tel" required>
+      <input id="c-mail" type="email" placeholder="E-mail" required>
+      <input id="c-ville" placeholder="Ville et commune" required>
+      <textarea id="c-adr" rows="2" placeholder="Adresse de livraison et indications" required></textarea>
+      <div id="c-err" class="err"></div>
+      <button type="submit" class="btn" id="c-pay">Payer ma commande</button>
+      <div class="note" style="text-align:center">Paiement sécurisé par Paystack&nbsp;: Orange Money, Wave, carte bancaire.</div>
+    </form>
+    <p class="note" style="text-align:center;margin-top:14px">Une question avant de commander&nbsp;? <a href="https://wa.me/2250546066257">Écrivez-moi sur WhatsApp</a>.</p>
   </section>
 
   <section>
@@ -190,6 +243,47 @@
 <div class="sticky" id="sticky"><span>9&nbsp;900&nbsp;FCFA · lecture en ligne</span><a class="btn pay" href="#">Lire le livre</a></div>
 
 <script>
+  /* CLÉ PUBLIQUE PAYSTACK (Live Public Key, commence par pk_live_) : remplacez seulement le texte entre les guillemets */
+  var PAYSTACK_PK = "pk_live_2115533b73cb64bb692671306d318eaa66ae538f";
+  (function(){
+    var fmt=function(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00a0')+'\u00a0FCFA'};
+    var items=function(){
+      var out=[],f=document.querySelector('input[name=formule]:checked');
+      if(f) out.push({l:f.dataset.label,p:+f.dataset.price});
+      document.querySelectorAll('input.opt:checked').forEach(function(o){
+        var l=o.dataset.label; if(o.id==='tshirt'){var t=document.getElementById('taille').value; l+=' (taille '+(t||'à choisir')+')';}
+        out.push({l:l,p:+o.dataset.price});});
+      return out;};
+    var total=function(){return items().reduce(function(a,i){return a+i.p},0)};
+    var draw=function(){
+      var h=items().map(function(i){return '<div class="l"><span>'+i.l+'</span><span>'+fmt(i.p)+'</span></div>'}).join('');
+      document.getElementById('recap').innerHTML=h+'<div class="l tot"><span>Total (hors livraison)</span><span>'+fmt(total())+'</span></div>';
+      document.getElementById('c-pay').textContent='Payer ma commande · '+fmt(total());};
+    document.querySelectorAll('#papier input, #taille').forEach(function(e){e.addEventListener('change',draw)});
+    document.getElementById('taille').addEventListener('change',function(){if(this.value)document.getElementById('tshirt').checked=true;draw();});
+    draw();
+    document.getElementById('cmd').addEventListener('submit',function(ev){
+      ev.preventDefault();
+      var g=function(id){return document.getElementById(id).value.trim()},err=document.getElementById('c-err');
+      if(!g('c-nom')||!g('c-tel')||!g('c-ville')||!g('c-adr')||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(g('c-mail'))){err.textContent='Merci de remplir tous les champs, avec une adresse e-mail valide.';return;}
+      if(document.getElementById('tshirt').checked&&!document.getElementById('taille').value){err.textContent='Merci de choisir la taille du t-shirt.';return;}
+      err.textContent='';
+      var detail=items().map(function(i){return i.l}).join(' + ');
+      var go=function(){
+        var h=PaystackPop.setup({key:PAYSTACK_PK,email:g('c-mail'),amount:total()*100,currency:'XOF',
+          ref:'LJP-'+Date.now(),
+          metadata:{custom_fields:[
+            {display_name:'Commande',variable_name:'commande',value:'Je choisis d\u2019être Libre et Joyeuse, papier : '+detail},
+            {display_name:'Nom',variable_name:'nom',value:g('c-nom')},
+            {display_name:'Téléphone',variable_name:'telephone',value:g('c-tel')},
+            {display_name:'Ville',variable_name:'ville',value:g('c-ville')},
+            {display_name:'Adresse',variable_name:'adresse',value:g('c-adr')}]},
+          callback:function(r){location.href='https://mireilletanofram.com/merci-commande/?ref='+encodeURIComponent(r.reference);},
+          onClose:function(){}});
+        h.openIframe();};
+      if(window.PaystackPop) go(); else {var sc=document.createElement('script');sc.src='https://js.paystack.co/v1/inline.js';sc.onload=go;document.head.appendChild(sc);}
+    });
+  })();
   /* LIEN DE PAIEMENT PAYSTACK : remplacez seulement le texte entre les guillemets */
   var PAYSTACK = "https://paystack.shop/pay/libre-et-joyeuse";
   document.querySelectorAll('a.pay').forEach(function(a){a.href=PAYSTACK;});
